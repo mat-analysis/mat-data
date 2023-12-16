@@ -276,7 +276,7 @@ def scalerRandomGenerator(
     save_desc_files=True,
     outformats=['csv', 'mat']):
     '''
-    [Function to generate trajectory datasets based on real data.]
+    [Function to generate trajectory datasets based on random data.]
 
     Args:
         Ns [int, int]: 
@@ -391,7 +391,7 @@ def randomGenerator(
     save_to=False,
     outformats=['csv', 'mat']):
     '''
-    [Function to generate trajectories based on real data.]
+    [Function to generate trajectories based on random data.]
 
     Args:
         N [int]: 

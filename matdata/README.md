@@ -4,7 +4,7 @@
 \[[Publication](#)\] \[[citation.bib](citation.bib)\] \[[GitHub](https://github.com/ttportela/mat-data)\] \[[PyPi](https://pypi.org/project/mat-data/)\]
 
 
-The present application offers a tool, to support the user in the task of data preprocessing of multiple aspect trajectories, or to generating synthetic datasets. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
+The present package offers a tool, to support the user in the task of data preprocessing of multiple aspect trajectories, or to generating synthetic datasets. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
 
 Created on Dec, 2023
 Copyright (C) 2023, License GPL Version 3 or superior (see LICENSE file)
@@ -22,6 +22,10 @@ Install directly from PyPi repository, or, download from github. (python >= 3.7 
 ```bash
     pip install mat-data
 ```
+
+### Getting Started
+
+On how to use this package, see [MAT-data-Tutorial.html](./MAT-data-Tutorial.html)
 
 ### Citing
 
@@ -52,7 +56,13 @@ Feel free to contribute in any form, such as scientific publications referencing
 
 ### Related packages
 
-- [mat-data](https://github.com/ttportela/mat-data): mat-data is part of _MAT-Tools Framework_
+This package is part of _MAT-Tools Framework_ for Multiple Aspect Trajectory Data Mining:
+
+- [automatize](https://github.com/ttportela/automatize): automatize for experimental evaluation of MAT classification
+- [movelets](https://github.com/ttportela/movelets): movelets for MAT classification methods (based on movelets)
+- [mat-data](https://github.com/ttportela/mat-data): mat-data is a preprocessing library for MAT data
+- [mat-analysis](https://github.com/ttportela/mat-analysis): mat-analysis for MAT classification methods
+- [mat-view](https://github.com/ttportela/mat-view): mat-view for MAT and movelets visualization, and interpratation tools
 
 ### Change Log
 
