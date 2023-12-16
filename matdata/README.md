@@ -1,10 +1,10 @@
 # MAT-data: Data Preprocessing for Multiple Aspect Trajectory Data Mining \[MAT-Tools Framework\]
 ---
 
-\[[Publication](#)\] \[[citation.bib](citation.bib)\] \[[GitHub](https://github.com/ttportela/movelets)\] \[[PyPi](https://pypi.org/project/movelets/)\]
+\[[Publication](#)\] \[[citation.bib](citation.bib)\] \[[GitHub](https://github.com/ttportela/mat-data)\] \[[PyPi](https://pypi.org/project/mat-data/)\]
 
 
-The present application offers a tool, to support the user in the classification task of multiple aspect trajectories, specifically for extracting and visualizing the movelets, the parts of the trajectory that better discriminate a class. It integrates into a unique platform the fragmented approaches available for multiple aspects trajectories and in general for multidimensional sequence classification into a unique web-based and python library system. Offers both movelets visualization and classification methods.
+The present application offers a tool, to support the user in the task of data preprocessing of multiple aspect trajectories, or to generating synthetic datasets. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
 
 Created on Dec, 2023
 Copyright (C) 2023, License GPL Version 3 or superior (see LICENSE file)
@@ -25,7 +25,7 @@ Install directly from PyPi repository, or, download from github. (python >= 3.7 
 
 ### Citing
 
-If you use `automatize` please cite the following paper:
+If you use `mat-data` please cite the following paper (this package is fragmented from `automatize` realease):
 
     Tarlis Tortelli Portela; Jonata Tyska Carvalho; Vania Bogorny. HiPerMovelets: high-performance movelet extraction for trajectory classification, International Journal of Geographical Information Science, 2022. DOI: 10.1080/13658816.2021.2018593.
 
@@ -48,9 +48,9 @@ If you use `automatize` please cite the following paper:
 
 ### Collaborate with us
 
-Any contribution is welcome. This is an active project and if you would like to include your algorithm in `movelets`, feel free to fork the project, open an issue and contact us.
+Any contribution is welcome. This is an active project and if you would like to include your code, feel free to fork the project, open an issue and contact us.
 
-Feel free to contribute in any form, such as scientific publications referencing `movelets`, teaching material and workshop videos.
+Feel free to contribute in any form, such as scientific publications referencing this package, teaching material and workshop videos.
 
 ### Related packages
 
@@ -58,10 +58,4 @@ Feel free to contribute in any form, such as scientific publications referencing
 
 ### Change Log
 
-This is a package under construction:
- 
-*Dec. 2023:*
- - 
- 
- *TODO*:
- - Comments on all public interface funcions and modules
+This is a package under construction, see [CHANGELOG.md](./CHANGELOG.md)
