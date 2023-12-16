@@ -27,22 +27,20 @@ Install directly from PyPi repository, or, download from github. (python >= 3.7 
 
 If you use `mat-data` please cite the following paper (this package is fragmented from `automatize` realease):
 
-    Tarlis Tortelli Portela; Jonata Tyska Carvalho; Vania Bogorny. HiPerMovelets: high-performance movelet extraction for trajectory classification, International Journal of Geographical Information Science, 2022. DOI: 10.1080/13658816.2021.2018593.
+    Portela, Tarlis Tortelli; Bogorny, Vania; Bernasconi, Anna; Renso, Chiara. AutoMATise: Multiple Aspect Trajectory Data Mining Tool Library. 2022 23rd IEEE International Conference on Mobile Data Management (MDM), 2022, pp. 282-285, doi: 10.1109/MDM55031.2022.00060.
 
-[Bibtex](citation.bib):
-
+Bibtex:
 ```bash
-@article{Portela2022,
-    author = {Tarlis Tortelli Portela and Jonata Tyska Carvalho and Vania Bogorny},
-    title = {HiPerMovelets: high-performance movelet extraction for trajectory classification},
-    journal = {International Journal of Geographical Information Science},
-    volume = {0},
-    number = {0},
-    pages = {1-25},
-    year  = {2022},
-    publisher = {Taylor & Francis},
-    doi = {10.1080/13658816.2021.2018593},
-    URL = {https://doi.org/10.1080/13658816.2021.2018593}
+@inproceedings{Portela2022automatise,
+    title={AutoMATise: Multiple Aspect Trajectory Data Mining Tool Library},
+    author={Portela, Tarlis Tortelli and Bogorny, Vania and Bernasconi, Anna and Renso, Chiara},
+    booktitle = {2022 23rd IEEE International Conference on Mobile Data Management (MDM)},
+    volume={},
+    number={},
+    address = {Online},
+    year={2022},
+    pages = {282--285},
+    doi={10.1109/MDM55031.2022.00060}
 }
 ```
 
