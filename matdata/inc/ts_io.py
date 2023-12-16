@@ -10,8 +10,8 @@ Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 @author: Tarlis Portela
 @author sktime package (adapted)
 """
-import itertools
 import os
+import itertools
 import textwrap
 
 import numpy as np

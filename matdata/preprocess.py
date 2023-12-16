@@ -13,12 +13,15 @@ Copyright (C) 2023, License GPL Version 3 or superior (see LICENSE file)
 
 @author: Tarlis Portela
 """
+import os
 import pandas as pd
 import numpy as np
-import os
-import tqdm.auto as tqdm
 
+from tqdm.auto import tqdm
 import glob2 as glob
+import random
+
+from sklearn.model_selection import KFold, train_test_split
 
 from .inc.converter import *
 #from .inc.script_def import getDescName
@@ -357,7 +360,7 @@ def datasetStatistics(data_path, folder, file_prefix='', tid_col = 'tid', class_
 
 #-------------------------------------------------------------------------->>
 def splitTIDs(df, train_size=0.7, random_num=1, tid_col='tid', class_col='label', min_elements=1):
-    importer(['S', 'random'], globals())
+#    importer(['S', 'random'], globals())
     train = list()
     test = list()
     
@@ -384,7 +387,7 @@ def splitTIDs(df, train_size=0.7, random_num=1, tid_col='tid', class_col='label'
 def trainAndTestSplit(df, train_size=0.7, random_num=1, tid_col='tid', class_col='label', fileprefix='', \
                       data_path='.', outformats=['zip', 'csv', 'mat'], verbose=False, organize_columns=True):
 #     from ..main import importer
-    importer(['S', 'random'], globals())
+#    importer(['S', 'random'], globals())
     if verbose:
         print(str(train_size)+"% train and test split in... " + data_path)
     
@@ -398,32 +401,6 @@ def trainAndTestSplit(df, train_size=0.7, random_num=1, tid_col='tid', class_col
     
     train = df.loc[df[tid_col].isin(train_index)]
     test  = df.loc[df[tid_col].isin(test_index)]
-    
-#    train = pd.DataFrame()
-#    test = pd.DataFrame()
-#    
-#    tqdm(df[class_col].unique())
-#    #for label in df[class_col].unique():
-#    def splitByLabel(label):
-#        nonlocal train, test
-#                
-#        tids = df.loc[df[class_col] == label][tid_col].unique()
-#        if verbose:
-#            pbar.set_description("Processing label {}, {} trajs.".format(str(label), str(len(tids))))
-#        
-#        random.seed(random_num)
-#        train_index = random.sample(list(tids), int(len(tids)*train_size))
-#        test_index  = tids[np.isin(tids, train_index, invert=True)] #np.delete(test_index, train_index)
-#
-#        train = pd.concat([train,df.loc[df[tid_col].isin(train_index)]])
-#        test  = pd.concat([test, df.loc[df[tid_col].isin(test_index)]])
-#
-#        if verbose:
-#            #print('Label', label, ', TIDs = ', tids)
-#            pbar.set_description("Train samples: {}".format(str(train.loc[train[class_col] == label][tid_col].unique())))
-#            pbar.set_description("Test samples: {}".format(str(test.loc[test[class_col] == label][tid_col].unique())))
-#    
-#    list(map(lambda label: splitByLabel(label), pbar))
     
     # WRITE Train / Test Files
     for outType in outformats:
@@ -466,10 +443,9 @@ def dropLabelsltk(df, k, tid_col='tid', class_col='label'):
     index_names = df[df[class_col].isin(df_[df_[tid_col] < k][class_col])].index
     return df.drop(index_names)
 
-def kfold_trainAndTestSplit(data_path, k, df, random_num=1, tid_col='tid', class_col='label', fileprefix='', 
-                            columns_order=None, ktrain=None, ktest=None, mat_columns=None, outformats=['zip', 'csv', 'mat'], verbose=False):
+def kfold_trainAndTestSplit(data_path, k, df, random_num=1, tid_col='tid', class_col='label', fileprefix='', columns_order=None, ktrain=None, ktest=None, mat_columns=None, outformats=['zip', 'csv', 'mat'], verbose=False):
 #     from ..main import importer
-    importer(['S', 'KFold'], globals())
+#    importer(['S', 'KFold'], globals())
     
     print(str(k)+"-fold train and test split in... " + data_path)
     
@@ -503,7 +479,7 @@ def kfold_trainAndTestSplit(data_path, k, df, random_num=1, tid_col='tid', class
 
 def stratify(df, sample_size=0.5, train_size=0.7, random_num=1, tid_col='tid', class_col='label', 
              organize_columns=True, mat_columns=None, fileprefix='', outformats=['zip', 'csv', 'mat'], data_path='.'):
-    importer(['S', 'train_test_split'], globals())
+#    importer(['S', 'train_test_split'], globals())
     
     train_index, _, _ = splitTIDs(df, sample_size, random_num, tid_col, class_col, min_elements=2)
     
@@ -533,7 +509,7 @@ def stratify(df, sample_size=0.5, train_size=0.7, random_num=1, tid_col='tid', c
 # TODO fix stratify:
 def kfold_stratify(data_path, df, k=10, inc=1, limit=10, random_num=1, tid_col='tid', class_col='label', fileprefix='', 
              ktrain=None, ktest=None, organize_columns=True, mat_columns=None, outformats=['zip', 'csv', 'mat'], ignore_ltk=True):
-    importer(['S', 'KFold'], globals())
+#    importer(['S', 'KFold'], globals())
     
     print(str(k)+"-fold stratification of train and test in... " + data_path)
     

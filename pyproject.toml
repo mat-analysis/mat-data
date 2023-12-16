@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 [project]
 name = "mat-data"
-version = "0.1b4"
+version = "0.1b6"
 description = "MAT-data: Data Preprocessing for Multiple Aspect Trajectory Data Mining"
 authors = [
     {name = "Tarlis Tortelli Portela", email = "tarlis@tarlis.com.br"},
@@ -41,6 +41,7 @@ dependencies = [
     "glob2",
     "numpy",
     "pandas",
+    "mat-data",
  ]
 
 [project.optional-dependencies]

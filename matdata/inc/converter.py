@@ -13,14 +13,17 @@ Copyright (C) 2023, License GPL Version 3 or superior (see LICENSE file)
 
 @author: Tarlis Portela
 """
+import os
 import pandas as pd
 import numpy as np
-import os
-import tqdm.auto as tqdm
+
+from zipfile import ZipFile
+
+from tqdm.auto import tqdm
 
 def zip2df(folder, file, cols=None, class_col = 'label', tid_col='tid', missing='?'):
 #     from ..main import importer
-    importer(['S', 'zip'], globals())
+#    importer(['S', 'zip'], globals())
     
 #     data = pd.DataFrame()
     print("Converting "+file+" data from... " + folder)
@@ -72,7 +75,7 @@ def zip2csv(folder, file, cols, class_col = 'label', tid_col='tid', missing='?')
 
 def df2zip(data_path, df, file, tid_col='tid', class_col='label', select_cols=None, opLabel='Writing MAT'):
 #     from ..main import importer
-    importer(['S', 'zip'], globals())
+#    importer(['S', 'zip'], globals())
     
     EXT = '.r2'
     if not os.path.exists(data_path):

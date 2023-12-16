@@ -13,10 +13,11 @@ Copyright (C) 2023, License GPL Version 3 or superior (see LICENSE file)
 
 @author: Tarlis Portela
 """
+import os
 import pandas as pd
 import numpy as np
-import os
-import tqdm.auto as tqdm
+
+from tqdm.auto import tqdm
 
 import math
 import random
