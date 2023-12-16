@@ -25,7 +25,7 @@ Install directly from PyPi repository, or, download from github. (python >= 3.7 
 
 ### Getting Started
 
-On how to use this package, see [MAT-data-Tutorial.ipynb](./MAT-data-Tutorial.ipynb) (or the HTML [MAT-data-Tutorial.html](./MAT-data-Tutorial.html))
+On how to use this package, see [MAT-data-Tutorial.ipynb](https://github.com/ttportela/mat-data/blob/main/MAT-data-Tutorial.ipynb) (or the HTML [MAT-data-Tutorial.html](https://github.com/ttportela/mat-data/blob/main/MAT-data-Tutorial.html))
 
 ### Citing
 
