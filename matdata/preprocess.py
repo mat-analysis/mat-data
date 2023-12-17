@@ -457,18 +457,16 @@ def kfold_trainAndTestSplit(data_path, k, df, random_num=1, tid_col='tid', class
         print("Train and test data provided.")
     
 #     print("Writing files...")
-    for x in range(k):
-        path = 'run'+str(x+1)
-        
-        if not os.path.exists(os.path.join(data_path, path)):
-            os.makedirs(os.path.join(data_path, path))
-            
+    for x in range(k):            
         train_aux = ktrain[x]
         test_aux  = ktest[x]
-            
         
-        print("Writing files ... " + str(x+1) +'/'+str(k))
         for outType in outformats:
+            print("Writing", outType, "files ... " + str(x+1) +'/'+str(k))
+            path = 'run'+str(x+1)
+            if not os.path.exists(os.path.join(data_path, path)):
+                os.makedirs(os.path.join(data_path, path))
+                
             writeFiles(data_path, os.path.join(path, fileprefix), train_aux, test_aux, tid_col, class_col, \
                      columns_order_zip if outType in ['zip', 'mat'] else columns_order_csv, mat_columns, None, \
                      outType, opSuff=str(x+1))
@@ -483,7 +481,7 @@ def stratify(df, sample_size=0.5, train_size=0.7, random_num=1, tid_col='tid', c
     
     train_index, _, _ = splitTIDs(df, sample_size, random_num, tid_col, class_col, min_elements=2)
     
-    df = df.loc[df[tid_col].isin(train_index)]
+    df = df.loc[df[tid_col].isin(train_index)].copy()
     
     train_index, test_index, _ = splitTIDs(df, train_size, random_num, tid_col, class_col, min_elements=1)
     
@@ -496,11 +494,11 @@ def stratify(df, sample_size=0.5, train_size=0.7, random_num=1, tid_col='tid', c
     train = df.loc[df[tid_col].isin(train_index)]
     test  = df.loc[df[tid_col].isin(test_index)]
     
-    path = 'S'+str(int(sample_size*100))
-    if not os.path.exists(os.path.join(data_path, path)):
-            os.makedirs(os.path.join(data_path, path))
-    
     for outType in outformats:
+        path = 'S'+str(int(sample_size*100))
+        if not os.path.exists(os.path.join(data_path, path)):
+                os.makedirs(os.path.join(data_path, path))
+            
         writeFiles(data_path, os.path.join(path, fileprefix), train, test, tid_col, class_col, \
                  columns_order_zip if outType in ['zip', 'mat'] else columns_order_csv, mat_columns, None, outType, opSuff=path)
     
@@ -525,11 +523,7 @@ def kfold_stratify(data_path, df, k=10, inc=1, limit=10, random_num=1, tid_col='
         print("Train and test data provided.")
     
     for x in range(0, limit, inc):
-        path = 'S'+str((x+1)*int(100/k))
         
-        if not os.path.exists(os.path.join(data_path, path)):
-            os.makedirs(os.path.join(data_path, path))
-            
         train_aux = ktrain[0]
         test_aux  = ktest[0]
         for y in range(1, x+1):
@@ -537,12 +531,51 @@ def kfold_stratify(data_path, df, k=10, inc=1, limit=10, random_num=1, tid_col='
             test_aux  = pd.concat([test_aux,   ktest[y]])
             
         for outType in outformats:
+            path = 'S'+str((x+1)*int(100/k))
+
+            if not os.path.exists(os.path.join(data_path, path)):
+                os.makedirs(os.path.join(data_path, path))
+            
             writeFiles(data_path, os.path.join(path, fileprefix), train_aux, test_aux, tid_col, class_col, \
                      columns_order_zip if outType in ['zip', 'mat'] else columns_order_csv, mat_columns, None, outType, opSuff=str(x+1))
     print(" Done.")
     print(" --------------------------------------------------------------------------------")
     
     return ktrain, ktest
+
+def klabels_stratify(df, kl=10, train_size=0.7, random_num=1, tid_col='tid', class_col='label', 
+             organize_columns=True, mat_columns=None, fileprefix='', outformats=['zip', 'csv', 'mat'], data_path='.'):
+
+    min_elements=1
+    
+    random.seed(random_num)
+    labels = df[class_col].unique()
+
+    n = min_elements if kl < min_elements else kl
+
+    labels_index = random.sample(list(labels), n)
+    df = df.loc[df[class_col].isin(labels_index)].copy()
+    
+    train_index, test_index, _ = splitTIDs(df, train_size, random_num, tid_col, class_col, min_elements=min_elements)
+    
+    if organize_columns:
+        df, columns_order_zip, columns_order_csv = organizeFrame(df, None, tid_col, class_col)
+    else:
+        columns_order_zip = list(df.columns)
+        columns_order_csv = list(df.columns)
+    
+    train = df.loc[df[tid_col].isin(train_index)]
+    test  = df.loc[df[tid_col].isin(test_index)]
+    
+    for outType in outformats:
+        path = 'L'+str(n)
+        if not os.path.exists(os.path.join(data_path, path)):
+                os.makedirs(os.path.join(data_path, path))
+                
+        writeFiles(data_path, os.path.join(path, fileprefix), train, test, tid_col, class_col, \
+                 columns_order_zip if outType in ['zip', 'mat'] else columns_order_csv, mat_columns, None, outType, opSuff=path)
+    
+    return train, test
 
 #def stratify(data_path, df, k=10, inc=1, limit=10, random_num=1, tid_col='tid', class_col='label', fileprefix='', 
 #             ktrain=None, ktest=None, organize_columns=True, mat_columns=None, outformats=['zip', 'csv', 'mat'], ignore_ltk=True):
