@@ -27,7 +27,7 @@ from .inc.converter import *
 #from .inc.script_def import getDescName
 #-------------------------------------------------------------------------->>
 
-def readDataset(data_path, folder=None, file='train.csv', class_col = 'label', missing='?'):
+def readDataset(data_path, folder=None, file='train.csv', class_col='label', missing='?'):
 #     from ..main import importer
     
     if folder:
@@ -576,6 +576,18 @@ def klabels_stratify(df, kl=10, train_size=0.7, random_num=1, tid_col='tid', cla
                  columns_order_zip if outType in ['zip', 'mat'] else columns_order_csv, mat_columns, None, outType, opSuff=path)
     
     return train, test
+
+def labels_extract(df, labels=[], tid_col='tid', class_col='label', organize_columns=True):
+
+    df = df.loc[df[class_col].isin(labels)].copy()
+    
+    if organize_columns:
+        df, columns_order_zip, columns_order_csv = organizeFrame(df, None, tid_col, class_col)
+    else:
+        columns_order_zip = list(df.columns)
+        columns_order_csv = list(df.columns)
+    
+    return df
 
 #def stratify(data_path, df, k=10, inc=1, limit=10, random_num=1, tid_col='tid', class_col='label', fileprefix='', 
 #             ktrain=None, ktest=None, organize_columns=True, mat_columns=None, outformats=['zip', 'csv', 'mat'], ignore_ltk=True):

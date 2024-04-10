@@ -19,7 +19,7 @@ import numpy as np
 
 from tqdm.auto import tqdm
 
-from matdata.preprocess import organizeFrame, splitTIDs
+from matdata.preprocess import organizeFrame, splitTIDs, readDataset
 
 BASE_URL = 'https://raw.githubusercontent.com/bigdata-ufsc/datasets_v1_0/main/data/'
 
@@ -57,11 +57,7 @@ SUBSET_TYPES = {
 ###############################################################################
 #   LOAD DATASETs - From https://github.com/bigdata-ufsc/datasets_v1_0
 ###############################################################################
-def load_ds(dataset='mat.FoursquareNYC', prefix='specific', missing='-999', sample_size=1, random_num=1):
-    
-    df = load_ds_holdout(dataset, prefix, missing)
-    
-    df = pd.concat(df)
+def prepare_ds(df, sample_size=1, random_num=1):
     df.sort_values(['tid', 'label'])
     
     if sample_size < 1: # Stratify the data
@@ -72,6 +68,21 @@ def load_ds(dataset='mat.FoursquareNYC', prefix='specific', missing='-999', samp
     df, columns_order_zip, columns_order_csv = organizeFrame(df, None, 'tid', 'label')
         
     return df[columns_order_csv]
+
+def read_ds(data_file, tid_col='tid', class_col='label', missing='-999', sample_size=1, random_num=1):
+    df = readDataset(data_file, class_col='label', missing=missing)
+    
+    df.rename(columns={tid_col: 'tid', class_col: 'label'}, inplace=True)
+    
+    return prepare_ds(df, sample_size, random_num)
+
+def load_ds(dataset='mat.FoursquareNYC', prefix='specific', missing='-999', sample_size=1, random_num=1):
+    
+    df = load_ds_holdout(dataset, prefix, missing)
+    
+    df = pd.concat(df)
+    
+    return prepare_ds(df, sample_size, random_num)
 
 def load_ds_5fold(dataset='mat.FoursquareNYC', prefix='specific', missing='-999'):
     
