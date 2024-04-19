@@ -21,20 +21,14 @@ from zipfile import ZipFile
 
 from tqdm.auto import tqdm
 
-def zip2df(folder, file, cols=None, class_col = 'label', tid_col='tid', missing='?'):
-#     from ..main import importer
-#    importer(['S', 'zip'], globals())
+#-------------------------------------------------------------------------->>
+def csv2df(url, cols=None, class_col='label', tid_col='tid', missing='?'): # TODO class_col, tid_col unnecessary
+    return pd.read_csv(url, na_values=missing)
     
-#     data = pd.DataFrame()
-    print("Converting "+file+" data from... " + folder)
-    if '.zip' in file:
-        url = os.path.join(folder, file)
-    else:
-        url = os.path.join(folder, file+'.zip')
-        
-    print("Done.")
-    data = read_zip(ZipFile(url), cols, class_col, tid_col, missing)
-    return data
+def zip2df(url, cols=None, class_col='label', tid_col='tid', missing='?', opLabel='Reading ZIP'):
+    if isinstance(url, str):
+        url = ZipFile(url)
+    return read_zip(url, cols, class_col, tid_col, missing, opLabel)
     
 def read_zip(zipFile, cols=None, class_col='label', tid_col='tid', missing='?', opLabel='Reading ZIP'):
     data = pd.DataFrame()
@@ -61,6 +55,46 @@ def read_zip(zipFile, cols=None, class_col='label', tid_col='tid', missing='?', 
         data = pd.concat(data)
     return data
 
+def mat2df(url, cols=None, class_col='label', tid_col='tid', missing='?'):
+    raise Exception('Not Implemented')
+    
+def read_mat(url, cols=None, class_col='label', tid_col='tid', missing='?'):
+    raise Exception('Not Implemented')
+    
+def ts2df(url, cols=None, class_col='label', tid_col='tid', missing='?'):
+    raise Exception('Not Implemented')
+
+def xes2df(url, cols=None, class_col='label', tid_col='tid', opLabel='Converting XES', save=False, start_tid=1):
+    start_tid = start_tid-1
+    def getTrace(log, tid):
+        t = dict(log[tid].attributes)
+        return t
+    
+    def getEvent(log, tid , j, attrs):
+        ev = dict(log[tid][j])
+        
+        eqattr = set(attrs.keys()).intersection(set(ev.keys()))
+        for k in eqattr:
+            attrs[k+'_t'] = attrs.pop(k)
+        
+        ev.update(attrs)
+        ev['tid'] = start_tid+tid+1
+        return ev
+    
+    import pm4py
+    if isinstance(url, str):
+        log = pm4py.read_xes(url)
+    else:
+        log = pm4py.parse_event_log_string(url)
+    
+    data = list(map(lambda tid: 
+                pd.DataFrame(list(map(lambda j: getEvent(log, tid , j, getTrace(log, tid)), range(len(log[tid]))))),
+                tqdm(range(len(log)), desc=opLabel)))
+
+    df = pd.concat(data, ignore_index=True)
+    
+    return df
+    
 #-------------------------------------------------------------------------->>
 def zip2csv(folder, file, cols, class_col = 'label', tid_col='tid', missing='?'):
 #     from ..main import importer
@@ -216,54 +250,6 @@ def any2ts(data_path, folder, file, cols=None, tid_col='tid', class_col = 'label
     print(" --------------------------------------------------------------------------------")
     return data
 
-def xes2csv(folder, file, cols=None, tid_col='tid', class_col = 'label', opLabel='Converting XES', save=False, start_tid=1):
-    start_tid = start_tid-1
-    def getTrace(log, tid):
-        t = dict(log[tid].attributes)
-    #     t.update(log[tid].attributes)
-        return t
-    
-    def getEvent(log, tid , j, attrs):
-        ev = dict(log[tid][j])
-        
-        eqattr = set(attrs.keys()).intersection(set(ev.keys()))
-        for k in eqattr:
-            attrs[k+'_t'] = attrs.pop(k)
-        
-        ev.update(attrs)
-        ev['tid'] = start_tid+tid+1
-        return ev
-    
-    
-    import pm4py
-    if '.xes' in file:
-        url = os.path.join(folder, file)
-    else:
-        url = os.path.join(folder, file+'.xes')
-    
-    print("Reading "+file+" data from: " + folder)
-    log = pm4py.read_xes(url)
-    
-#     if show_progress:
-#         import tqdm
-    data = list(map(lambda tid: 
-                pd.DataFrame(list(map(lambda j: getEvent(log, tid , j, getTrace(log, tid)), range(len(log[tid]))))),
-                tqdm(range(len(log)), desc=opLabel)))
-#     else:
-#         data = list(map(lambda tid: 
-#                     pd.DataFrame(list(map(lambda j: getEvent(log, tid , j, getTrace(log, tid)), range(len(log[tid]))))),
-#                     range(len(log))))
-
-    df = pd.concat(data, ignore_index=True)
-    
-    if save:
-        print("Saving dataset as: " + os.path.join(folder, file+'.csv'))
-        df.to_csv(os.path.join(folder, file+'.csv'), index = False)
-
-    print("Done.")
-    print(" --------------------------------------------------------------------------------")
-    return df
-
 def df2mat(df, folder, file, cols=None, mat_cols=None, desc_cols=None, label_columns=None, other_dsattrs=None,
            tid_col='tid', class_col='label', opLabel='Converting MAT'):
     
@@ -336,13 +322,6 @@ def df2mat(df, folder, file, cols=None, mat_cols=None, desc_cols=None, label_col
 
 #     print("Done.")
 #     print(" --------------------------------------------------------------------------------")
-
-def mat2df(folder, file, cols=None, class_col = 'label', tid_col='tid', missing='?'):
-    
-    if '.mat' in file:
-        url = os.path.join(folder, file)
-    else:
-        url = os.path.join(folder, file+'.mat')
 
 # --------------------------------------------------------------------------------
 def descTypes(df):

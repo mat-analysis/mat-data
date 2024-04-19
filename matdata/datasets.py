@@ -124,7 +124,10 @@ def load_ds_holdout(dataset='mat.FoursquareNYC', prefix='specific', missing='-99
         dataset.append(df)
     
     return dataset
-    
+
+# ------------------------------------------------------------
+
+
 # ------------------------------------------------------------
 def translateDesc(dataset, category, descName):
     dst, dsn = descName.split('.')[0].split('_')[0:2]
@@ -155,36 +158,36 @@ def translateCategory(dataset, category, descName=None):
         return category.split('_')[0].title()
     
 # ------------------------------------------------------------
-def getName(dic, dst=None, dsn=None):
-    dst = (dst if dst else '*')
-    dsn = (dsn if dsn else '*')
-    if dst +'.'+ dsn in dic.keys():
-        name = dic[dst +'.'+ dsn]
-    elif dst +'.*' in dic.keys():
-        name = dic[dst +'.*']
-    elif '*.*' in dic.keys():
-        name = dic['*.*']
-        
-    if not name:
-        name = dsn 
-    return name
-
-def getDescName(dst, dsn):
-    name = getName(DESCRIPTOR_NAMES, dst, dsn)
-    if not name:
-        name = dsn
-    return name
-
-def getFeature(dst, dsn):
-    name = getName(FEATURES_NAMES, dst, dsn)
-    if not name:
-        name = ['poi']
-    return name
-
-def getSubset(dsn, feature):
-    for key, value in FEATURES_NAMES.items():
-        if dsn in key and feature in value:
-            if '?' in key:
-                return 'generic'
-            
-    return 'specific'
+#def getName(dic, dst=None, dsn=None):
+#    dst = (dst if dst else '*')
+#    dsn = (dsn if dsn else '*')
+#    if dst +'.'+ dsn in dic.keys():
+#        name = dic[dst +'.'+ dsn]
+#    elif dst +'.*' in dic.keys():
+#        name = dic[dst +'.*']
+#    elif '*.*' in dic.keys():
+#        name = dic['*.*']
+#        
+#    if not name:
+#        name = dsn 
+#    return name
+#
+#def getDescName(dst, dsn):
+#    name = getName(DESCRIPTOR_NAMES, dst, dsn)
+#    if not name:
+#        name = dsn
+#    return name
+#
+#def getFeature(dst, dsn):
+#    name = getName(FEATURES_NAMES, dst, dsn)
+#    if not name:
+#        name = ['poi']
+#    return name
+#
+#def getSubset(dsn, feature):
+#    for key, value in FEATURES_NAMES.items():
+#        if dsn in key and feature in value:
+#            if '?' in key:
+#                return 'generic'
+#            
+#    return 'specific'

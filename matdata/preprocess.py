@@ -17,44 +17,56 @@ import os
 import pandas as pd
 import numpy as np
 
+from pathlib import Path
 from tqdm.auto import tqdm
 import glob2 as glob
 import random
 
 from sklearn.model_selection import KFold, train_test_split
 
-from .inc.converter import *
+from matdata.converter import *
 #from .inc.script_def import getDescName
-#-------------------------------------------------------------------------->>
 
-def readDataset(data_path, folder=None, file='train.csv', class_col='label', missing='?'):
-#     from ..main import importer
-    
+DS_FUNCTIONS = {
+    'csv': csv2df,
+    'zip': zip2df,
+    'mat': mat2df,
+    'ts': ts2df,
+}
+
+#-------------------------------------------------------------------------->>
+def readDataset(data_path, folder=None, file='train.csv', class_col='label', tid_col='tid', missing='?'):
     if folder:
-        data_path = os.path.join(data_path, folder)
-    
-    if '.csv' in data_path or '.zip' in data_path or '.ts' in data_path:
-        url = data_path
-    elif '.csv' in file or '.zip' in file or '.ts' in file:
-        url = os.path.join(data_path, file)
+        url = os.path.join(data_path, folder)
     else:
-        url = os.path.join(data_path, file+'.csv')
+        url = data_path
+        
+    ext = Path(url).suffix
+    if '' == ext:
+        url = os.path.join(url, file)
+        
+    ext = Path(url).suffix
+    if '' == ext:
+        url = url + '.csv'
     
     url = os.path.abspath(url)
-    if '.csv' in url and os.path.exists(url):
-        df = pd.read_csv(url, na_values=missing)
-    elif ('.zip' in url and os.path.exists(url)) or ('.csv' in url and os.path.exists(url.replace('.csv', '.zip'))):
-        file = file.replace('.csv', '.zip')
-        df = zip2df(data_path, file, class_col=class_col)
-    elif '.ts' in url or os.path.exists(url.replace('train', 'TRAIN').replace('test', 'TEST').replace('.csv', '.ts')):
-        importer(['ts_io'], globals())
-        url = url.replace('train', 'TRAIN').replace('test', 'TEST').replace('.csv', '.ts')
-        df = load_from_tsfile_to_dataframe(url, replace_missing_vals_with=missing)
-#    elif '.mat' in url or os.path.exists(url.replace('.csv', '.mat')): #TODO
-#        url = url.replace('.csv', '.mat')
-#        df = mat2df(url, replace_missing_vals_with=missing)
-    else:
-        df = pd.read_csv(url, na_values=missing) # should not be used
+    ext = Path(url).suffix
+    
+    df = DS_FUNCTIONS[ext](url, class_col=class_col, tid_col=tid_col, missing=missing)
+#    if '.csv' in url and os.path.exists(url):
+#        df = pd.read_csv(url, na_values=missing)
+#    elif ('.zip' in url and os.path.exists(url)) or ('.csv' in url and os.path.exists(url.replace('.csv', '.zip'))):
+#        file = file.replace('.csv', '.zip')
+#        df = zip2df(data_path, file, class_col=class_col)
+#    elif '.ts' in url or os.path.exists(url.replace('train', 'TRAIN').replace('test', 'TEST').replace('.csv', '.ts')):
+#        importer(['ts_io'], globals())
+#        url = url.replace('train', 'TRAIN').replace('test', 'TEST').replace('.csv', '.ts')
+#        df = load_from_tsfile_to_dataframe(url, replace_missing_vals_with=missing)
+##    elif '.mat' in url or os.path.exists(url.replace('.csv', '.mat')): #TODO
+##        url = url.replace('.csv', '.mat')
+##        df = mat2df(url, replace_missing_vals_with=missing)
+#    else:
+#        df = pd.read_csv(url, na_values=missing) # should not be used
     return df
 
 def organizeFrame(df, columns_order=None, tid_col='tid', class_col='label'):

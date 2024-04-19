@@ -1,12 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Multiple Aspect Trajectory Tools Framework, MAT-data: Data Preprocessing for Multiple Aspect Trajectory Data Mining
+# MAT-data: Data Preprocessing for Multiple Aspect Trajectory Data Mining
 
-The present application offers a tool, to support the user in the classification task of multiple aspect trajectories,
-specifically for extracting and visualizing the movelets, the parts of the trajectory that better discriminate a class.
-It integrates into a unique platform the fragmented approaches available for multiple aspects trajectories and in
-general for multidimensional sequence classification into a unique web-based and python library system. Offers both
-movelets visualization and classification methods.
+The present application offers a tool, to support the user in the data mining task of multiple aspect trajectories, specifically for measuring similarity of its complex data. It integrates into a unique platform the fragmented approaches available for multiple aspects trajectories and in general for multidimensional sequence classification into a unique web-based and python library system. 
 
 Created on Dec, 2023
 Copyright (C) 2023, License GPL Version 3 or superior (see LICENSE file)
@@ -22,19 +18,19 @@ VERSION = config['project']['version'].strip('"')
 PACKAGE_NAME = config['project']['name'].strip('"')
 DEV_VERSION = "0.1b0"
 
-with open("matdata/README.md", "r", encoding="utf-8") as fh:
+with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
     
 setuptools.setup(
     name=PACKAGE_NAME,
     version=VERSION,
 #    version=DEV_VERSION,
-    author="Tarlis Tortelli Portela",
+    author="Tarlis Portela",
     author_email="tarlis@tarlis.com.br",
     description="MAT-data: Data Preprocessing for Multiple Aspect Trajectory Data Mining",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/ttportela/mat-data",
+    url="https://github.com/mat-analysis/mat-data",
 #    packages=setuptools.find_packages(include=[PACKAGE_NAME, PACKAGE_NAME+'.*']),
     packages=setuptools.find_packages(),
 #    include_package_data=True,
@@ -48,7 +44,6 @@ setuptools.setup(
         "Intended Audience :: Science/Research",
         "Topic :: Scientific/Engineering :: Artificial Intelligence",
         "Topic :: Scientific/Engineering :: Information Analysis",
-        "Topic :: Scientific/Engineering :: Visualization",
     ],
     keywords='data mining, python, trajectory classification, trajectory analysis, movelets',
     license='GPL Version 3 or superior (see LICENSE file)',

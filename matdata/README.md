@@ -12,7 +12,9 @@ Copyright (C) 2023, License GPL Version 3 or superior (see LICENSE file)
 ### Main Modules
 
 - [proprocess](/proprocess.py): Methods for trajectory preprocessing;
-- [generator](/generator.py): Methods for trajectory datasets generation.
+- [generator](/generator.py): Methods for trajectory datasets generation;
+- [datasets](/datasets.py): Methods for loading trajectory datasets;
+- [converter](/converter.py): Methods for conferting dataset formats.
 
 
 ### Installation

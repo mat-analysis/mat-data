@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 [project]
 name = "mat-data"
-version = "0.1b13"
+version = "0.1b14"
 description = "MAT-data: Data Preprocessing for Multiple Aspect Trajectory Data Mining"
 authors = [
     {name = "Tarlis Tortelli Portela", email = "tarlis@tarlis.com.br"},
@@ -41,7 +41,7 @@ dependencies = [
     "glob2",
     "numpy",
     "pandas",
-    "mat-data",
+    "mat-model",
  ]
 
 [project.optional-dependencies]
@@ -67,11 +67,11 @@ docs = [
  ]
 
 [project.urls]
-"Homepage" = "https://github.com/ttportela/mat-data"
-"Repository" = "https://github.com/ttportela/mat-data"
-"Documentation" = "https://github.com/ttportela/mat-data/blob/main/README.md"
+"Homepage" = "https://github.com/mat-analysis/mat-data"
+"Repository" = "https://github.com/mat-analysis/mat-data"
+"Documentation" = "https://github.com/mat-analysis/mat-data/blob/main/README.md"
 "Download" = "https://pypi.org/project/mat-data/#files"
-"Bug Tracker" = "https://github.com/ttportela/mat-data/issues"
+"Bug Tracker" = "https://github.com/mat-analysis/mat-data/issues"
 
 [project.license]
 text = 'GPL Version 3 or superior (see LICENSE file)'
