@@ -14580,7 +14580,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="MAT-data:-Data-Preprocessing-for-Multiple-Aspect-Trajectory-Data-Mining-%5BMAT-Tools-Framework%5D">MAT-data: Data Preprocessing for Multiple Aspect Trajectory Data Mining [MAT-Tools Framework]<a class="anchor-link" href="#MAT-data:-Data-Preprocessing-for-Multiple-Aspect-Trajectory-Data-Mining-%5BMAT-Tools-Framework%5D">&#182;</a></h1><p>Sample Code in python notebook to use mat-data as a python library.</p>
+<h1 id="MAT-data:-Data-Handler-for-Multiple-Aspect-Trajectory-Data-Mining-%5BMAT-Tools-Framework%5D">MAT-data: Data Handler for Multiple Aspect Trajectory Data Mining [MAT-Tools Framework]<a class="anchor-link" href="#MAT-data:-Data-Handler-for-Multiple-Aspect-Trajectory-Data-Mining-%5BMAT-Tools-Framework%5D">&#182;</a></h1><p>Sample Code in python notebook to use mat-data as a python library.</p>
 <p>The present package offers a tool, to support the user in the task of data preprocessing of multiple aspect trajectories, or to generating synthetic datasets. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.</p>
 <p>Created on Dec, 2023
 Copyright (C) 2023, License GPL Version 3 or superior (see LICENSE file)</p>
@@ -14593,20 +14593,11 @@ Copyright (C) 2023, License GPL Version 3 or superior (see LICENSE file)</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
-
-<span class="n">root</span>      <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;automatize&#39;</span><span class="p">,</span> <span class="s1">&#39;assets&#39;</span><span class="p">,</span> <span class="s1">&#39;examples&#39;</span><span class="p">,</span> <span class="s1">&#39;Example&#39;</span><span class="p">)</span>
-
-<span class="c1"># We consider this folder organization to the experimental enviromnent:</span>
-<span class="n">prg_path</span>  <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s1">&#39;programs&#39;</span><span class="p">)</span>
-<span class="n">data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
-<span class="n">res_path</span>  <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s1">&#39;results&#39;</span><span class="p">)</span>
-
-<span class="c1"># OR, you can use the .jar method files in:</span>
-<span class="n">prg_path</span>  <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;automatize&#39;</span><span class="p">,</span> <span class="s1">&#39;assets&#39;</span><span class="p">,</span> <span class="s1">&#39;method&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>mat-data
+<span class="c1">#!pip install --upgrade mat-data</span>
 </pre></div>
 
      </div>
@@ -14621,27 +14612,11 @@ Copyright (C) 2023, License GPL Version 3 or superior (see LICENSE file)</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="1.-Pre-processing-data">1. Pre-processing data<a class="anchor-link" href="#1.-Pre-processing-data">&#182;</a></h3><p>To use helpers for data pre-processing, import from package <code>matdata.preprocess</code>:</p>
+<h3 id="1.-Reading-local-data">1. Reading local data<a class="anchor-link" href="#1.-Reading-local-data">&#182;</a></h3><p>Sample code for trajectory dataset read from local files</p>
 
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">matdata.preprocess</span> <span class="kn">import</span> <span class="o">*</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
@@ -14649,30 +14624,7 @@ Copyright (C) 2023, License GPL Version 3 or superior (see LICENSE file)</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>The <strong>preprocessing</strong> module provides some functions to work data:</p>
-<p>Basic functions:</p>
-<ul>
-<li><code>readDataset</code>: load datasets as pandas DataFrame (from .csv, .zip, or .ts)</li>
-<li><code>printFeaturesJSON</code>: print a default JSON file descriptor for Movelets methods (version 1 or 2)</li>
-<li><code>datasetStatistics</code>: calculates statistics from a datasets dataframe.</li>
-</ul>
-<p>Train and Test split functions:</p>
-<ul>
-<li><code>trainAndTestSplit</code>: split dataset (pandas DataFrame) in train / test (70/30% by default)</li>
-<li><code>kfold_trainAndTestSplit</code>: split dataset (pandas DataFrame) in k-fold train / test (80/20% each fold by default)</li>
-<li><code>stratify</code>: extract trajectories from the dataset, creating a subset of the data (to use when smaller datasets are needed)</li>
-<li><code>joinTrainAndTest</code>: joins the train and test files into one DataFrame.</li>
-</ul>
-<p>Type convertion functions:</p>
-<ul>
-<li><code>convertDataset</code>: default format conversions. Reads the dataset files and saves in .csv and .zip formats, also do k-fold split if not present</li>
-<li><code>zip2df</code>: converts .zip files and saves to DataFrame</li>
-<li><code>zip2csv</code>: converts .zip files and saves to .csv files</li>
-<li><code>df2zip</code>: converts DataFrame and saves to .zip files</li>
-<li><code>zip2arf</code>: converts .zip and saves to .arf files</li>
-<li><code>any2ts</code>: converts .zip or .csv files and saves to .ts files</li>
-<li><code>xes2csv</code>: reads .xes files and converts to DataFrame</li>
-</ul>
+<p>The easy way to read data is to load a csv file in pandas, such as:</p>
 
 </div>
 </div>
@@ -14682,13 +14634,14 @@ Copyright (C) 2023, License GPL Version 3 or superior (see LICENSE file)</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#cols = [&#39;tid&#39;,&#39;label&#39;,&#39;lat&#39;,&#39;lon&#39;,&#39;day&#39;,&#39;hour&#39;,&#39;poi&#39;,&#39;category&#39;,&#39;price&#39;,&#39;rating&#39;]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">joinTrainAndTest</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">train_file</span><span class="o">=</span><span class="s2">&quot;train.csv&quot;</span><span class="p">,</span> <span class="n">test_file</span><span class="o">=</span><span class="s2">&quot;test.csv&quot;</span><span class="p">,</span> <span class="n">class_col</span> <span class="o">=</span> <span class="s1">&#39;label&#39;</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;matdata/assets/sample&#39;</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_path</span> <span class="o">+</span> <span class="s1">&#39;/Foursquare_Sample.csv&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14706,16 +14659,264 @@ Copyright (C) 2023, License GPL Version 3 or superior (see LICENSE file)</p>
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Joining train and test data from... automatize/assets/examples/Example/data
-Done.
- --------------------------------------------------------------------------------
-</pre>
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>tid</th>
+      <th>lat_lon</th>
+      <th>date_time</th>
+      <th>time</th>
+      <th>rating</th>
+      <th>price</th>
+      <th>weather</th>
+      <th>day</th>
+      <th>root_type</th>
+      <th>type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>126</td>
+      <td>40.8331652006224 -73.9418603427692</td>
+      <td>2012-11-12 05:17:18</td>
+      <td>317</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Monday</td>
+      <td>Residence</td>
+      <td>Home (private)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>126</td>
+      <td>40.8340978041072 -73.9452672225881</td>
+      <td>2012-11-12 23:24:55</td>
+      <td>1404</td>
+      <td>8.2</td>
+      <td>1</td>
+      <td>Clouds</td>
+      <td>Monday</td>
+      <td>Food</td>
+      <td>Deli / Bodega</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>126</td>
+      <td>40.8331652006224 -73.9418603427692</td>
+      <td>2012-11-13 00:00:07</td>
+      <td>0</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Tuesday</td>
+      <td>Residence</td>
+      <td>Home (private)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>126</td>
+      <td>40.7646959283254 -73.8851974964414</td>
+      <td>2012-11-15 17:49:01</td>
+      <td>1069</td>
+      <td>6.6</td>
+      <td>3</td>
+      <td>Clear</td>
+      <td>Thursday</td>
+      <td>Food</td>
+      <td>Fried Chicken Joint</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>126</td>
+      <td>40.7660790376824 -73.8835287094116</td>
+      <td>2012-11-15 18:40:16</td>
+      <td>1120</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Thursday</td>
+      <td>Travel &amp; Transport</td>
+      <td>Bus Station</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>66957</th>
+      <td>29563</td>
+      <td>40.7047332789043 -73.9877378940582</td>
+      <td>2012-08-10 17:17:37</td>
+      <td>1037</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Friday</td>
+      <td>College &amp; University</td>
+      <td>General College &amp; University</td>
+    </tr>
+    <tr>
+      <th>66958</th>
+      <td>29563</td>
+      <td>40.6951627360199 -73.9954478691072</td>
+      <td>2012-08-10 20:10:59</td>
+      <td>1210</td>
+      <td>8.0</td>
+      <td>2</td>
+      <td>Clouds</td>
+      <td>Friday</td>
+      <td>Food</td>
+      <td>Thai Restaurant</td>
+    </tr>
+    <tr>
+      <th>66959</th>
+      <td>29563</td>
+      <td>40.6978026652822 -73.9941451630314</td>
+      <td>2012-08-11 08:01:20</td>
+      <td>481</td>
+      <td>6.9</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Saturday</td>
+      <td>Outdoors &amp; Recreation</td>
+      <td>Gym</td>
+    </tr>
+    <tr>
+      <th>66960</th>
+      <td>29563</td>
+      <td>40.6946728967503 -73.9940820360805</td>
+      <td>2012-08-11 13:39:39</td>
+      <td>819</td>
+      <td>7.0</td>
+      <td>1</td>
+      <td>Clouds</td>
+      <td>Saturday</td>
+      <td>Food</td>
+      <td>Coffee Shop</td>
+    </tr>
+    <tr>
+      <th>66961</th>
+      <td>29563</td>
+      <td>40.6978026652822 -73.9941451630314</td>
+      <td>2012-08-12 07:56:26</td>
+      <td>476</td>
+      <td>6.9</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Sunday</td>
+      <td>Outdoors &amp; Recreation</td>
+      <td>Gym</td>
+    </tr>
+  </tbody>
+</table>
+<p>66962 rows × 10 columns</p>
 </div>
 </div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><code>mat-data</code> provides modules to handle dataset reading in standard ways:</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+
+<pre><code>a) Read a dataset locally:
+
+</code></pre>
+<p>This is an example for .csv file, however this can read .csv, .parquet, .zip, .ts, and .xes file formats.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">matdata.dataset</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">read_ds</span><span class="p">(</span><span class="s1">&#39;matdata/assets/sample/Foursquare_Sample.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
 
@@ -14743,71 +14944,2641 @@ Done.
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>tid</th>
       <th>lat_lon</th>
-      <th>hour</th>
+      <th>date_time</th>
+      <th>time</th>
+      <th>rating</th>
       <th>price</th>
-      <th>poi</th>
       <th>weather</th>
       <th>day</th>
+      <th>root_type</th>
+      <th>type</th>
+      <th>tid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>40.8331652006224 -73.9418603427692</td>
+      <td>2012-11-12 05:17:18</td>
+      <td>317</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Monday</td>
+      <td>Residence</td>
+      <td>Home (private)</td>
+      <td>126</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>40.8340978041072 -73.9452672225881</td>
+      <td>2012-11-12 23:24:55</td>
+      <td>1404</td>
+      <td>8.2</td>
+      <td>1</td>
+      <td>Clouds</td>
+      <td>Monday</td>
+      <td>Food</td>
+      <td>Deli / Bodega</td>
+      <td>126</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>40.8331652006224 -73.9418603427692</td>
+      <td>2012-11-13 00:00:07</td>
+      <td>0</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Tuesday</td>
+      <td>Residence</td>
+      <td>Home (private)</td>
+      <td>126</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>40.7646959283254 -73.8851974964414</td>
+      <td>2012-11-15 17:49:01</td>
+      <td>1069</td>
+      <td>6.6</td>
+      <td>3</td>
+      <td>Clear</td>
+      <td>Thursday</td>
+      <td>Food</td>
+      <td>Fried Chicken Joint</td>
+      <td>126</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>40.7660790376824 -73.8835287094116</td>
+      <td>2012-11-15 18:40:16</td>
+      <td>1120</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Thursday</td>
+      <td>Travel &amp; Transport</td>
+      <td>Bus Station</td>
+      <td>126</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Optionally, you can use the standardized reading, which will make 'tid'/'label' nomenclature (or rename columns) and will sort the trajectories</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">read_ds</span><span class="p">(</span><span class="s1">&#39;matdata/assets/sample/Foursquare_Sample.csv&#39;</span><span class="p">,</span> <span class="n">tid_col</span><span class="o">=</span><span class="s1">&#39;tid&#39;</span><span class="p">,</span> <span class="n">class_col</span><span class="o">=</span><span class="s1">&#39;root_type&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>lat_lon</th>
+      <th>date_time</th>
+      <th>time</th>
+      <th>rating</th>
+      <th>price</th>
+      <th>weather</th>
+      <th>day</th>
+      <th>type</th>
+      <th>tid</th>
       <th>label</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>12</td>
-      <td>0.0 6.2</td>
-      <td>8</td>
+      <td>40.8331652006224 -73.9418603427692</td>
+      <td>2012-11-12 05:17:18</td>
+      <td>317</td>
+      <td>-1.0</td>
       <td>-1</td>
-      <td>Home</td>
       <td>Clear</td>
       <td>Monday</td>
-      <td>Classs_False</td>
+      <td>Home (private)</td>
+      <td>126</td>
+      <td>Residence</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>12</td>
-      <td>0.8 6.2</td>
-      <td>9</td>
-      <td>2</td>
-      <td>University</td>
+      <td>40.8340978041072 -73.9452672225881</td>
+      <td>2012-11-12 23:24:55</td>
+      <td>1404</td>
+      <td>8.2</td>
+      <td>1</td>
       <td>Clouds</td>
       <td>Monday</td>
-      <td>Classs_False</td>
+      <td>Deli / Bodega</td>
+      <td>126</td>
+      <td>Food</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>12</td>
-      <td>3.1 11</td>
-      <td>12</td>
-      <td>2</td>
-      <td>Restaurant</td>
-      <td>Clear</td>
-      <td>Monday</td>
-      <td>Classs_False</td>
+      <td>40.8331652006224 -73.9418603427692</td>
+      <td>2012-11-13 00:00:07</td>
+      <td>0</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Tuesday</td>
+      <td>Home (private)</td>
+      <td>126</td>
+      <td>Residence</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>12</td>
-      <td>0.8 6.5</td>
-      <td>13</td>
-      <td>2</td>
-      <td>University</td>
+      <td>40.7646959283254 -73.8851974964414</td>
+      <td>2012-11-15 17:49:01</td>
+      <td>1069</td>
+      <td>6.6</td>
+      <td>3</td>
       <td>Clear</td>
-      <td>Monday</td>
-      <td>Classs_False</td>
+      <td>Thursday</td>
+      <td>Fried Chicken Joint</td>
+      <td>126</td>
+      <td>Food</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>12</td>
-      <td>0.2 6.2</td>
-      <td>17</td>
+      <td>40.7660790376824 -73.8835287094116</td>
+      <td>2012-11-15 18:40:16</td>
+      <td>1120</td>
+      <td>-1.0</td>
       <td>-1</td>
-      <td>Home</td>
-      <td>Rain</td>
+      <td>Clear</td>
+      <td>Thursday</td>
+      <td>Bus Station</td>
+      <td>126</td>
+      <td>Travel &amp; Transport</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="2.-Loading-Repository-Data">2. Loading Repository Data<a class="anchor-link" href="#2.-Loading-Repository-Data">&#182;</a></h3><p>This module loads data from public repository <a href="https://github.com/mat-analysis/datasets">Git: mat-analysis datasets (v2_0)</a></p>
+<p>Check the GitHub repository to see available datasets.</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>To use helpers for data loading, import from package <code>matdata.dataset</code>:</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">matdata.dataset</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+
+<pre><code>a) First, you can load datasets by informing the category (parent folder) and dataset name (subfolder):</code></pre>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># dataset=&#39;mat.FoursquareNYC&#39; ## =&gt; dafault</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">load_ds</span><span class="p">(</span><span class="n">sample_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Loading dataset file: https://github.com/mat-analysis/datasets/raw/main/mat/FoursquareNYC/
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>  0%|          | 0/193 [00:00&lt;?, ?it/s]</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>lat</th>
+      <th>lon</th>
+      <th>day</th>
+      <th>hour</th>
+      <th>poi</th>
+      <th>category</th>
+      <th>price</th>
+      <th>rating</th>
+      <th>weather</th>
+      <th>tid</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>40.834098</td>
+      <td>-73.945267</td>
       <td>Monday</td>
-      <td>Classs_False</td>
+      <td>13</td>
+      <td>21580</td>
+      <td>Food</td>
+      <td>1</td>
+      <td>8.2</td>
+      <td>Clouds</td>
+      <td>127</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>40.567196</td>
+      <td>-73.882576</td>
+      <td>Monday</td>
+      <td>19</td>
+      <td>2392</td>
+      <td>Travel &amp; Transport</td>
+      <td>-999</td>
+      <td>-999.0</td>
+      <td>Clouds</td>
+      <td>127</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>40.689913</td>
+      <td>-73.981504</td>
+      <td>Monday</td>
+      <td>23</td>
+      <td>35589</td>
+      <td>Travel &amp; Transport</td>
+      <td>-999</td>
+      <td>-999.0</td>
+      <td>Clouds</td>
+      <td>127</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>40.708588</td>
+      <td>-73.991032</td>
+      <td>Monday</td>
+      <td>23</td>
+      <td>18603</td>
+      <td>Travel &amp; Transport</td>
+      <td>-999</td>
+      <td>-999.0</td>
+      <td>Clouds</td>
+      <td>127</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>40.833165</td>
+      <td>-73.941860</td>
+      <td>Tuesday</td>
+      <td>14</td>
+      <td>36348</td>
+      <td>Residence</td>
+      <td>-999</td>
+      <td>-999.0</td>
+      <td>Clear</td>
+      <td>127</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>22118</th>
+      <td>40.704273</td>
+      <td>-73.986759</td>
+      <td>Saturday</td>
+      <td>10</td>
+      <td>25461</td>
+      <td>Outdoors &amp; Recreation</td>
+      <td>-999</td>
+      <td>8.6</td>
+      <td>Clear</td>
+      <td>29551</td>
+      <td>1070</td>
+    </tr>
+    <tr>
+      <th>22119</th>
+      <td>40.704733</td>
+      <td>-73.987738</td>
+      <td>Saturday</td>
+      <td>10</td>
+      <td>1805</td>
+      <td>College &amp; University</td>
+      <td>-999</td>
+      <td>-999.0</td>
+      <td>Clear</td>
+      <td>29551</td>
+      <td>1070</td>
+    </tr>
+    <tr>
+      <th>22120</th>
+      <td>40.717353</td>
+      <td>-73.960392</td>
+      <td>Saturday</td>
+      <td>13</td>
+      <td>32523</td>
+      <td>Food</td>
+      <td>1</td>
+      <td>9.3</td>
+      <td>Clear</td>
+      <td>29551</td>
+      <td>1070</td>
+    </tr>
+    <tr>
+      <th>22121</th>
+      <td>40.697721</td>
+      <td>-73.993020</td>
+      <td>Sunday</td>
+      <td>2</td>
+      <td>36212</td>
+      <td>College &amp; University</td>
+      <td>-999</td>
+      <td>-999.0</td>
+      <td>Clear</td>
+      <td>29551</td>
+      <td>1070</td>
+    </tr>
+    <tr>
+      <th>22122</th>
+      <td>40.697803</td>
+      <td>-73.994145</td>
+      <td>Sunday</td>
+      <td>8</td>
+      <td>16452</td>
+      <td>Outdoors &amp; Recreation</td>
+      <td>-999</td>
+      <td>6.9</td>
+      <td>Clear</td>
+      <td>29551</td>
+      <td>1070</td>
+    </tr>
+  </tbody>
+</table>
+<p>16435 rows × 11 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+
+<pre><code> b) Second, you can load the 70/30 hold out split available (by default):</code></pre>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_train</span><span class="p">,</span> <span class="n">df_test</span> <span class="o">=</span> <span class="n">load_ds_holdout</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">df_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">df_train</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Loading dataset file: https://github.com/mat-analysis/datasets/raw/main/mat/FoursquareNYC/
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>  0%|          | 0/193 [00:00&lt;?, ?it/s]</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>(46785, 11) (20177, 11)
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>lat</th>
+      <th>lon</th>
+      <th>day</th>
+      <th>hour</th>
+      <th>poi</th>
+      <th>category</th>
+      <th>price</th>
+      <th>rating</th>
+      <th>weather</th>
+      <th>tid</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>40.834098</td>
+      <td>-73.945267</td>
+      <td>Monday</td>
+      <td>13</td>
+      <td>21580</td>
+      <td>Food</td>
+      <td>1</td>
+      <td>8.2</td>
+      <td>Clouds</td>
+      <td>127</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>40.567196</td>
+      <td>-73.882576</td>
+      <td>Monday</td>
+      <td>19</td>
+      <td>2392</td>
+      <td>Travel &amp; Transport</td>
+      <td>-999</td>
+      <td>-999.0</td>
+      <td>Clouds</td>
+      <td>127</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>40.689913</td>
+      <td>-73.981504</td>
+      <td>Monday</td>
+      <td>23</td>
+      <td>35589</td>
+      <td>Travel &amp; Transport</td>
+      <td>-999</td>
+      <td>-999.0</td>
+      <td>Clouds</td>
+      <td>127</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>40.708588</td>
+      <td>-73.991032</td>
+      <td>Monday</td>
+      <td>23</td>
+      <td>18603</td>
+      <td>Travel &amp; Transport</td>
+      <td>-999</td>
+      <td>-999.0</td>
+      <td>Clouds</td>
+      <td>127</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>40.833165</td>
+      <td>-73.941860</td>
+      <td>Tuesday</td>
+      <td>14</td>
+      <td>36348</td>
+      <td>Residence</td>
+      <td>-999</td>
+      <td>-999.0</td>
+      <td>Clear</td>
+      <td>127</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>22148</th>
+      <td>40.705953</td>
+      <td>-73.996568</td>
+      <td>Saturday</td>
+      <td>19</td>
+      <td>35308</td>
+      <td>Outdoors &amp; Recreation</td>
+      <td>-999</td>
+      <td>9.6</td>
+      <td>Clear</td>
+      <td>29556</td>
+      <td>1070</td>
+    </tr>
+    <tr>
+      <th>22149</th>
+      <td>40.697721</td>
+      <td>-73.993020</td>
+      <td>Saturday</td>
+      <td>23</td>
+      <td>36212</td>
+      <td>College &amp; University</td>
+      <td>-999</td>
+      <td>-999.0</td>
+      <td>Clear</td>
+      <td>29556</td>
+      <td>1070</td>
+    </tr>
+    <tr>
+      <th>22150</th>
+      <td>40.697884</td>
+      <td>-73.992805</td>
+      <td>Sunday</td>
+      <td>15</td>
+      <td>38090</td>
+      <td>Shop &amp; Service</td>
+      <td>-999</td>
+      <td>5.2</td>
+      <td>Clouds</td>
+      <td>29556</td>
+      <td>1070</td>
+    </tr>
+    <tr>
+      <th>22151</th>
+      <td>40.698291</td>
+      <td>-73.996632</td>
+      <td>Sunday</td>
+      <td>18</td>
+      <td>33538</td>
+      <td>Outdoors &amp; Recreation</td>
+      <td>-999</td>
+      <td>9.6</td>
+      <td>Clouds</td>
+      <td>29556</td>
+      <td>1070</td>
+    </tr>
+    <tr>
+      <th>22152</th>
+      <td>40.692421</td>
+      <td>-73.994002</td>
+      <td>Sunday</td>
+      <td>18</td>
+      <td>29212</td>
+      <td>Professional &amp; Other Places</td>
+      <td>-999</td>
+      <td>-999.0</td>
+      <td>Clouds</td>
+      <td>29556</td>
+      <td>1070</td>
+    </tr>
+  </tbody>
+</table>
+<p>46785 rows × 11 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Or, you can hold out split on another proportion (50% for instance):</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_train</span><span class="p">,</span> <span class="n">df_test</span> <span class="o">=</span> <span class="n">load_ds_holdout</span><span class="p">(</span><span class="n">train_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># The split is class-balanced, thus train and test number of trajectories may not be exactly proportional.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">df_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> 
+
+<span class="n">df_train</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Loading dataset file: https://github.com/mat-analysis/datasets/raw/main/mat/FoursquareNYC/
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>  0%|          | 0/193 [00:00&lt;?, ?it/s]</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>(33773, 11) (33189, 11)
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[15]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>lat</th>
+      <th>lon</th>
+      <th>day</th>
+      <th>hour</th>
+      <th>poi</th>
+      <th>category</th>
+      <th>price</th>
+      <th>rating</th>
+      <th>weather</th>
+      <th>tid</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>40.834098</td>
+      <td>-73.945267</td>
+      <td>Monday</td>
+      <td>13</td>
+      <td>21580</td>
+      <td>Food</td>
+      <td>1</td>
+      <td>8.2</td>
+      <td>Clouds</td>
+      <td>127</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>40.567196</td>
+      <td>-73.882576</td>
+      <td>Monday</td>
+      <td>19</td>
+      <td>2392</td>
+      <td>Travel &amp; Transport</td>
+      <td>-999</td>
+      <td>-999.0</td>
+      <td>Clouds</td>
+      <td>127</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>40.689913</td>
+      <td>-73.981504</td>
+      <td>Monday</td>
+      <td>23</td>
+      <td>35589</td>
+      <td>Travel &amp; Transport</td>
+      <td>-999</td>
+      <td>-999.0</td>
+      <td>Clouds</td>
+      <td>127</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>40.708588</td>
+      <td>-73.991032</td>
+      <td>Monday</td>
+      <td>23</td>
+      <td>18603</td>
+      <td>Travel &amp; Transport</td>
+      <td>-999</td>
+      <td>-999.0</td>
+      <td>Clouds</td>
+      <td>127</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>40.833165</td>
+      <td>-73.941860</td>
+      <td>Tuesday</td>
+      <td>14</td>
+      <td>36348</td>
+      <td>Residence</td>
+      <td>-999</td>
+      <td>-999.0</td>
+      <td>Clear</td>
+      <td>127</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>22131</th>
+      <td>40.704733</td>
+      <td>-73.987738</td>
+      <td>Thursday</td>
+      <td>18</td>
+      <td>1805</td>
+      <td>College &amp; University</td>
+      <td>-999</td>
+      <td>-999.0</td>
+      <td>Clear</td>
+      <td>29554</td>
+      <td>1070</td>
+    </tr>
+    <tr>
+      <th>22132</th>
+      <td>40.704273</td>
+      <td>-73.986759</td>
+      <td>Thursday</td>
+      <td>19</td>
+      <td>25461</td>
+      <td>Outdoors &amp; Recreation</td>
+      <td>-999</td>
+      <td>8.6</td>
+      <td>Clear</td>
+      <td>29554</td>
+      <td>1070</td>
+    </tr>
+    <tr>
+      <th>22133</th>
+      <td>40.697803</td>
+      <td>-73.994145</td>
+      <td>Friday</td>
+      <td>10</td>
+      <td>16452</td>
+      <td>Outdoors &amp; Recreation</td>
+      <td>-999</td>
+      <td>6.9</td>
+      <td>Clear</td>
+      <td>29554</td>
+      <td>1070</td>
+    </tr>
+    <tr>
+      <th>22134</th>
+      <td>40.695163</td>
+      <td>-73.995448</td>
+      <td>Friday</td>
+      <td>20</td>
+      <td>1944</td>
+      <td>Food</td>
+      <td>2</td>
+      <td>8.0</td>
+      <td>Clear</td>
+      <td>29554</td>
+      <td>1070</td>
+    </tr>
+    <tr>
+      <th>22135</th>
+      <td>40.694673</td>
+      <td>-73.994082</td>
+      <td>Saturday</td>
+      <td>13</td>
+      <td>16201</td>
+      <td>Food</td>
+      <td>1</td>
+      <td>7.0</td>
+      <td>Clear</td>
+      <td>29554</td>
+      <td>1070</td>
+    </tr>
+  </tbody>
+</table>
+<p>33773 rows × 11 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+
+<pre><code>c) Or, you can load the k-fold split datasets available (deafult k=5):</code></pre>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_train</span><span class="p">,</span> <span class="n">df_test</span> <span class="o">=</span> <span class="n">load_ds_kfold</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_train</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape train/test:&#39;</span><span class="p">,</span> <span class="n">df_train</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">df_test</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Loading dataset file: https://github.com/mat-analysis/datasets/raw/main/mat/FoursquareNYC/
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>Spliting Data:   0%|          | 0/193 [00:00&lt;?, ?it/s]</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Shape train/test: (51130, 11) (15832, 11)
+Shape train/test: (52678, 11) (14284, 11)
+Shape train/test: (53938, 11) (13024, 11)
+Shape train/test: (54856, 11) (12106, 11)
+Shape train/test: (55246, 11) (11716, 11)
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+
+<pre><code>d) You can load a different dataset from repository:</code></pre>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Use the format: &#39;category.DatasetName&#39;</span>
+<span class="n">dataset</span><span class="o">=</span><span class="s1">&#39;raw.Animals&#39;</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">load_ds</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Loading dataset file: https://github.com/mat-analysis/datasets/raw/main/raw/Animals/
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>time</th>
+      <th>lat</th>
+      <th>lon</th>
+      <th>tid</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.00</td>
+      <td>50.1066</td>
+      <td>3.79665</td>
+      <td>1</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.39</td>
+      <td>50.1045</td>
+      <td>3.79455</td>
+      <td>1</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>7.90</td>
+      <td>50.1111</td>
+      <td>3.79845</td>
+      <td>1</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>9.62</td>
+      <td>50.1072</td>
+      <td>3.79845</td>
+      <td>1</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>15.09</td>
+      <td>50.1132</td>
+      <td>3.79965</td>
+      <td>1</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>4517</th>
+      <td>258.88</td>
+      <td>50.1696</td>
+      <td>3.76215</td>
+      <td>97</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>4518</th>
+      <td>260.85</td>
+      <td>50.1693</td>
+      <td>3.76185</td>
+      <td>97</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>4519</th>
+      <td>262.80</td>
+      <td>50.1693</td>
+      <td>3.76245</td>
+      <td>97</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>4520</th>
+      <td>264.69</td>
+      <td>50.1687</td>
+      <td>3.76455</td>
+      <td>97</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>4521</th>
+      <td>266.90</td>
+      <td>50.1687</td>
+      <td>3.76455</td>
+      <td>97</td>
+      <td>C</td>
+    </tr>
+  </tbody>
+</table>
+<p>14990 rows × 5 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+
+<pre><code>e) To get a full list of anailable repositories and categories:</code></pre>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rd</span> <span class="o">=</span> <span class="n">repository_datasets</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Multiple Aspect Trajecory datasets:&#39;</span><span class="p">,</span> <span class="n">rd</span><span class="p">[</span><span class="s1">&#39;mat&#39;</span><span class="p">])</span>
+
+<span class="n">rd</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Multiple Aspect Trajecory datasets: [&#39;Brightkite&#39;, &#39;FoursquareGlobal&#39;, &#39;FoursquareNYC&#39;, &#39;Gowalla&#39;, &#39;Weeplaces&#39;]
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[18]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>{&#39;log&#39;: [&#39;BPI2011&#39;, &#39;BPI2012&#39;, &#39;BPI2015&#39;, &#39;BPI2017&#39;, &#39;BPI2018&#39;, &#39;BPI2019&#39;],
+ &#39;mat&#39;: [&#39;Brightkite&#39;,
+  &#39;FoursquareGlobal&#39;,
+  &#39;FoursquareNYC&#39;,
+  &#39;Gowalla&#39;,
+  &#39;Weeplaces&#39;],
+ &#39;mts&#39;: [&#39;ActivityRecognition&#39;,
+  &#39;ArticularyWordRecognition&#39;,
+  &#39;AtrialFibrillation&#39;,
+  &#39;AustralianSignLanguage&#39;,
+  &#39;BasicMotions&#39;,
+  &#39;CharacterTrajectories&#39;,
+  &#39;Cricket&#39;,
+  &#39;DuckDuckGeese&#39;,
+  &#39;ERing&#39;,
+  &#39;EigenWorms&#39;,
+  &#39;Epilepsy&#39;,
+  &#39;EthanolConcentration&#39;,
+  &#39;FaceDetection&#39;,
+  &#39;FaciesRocks&#39;,
+  &#39;FingerMovements&#39;,
+  &#39;GECCOWater&#39;,
+  &#39;GrammaticalFacialExpression&#39;,
+  &#39;HandMovementDirection&#39;,
+  &#39;Handwriting&#39;,
+  &#39;Heartbeat&#39;,
+  &#39;InsectWingbeat&#39;,
+  &#39;JapaneseVowels&#39;,
+  &#39;LSST&#39;,
+  &#39;Libras&#39;,
+  &#39;MotorImagery&#39;,
+  &#39;NATOPS&#39;,
+  &#39;PEMS-SF&#39;,
+  &#39;PenDigits&#39;,
+  &#39;PhonemeSpectra&#39;,
+  &#39;RacketSports&#39;,
+  &#39;SelfRegulationSCP1&#39;,
+  &#39;SelfRegulationSCP2&#39;,
+  &#39;SpokenArabicDigits&#39;,
+  &#39;StandWalkJump&#39;,
+  &#39;UWaveGestureLibrary&#39;],
+ &#39;raw&#39;: [&#39;Animals&#39;, &#39;Geolife&#39;, &#39;GoTrack&#39;, &#39;Hurricanes&#39;, &#39;Vehicles&#39;],
+ &#39;sequential&#39;: [&#39;ClothingAlibaba&#39;, &#39;Promoters&#39;, &#39;SJGS&#39;],
+ &#39;uts&#39;: [&#39;ACSF1&#39;,
+  &#39;Adiac&#39;,
+  &#39;AllGestureWiimoteX&#39;,
+  &#39;AllGestureWiimoteY&#39;,
+  &#39;AllGestureWiimoteZ&#39;,
+  &#39;ArrowHead&#39;,
+  &#39;BME&#39;,
+  &#39;Beef&#39;,
+  &#39;BeetleFly&#39;,
+  &#39;BirdChicken&#39;,
+  &#39;CBF&#39;,
+  &#39;Car&#39;,
+  &#39;Chinatown&#39;,
+  &#39;ChlorineConcentration&#39;,
+  &#39;CinCECGTorso&#39;,
+  &#39;Coffee&#39;,
+  &#39;Computers&#39;,
+  &#39;CricketX&#39;,
+  &#39;CricketY&#39;,
+  &#39;CricketZ&#39;,
+  &#39;Crop&#39;,
+  &#39;DiatomSizeReduction&#39;,
+  &#39;DistalPhalanxOutlineAgeGroup&#39;,
+  &#39;DistalPhalanxOutlineCorrect&#39;,
+  &#39;DistalPhalanxTW&#39;,
+  &#39;DodgerLoopDay&#39;,
+  &#39;DodgerLoopGame&#39;,
+  &#39;DodgerLoopWeekend&#39;,
+  &#39;ECG200&#39;,
+  &#39;ECG5000&#39;,
+  &#39;ECGFiveDays&#39;,
+  &#39;EOGHorizontalSignal&#39;,
+  &#39;EOGVerticalSignal&#39;,
+  &#39;Earthquakes&#39;,
+  &#39;ElectricDevices&#39;,
+  &#39;EthanolLevel&#39;,
+  &#39;FaceAll&#39;,
+  &#39;FaceFour&#39;,
+  &#39;FacesUCR&#39;,
+  &#39;FiftyWords&#39;,
+  &#39;Fish&#39;,
+  &#39;FordA&#39;,
+  &#39;FordB&#39;,
+  &#39;FreezerRegularTrain&#39;,
+  &#39;FreezerSmallTrain&#39;,
+  &#39;Fungi&#39;,
+  &#39;GestureMidAirD1&#39;,
+  &#39;GestureMidAirD2&#39;,
+  &#39;GestureMidAirD3&#39;,
+  &#39;GesturePebbleZ1&#39;,
+  &#39;GesturePebbleZ2&#39;,
+  &#39;GunPoint&#39;,
+  &#39;GunPointAgeSpan&#39;,
+  &#39;GunPointMaleVersusFemale&#39;,
+  &#39;GunPointOldVersusYoung&#39;,
+  &#39;Ham&#39;,
+  &#39;HandOutlines&#39;,
+  &#39;Haptics&#39;,
+  &#39;Herring&#39;,
+  &#39;HouseTwenty&#39;,
+  &#39;InlineSkate&#39;,
+  &#39;InsectEPGRegularTrain&#39;,
+  &#39;InsectEPGSmallTrain&#39;,
+  &#39;InsectWingbeatSound&#39;,
+  &#39;ItalyPowerDemand&#39;,
+  &#39;LargeKitchenAppliances&#39;,
+  &#39;Lightning2&#39;,
+  &#39;Lightning7&#39;,
+  &#39;Mallat&#39;,
+  &#39;Meat&#39;,
+  &#39;MedicalImages&#39;,
+  &#39;MelbournePedestrian&#39;,
+  &#39;MiddlePhalanxOutlineAgeGroup&#39;,
+  &#39;MiddlePhalanxOutlineCorrect&#39;,
+  &#39;MiddlePhalanxTW&#39;,
+  &#39;MixedShapesRegularTrain&#39;,
+  &#39;MixedShapesSmallTrain&#39;,
+  &#39;MoteStrain&#39;,
+  &#39;NonInvasiveFetalECGThorax1&#39;,
+  &#39;NonInvasiveFetalECGThorax2&#39;,
+  &#39;OSULeaf&#39;,
+  &#39;OliveOil&#39;,
+  &#39;PLAID&#39;,
+  &#39;PhalangesOutlinesCorrect&#39;,
+  &#39;Phoneme&#39;,
+  &#39;PickupGestureWiimoteZ&#39;,
+  &#39;PigAirwayPressure&#39;,
+  &#39;PigArtPressure&#39;,
+  &#39;PigCVP&#39;,
+  &#39;Plane&#39;,
+  &#39;PowerCons&#39;,
+  &#39;ProximalPhalanxOutlineAgeGroup&#39;,
+  &#39;ProximalPhalanxOutlineCorrect&#39;,
+  &#39;ProximalPhalanxTW&#39;,
+  &#39;RefrigerationDevices&#39;,
+  &#39;Rock&#39;,
+  &#39;ScreenType&#39;,
+  &#39;SemgHandGenderCh2&#39;,
+  &#39;SemgHandMovementCh2&#39;,
+  &#39;SemgHandSubjectCh2&#39;,
+  &#39;ShakeGestureWiimoteZ&#39;,
+  &#39;ShapeletSim&#39;,
+  &#39;ShapesAll&#39;,
+  &#39;SmallKitchenAppliances&#39;,
+  &#39;SmoothSubspace&#39;,
+  &#39;SonyAIBORobotSurface1&#39;,
+  &#39;SonyAIBORobotSurface2&#39;,
+  &#39;StarLightCurves&#39;,
+  &#39;Strawberry&#39;,
+  &#39;SwedishLeaf&#39;,
+  &#39;Symbols&#39;,
+  &#39;SyntheticControl&#39;,
+  &#39;ToeSegmentation1&#39;,
+  &#39;ToeSegmentation2&#39;,
+  &#39;Trace&#39;,
+  &#39;TwoLeadECG&#39;,
+  &#39;TwoPatterns&#39;,
+  &#39;UMD&#39;,
+  &#39;UWaveGestureLibraryAll&#39;,
+  &#39;UWaveGestureLibraryX&#39;,
+  &#39;UWaveGestureLibraryY&#39;,
+  &#39;UWaveGestureLibraryZ&#39;,
+  &#39;Wafer&#39;,
+  &#39;Wine&#39;,
+  &#39;WordSynonyms&#39;,
+  &#39;Worms&#39;,
+  &#39;WormsTwoClass&#39;,
+  &#39;Yoga&#39;]}</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="3.-Pre-processing-data">3. Pre-processing data<a class="anchor-link" href="#3.-Pre-processing-data">&#182;</a></h3><p>To use helpers for data pre-processing, import from package <code>matdata.preprocess</code>:</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">matdata.preprocess</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>The <strong>preprocess</strong> module provides some functions to work data:</p>
+<p>Basic functions:</p>
+<ul>
+<li><code>readDataset</code>: load datasets as pandas DataFrame (from .csv, .parquet, .zip, .ts or .xes)</li>
+<li><code>organizeFrame</code>: standardize data columns for the DataFrame</li>
+</ul>
+<p>Train and Test split functions:</p>
+<ul>
+<li><code>trainTestSplit</code>: split dataset (pandas DataFrame) in train / test (70/30% by default)</li>
+<li><code>kfold_trainTestSplit</code>: split dataset (pandas DataFrame) in k-fold train / test (5-fold of 80/20% each fold by default)</li>
+<li><code>stratify</code>: extract trajectories from the dataset, respecting class balance, creating a subset of the data (to use when smaller datasets are needed)</li>
+<li><code>klabels_stratify</code>: k-labels statification (randomly select k-labels from the dataset)</li>
+<li><code>joinTrainTest</code>: joins the separated train and test files into one DataFrame.</li>
+</ul>
+<p>Statistical functions:</p>
+<ul>
+<li><code>printFeaturesJSON</code>: print a default JSON file descriptor for Movelets methods (version 1 or 2)</li>
+<li><code>countClasses</code>: calculates statistics from a dataset dataframe</li>
+<li><code>dfVariance</code>: calculates a variance rank from a dataset dataframe</li>
+<li><code>dfStats</code>: calculates attributes statistics ordered by variance from a dataset dataframe</li>
+<li><code>datasetStatistics</code>: generates dataset statistics from a dataframe in markdown text.</li>
+</ul>
+<p>Type reading functions:</p>
+<ul>
+<li><code>csv2df</code>: reads .csv dataset dataframe</li>
+<li><code>parquet2df</code>: reads .parquet dataset dataframe</li>
+<li><code>zip2df</code>: reads .zip dataset dataframe (zip containing trajectory csv files)</li>
+<li><code>ts2df</code>: reads .ts dataset dataframe (Time Series data format)</li>
+<li><code>xes2df</code>: reads .xes dataset dataframe (event log / event stream file)</li>
+<li><code>mat2df</code>: <em>TODO</em> reads .mat dataset dataframe (multiple aspect trajectory specific file format)</li>
+</ul>
+<p>File convertion functions:</p>
+<ul>
+<li><code>zip2csv</code>: converts .zip files and saves to .csv files</li>
+<li><code>df2zip</code>: converts DataFrame and saves to .zip files</li>
+<li><code>any2ts</code>: converts .zip or .csv files and saves to .ts files</li>
+<li><code>xes2csv</code>: reads .xes files and converts to DataFrame</li>
+<li><code>convertDataset</code>: default format conversions. Reads the dataset files and saves in .csv and .zip formats, also do k-fold split if not present</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+
+<pre><code>a) Basic reading the data, and organization:</code></pre>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;matdata/assets/sample&#39;</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">readDataset</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="s1">&#39;Foursquare_Sample.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[20]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>tid</th>
+      <th>lat_lon</th>
+      <th>date_time</th>
+      <th>time</th>
+      <th>rating</th>
+      <th>price</th>
+      <th>weather</th>
+      <th>day</th>
+      <th>root_type</th>
+      <th>type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>126</td>
+      <td>40.8331652006224 -73.9418603427692</td>
+      <td>2012-11-12 05:17:18</td>
+      <td>317</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Monday</td>
+      <td>Residence</td>
+      <td>Home (private)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>126</td>
+      <td>40.8340978041072 -73.9452672225881</td>
+      <td>2012-11-12 23:24:55</td>
+      <td>1404</td>
+      <td>8.2</td>
+      <td>1</td>
+      <td>Clouds</td>
+      <td>Monday</td>
+      <td>Food</td>
+      <td>Deli / Bodega</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>126</td>
+      <td>40.8331652006224 -73.9418603427692</td>
+      <td>2012-11-13 00:00:07</td>
+      <td>0</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Tuesday</td>
+      <td>Residence</td>
+      <td>Home (private)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>126</td>
+      <td>40.7646959283254 -73.8851974964414</td>
+      <td>2012-11-15 17:49:01</td>
+      <td>1069</td>
+      <td>6.6</td>
+      <td>3</td>
+      <td>Clear</td>
+      <td>Thursday</td>
+      <td>Food</td>
+      <td>Fried Chicken Joint</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>126</td>
+      <td>40.7660790376824 -73.8835287094116</td>
+      <td>2012-11-15 18:40:16</td>
+      <td>1120</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Thursday</td>
+      <td>Travel &amp; Transport</td>
+      <td>Bus Station</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">,</span> <span class="n">space_cols</span><span class="p">,</span> <span class="n">ll_cols</span> <span class="o">=</span> <span class="n">organizeFrame</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">make_spatials</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Columns with space: &#39;</span><span class="p">,</span> <span class="n">space_cols</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Columns with lat/lon: &#39;</span><span class="p">,</span> <span class="n">ll_cols</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Columns with space:  [&#39;space&#39;, &#39;date_time&#39;, &#39;time&#39;, &#39;rating&#39;, &#39;price&#39;, &#39;weather&#39;, &#39;day&#39;, &#39;root_type&#39;, &#39;type&#39;, &#39;tid&#39;]
+Columns with lat/lon:  [&#39;date_time&#39;, &#39;time&#39;, &#39;rating&#39;, &#39;price&#39;, &#39;weather&#39;, &#39;day&#39;, &#39;root_type&#39;, &#39;type&#39;, &#39;lat&#39;, &#39;lon&#39;, &#39;tid&#39;]
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[21]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>tid</th>
+      <th>space</th>
+      <th>date_time</th>
+      <th>time</th>
+      <th>rating</th>
+      <th>price</th>
+      <th>weather</th>
+      <th>day</th>
+      <th>root_type</th>
+      <th>type</th>
+      <th>lat</th>
+      <th>lon</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>126</td>
+      <td>40.8331652006224 -73.9418603427692</td>
+      <td>2012-11-12 05:17:18</td>
+      <td>317</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Monday</td>
+      <td>Residence</td>
+      <td>Home (private)</td>
+      <td>40.833165</td>
+      <td>-73.941860</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>126</td>
+      <td>40.8340978041072 -73.9452672225881</td>
+      <td>2012-11-12 23:24:55</td>
+      <td>1404</td>
+      <td>8.2</td>
+      <td>1</td>
+      <td>Clouds</td>
+      <td>Monday</td>
+      <td>Food</td>
+      <td>Deli / Bodega</td>
+      <td>40.834098</td>
+      <td>-73.945267</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>126</td>
+      <td>40.8331652006224 -73.9418603427692</td>
+      <td>2012-11-13 00:00:07</td>
+      <td>0</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Tuesday</td>
+      <td>Residence</td>
+      <td>Home (private)</td>
+      <td>40.833165</td>
+      <td>-73.941860</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>126</td>
+      <td>40.7646959283254 -73.8851974964414</td>
+      <td>2012-11-15 17:49:01</td>
+      <td>1069</td>
+      <td>6.6</td>
+      <td>3</td>
+      <td>Clear</td>
+      <td>Thursday</td>
+      <td>Food</td>
+      <td>Fried Chicken Joint</td>
+      <td>40.764696</td>
+      <td>-73.885197</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>126</td>
+      <td>40.7660790376824 -73.8835287094116</td>
+      <td>2012-11-15 18:40:16</td>
+      <td>1120</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Thursday</td>
+      <td>Travel &amp; Transport</td>
+      <td>Bus Station</td>
+      <td>40.766079</td>
+      <td>-73.883529</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><strong>Note:</strong> To better standard, we recomend for classification the use of <code>prepare_ds</code> function from <code>dataset</code> module, as you can indicate the class column:</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">matdata.dataset</span> <span class="kn">import</span> <span class="n">prepare_ds</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">prepare_ds</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">class_col</span><span class="o">=</span><span class="s1">&#39;root_type&#39;</span><span class="p">)</span> <span class="c1"># &#39;root_type&#39; is then renamed &#39;label&#39;</span>
+<span class="n">df</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[22]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date_time</th>
+      <th>time</th>
+      <th>rating</th>
+      <th>price</th>
+      <th>weather</th>
+      <th>day</th>
+      <th>type</th>
+      <th>lat</th>
+      <th>lon</th>
+      <th>tid</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2012-11-12 05:17:18</td>
+      <td>317</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Monday</td>
+      <td>Home (private)</td>
+      <td>40.833165</td>
+      <td>-73.941860</td>
+      <td>126</td>
+      <td>Residence</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2012-11-12 23:24:55</td>
+      <td>1404</td>
+      <td>8.2</td>
+      <td>1</td>
+      <td>Clouds</td>
+      <td>Monday</td>
+      <td>Deli / Bodega</td>
+      <td>40.834098</td>
+      <td>-73.945267</td>
+      <td>126</td>
+      <td>Food</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2012-11-13 00:00:07</td>
+      <td>0</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Tuesday</td>
+      <td>Home (private)</td>
+      <td>40.833165</td>
+      <td>-73.941860</td>
+      <td>126</td>
+      <td>Residence</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2012-11-15 17:49:01</td>
+      <td>1069</td>
+      <td>6.6</td>
+      <td>3</td>
+      <td>Clear</td>
+      <td>Thursday</td>
+      <td>Fried Chicken Joint</td>
+      <td>40.764696</td>
+      <td>-73.885197</td>
+      <td>126</td>
+      <td>Food</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2012-11-15 18:40:16</td>
+      <td>1120</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Thursday</td>
+      <td>Bus Station</td>
+      <td>40.766079</td>
+      <td>-73.883529</td>
+      <td>126</td>
+      <td>Travel &amp; Transport</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>66957</th>
+      <td>2012-08-10 17:17:37</td>
+      <td>1037</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Friday</td>
+      <td>General College &amp; University</td>
+      <td>40.704733</td>
+      <td>-73.987738</td>
+      <td>29563</td>
+      <td>College &amp; University</td>
+    </tr>
+    <tr>
+      <th>66958</th>
+      <td>2012-08-10 20:10:59</td>
+      <td>1210</td>
+      <td>8.0</td>
+      <td>2</td>
+      <td>Clouds</td>
+      <td>Friday</td>
+      <td>Thai Restaurant</td>
+      <td>40.695163</td>
+      <td>-73.995448</td>
+      <td>29563</td>
+      <td>Food</td>
+    </tr>
+    <tr>
+      <th>66959</th>
+      <td>2012-08-11 08:01:20</td>
+      <td>481</td>
+      <td>6.9</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Saturday</td>
+      <td>Gym</td>
+      <td>40.697803</td>
+      <td>-73.994145</td>
+      <td>29563</td>
+      <td>Outdoors &amp; Recreation</td>
+    </tr>
+    <tr>
+      <th>66960</th>
+      <td>2012-08-11 13:39:39</td>
+      <td>819</td>
+      <td>7.0</td>
+      <td>1</td>
+      <td>Clouds</td>
+      <td>Saturday</td>
+      <td>Coffee Shop</td>
+      <td>40.694673</td>
+      <td>-73.994082</td>
+      <td>29563</td>
+      <td>Food</td>
+    </tr>
+    <tr>
+      <th>66961</th>
+      <td>2012-08-12 07:56:26</td>
+      <td>476</td>
+      <td>6.9</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Sunday</td>
+      <td>Gym</td>
+      <td>40.697803</td>
+      <td>-73.994145</td>
+      <td>29563</td>
+      <td>Outdoors &amp; Recreation</td>
+    </tr>
+  </tbody>
+</table>
+<p>66962 rows × 11 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+
+<pre><code>b) Train and test split:</code></pre>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>To hold-out split a dataset into train and test (70/30% by deafult):</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">trainTestSplit</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">random_num</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>  0%|          | 0/9 [00:00&lt;?, ?it/s]</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[23]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date_time</th>
+      <th>time</th>
+      <th>rating</th>
+      <th>price</th>
+      <th>weather</th>
+      <th>day</th>
+      <th>type</th>
+      <th>lat</th>
+      <th>lon</th>
+      <th>tid</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2012-11-12 05:17:18</td>
+      <td>317</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Monday</td>
+      <td>Home (private)</td>
+      <td>40.833165</td>
+      <td>-73.941860</td>
+      <td>126</td>
+      <td>Residence</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2012-11-12 23:24:55</td>
+      <td>1404</td>
+      <td>8.2</td>
+      <td>1</td>
+      <td>Clouds</td>
+      <td>Monday</td>
+      <td>Deli / Bodega</td>
+      <td>40.834098</td>
+      <td>-73.945267</td>
+      <td>126</td>
+      <td>Food</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2012-11-13 00:00:07</td>
+      <td>0</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Tuesday</td>
+      <td>Home (private)</td>
+      <td>40.833165</td>
+      <td>-73.941860</td>
+      <td>126</td>
+      <td>Residence</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2012-11-15 17:49:01</td>
+      <td>1069</td>
+      <td>6.6</td>
+      <td>3</td>
+      <td>Clear</td>
+      <td>Thursday</td>
+      <td>Fried Chicken Joint</td>
+      <td>40.764696</td>
+      <td>-73.885197</td>
+      <td>126</td>
+      <td>Food</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2012-11-15 18:40:16</td>
+      <td>1120</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Thursday</td>
+      <td>Bus Station</td>
+      <td>40.766079</td>
+      <td>-73.883529</td>
+      <td>126</td>
+      <td>Travel &amp; Transport</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>If you want to save, indicate the output format and data path:</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trainTestSplit</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">data_path</span><span class="o">=</span><span class="n">data_path</span><span class="p">,</span> <span class="n">outformats</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;csv&#39;</span><span class="p">,</span> <span class="s1">&#39;parquet&#39;</span><span class="p">])</span>
+
+<span class="c1"># Reading:</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">readDataset</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="s1">&#39;train.parquet&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>  0%|          | 0/9 [00:00&lt;?, ?it/s]</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Writing - CSV |TRAIN - 
+Writing - CSV |TEST - 
+Writing - Parquet |TRAIN - 
+Writing - Parquet |TEST - 
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[24]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date_time</th>
+      <th>time</th>
+      <th>rating</th>
+      <th>price</th>
+      <th>weather</th>
+      <th>day</th>
+      <th>type</th>
+      <th>lat</th>
+      <th>lon</th>
+      <th>tid</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2012-11-12 05:17:18</td>
+      <td>317</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Monday</td>
+      <td>Home (private)</td>
+      <td>40.833165</td>
+      <td>-73.941860</td>
+      <td>126</td>
+      <td>Residence</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2012-11-12 23:24:55</td>
+      <td>1404</td>
+      <td>8.2</td>
+      <td>1</td>
+      <td>Clouds</td>
+      <td>Monday</td>
+      <td>Deli / Bodega</td>
+      <td>40.834098</td>
+      <td>-73.945267</td>
+      <td>126</td>
+      <td>Food</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2012-11-13 00:00:07</td>
+      <td>0</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Tuesday</td>
+      <td>Home (private)</td>
+      <td>40.833165</td>
+      <td>-73.941860</td>
+      <td>126</td>
+      <td>Residence</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2012-11-15 17:49:01</td>
+      <td>1069</td>
+      <td>6.6</td>
+      <td>3</td>
+      <td>Clear</td>
+      <td>Thursday</td>
+      <td>Fried Chicken Joint</td>
+      <td>40.764696</td>
+      <td>-73.885197</td>
+      <td>126</td>
+      <td>Food</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2012-11-15 18:40:16</td>
+      <td>1120</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Thursday</td>
+      <td>Bus Station</td>
+      <td>40.766079</td>
+      <td>-73.883529</td>
+      <td>126</td>
+      <td>Travel &amp; Transport</td>
     </tr>
   </tbody>
 </table>
@@ -14837,12 +17608,13 @@ Done.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">3</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">kfold_trainTestSplit</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
-<span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">kfold_trainAndTestSplit</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">random_num</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">class_col</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape train/test:&#39;</span><span class="p">,</span> <span class="n">train</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">test</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14863,22 +17635,10 @@ Done.
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>3-fold train and test split in... automatize/assets/examples/Example/data
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
 
 
 <div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>Spliting Data:   0%|          | 0/2 [00:00&lt;?, ?it/s]</pre>
+<pre>Spliting Data:   0%|          | 0/10 [00:00&lt;?, ?it/s]</pre>
 </div>
 
 </div>
@@ -14890,249 +17650,9 @@ Done.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Done.
-Writing files ... 1/3
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>Writing TRAIN - ZIP|1:   0%|          | 0/7 [00:00&lt;?, ?it/s]</pre>
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>Writing TEST  - ZIP|1:   0%|          | 0/4 [00:00&lt;?, ?it/s]</pre>
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Writing TRAIN / TEST - CSV|1
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>Writing TRAIN - MAT|1:   0%|          | 0/7 [00:00&lt;?, ?it/s]</pre>
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>Writing TEST  - MAT|1:   0%|          | 0/4 [00:00&lt;?, ?it/s]</pre>
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Writing files ... 2/3
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>Writing TRAIN - ZIP|2:   0%|          | 0/7 [00:00&lt;?, ?it/s]</pre>
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>Writing TEST  - ZIP|2:   0%|          | 0/4 [00:00&lt;?, ?it/s]</pre>
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Writing TRAIN / TEST - CSV|2
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>Writing TRAIN - MAT|2:   0%|          | 0/7 [00:00&lt;?, ?it/s]</pre>
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>Writing TEST  - MAT|2:   0%|          | 0/4 [00:00&lt;?, ?it/s]</pre>
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Writing files ... 3/3
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>Writing TRAIN - ZIP|3:   0%|          | 0/8 [00:00&lt;?, ?it/s]</pre>
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>Writing TEST  - ZIP|3:   0%|          | 0/3 [00:00&lt;?, ?it/s]</pre>
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Writing TRAIN / TEST - CSV|3
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>Writing TRAIN - MAT|3:   0%|          | 0/8 [00:00&lt;?, ?it/s]</pre>
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>Writing TEST  - MAT|3:   0%|          | 0/3 [00:00&lt;?, ?it/s]</pre>
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Done.
- --------------------------------------------------------------------------------
+<pre>Shape train/test: (174636, 11) (86969, 11)
+Shape train/test: (175715, 11) (85890, 11)
+Shape train/test: (172859, 11) (88746, 11)
 </pre>
 </div>
 </div>
@@ -15148,7 +17668,8 @@ Writing files ... 1/3
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>To convert train and test from one available format to other default formats (CSV, ZIP, MAT):</p>
+
+<pre><code>c) Stratifying the data (example to get 50% of the dataset):</code></pre>
 
 </div>
 </div>
@@ -15158,10 +17679,13 @@ Writing files ... 1/3
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">convertDataset</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">stratify</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape train/test:&#39;</span><span class="p">,</span> <span class="n">train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -15185,7 +17709,7 @@ Writing files ... 1/3
 
 
 <div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>Writing TRAIN - ZIP|:   0%|          | 0/14 [00:00&lt;?, ?it/s]</pre>
+<pre>  0%|          | 0/9 [00:00&lt;?, ?it/s]</pre>
 </div>
 
 </div>
@@ -15199,35 +17723,7 @@ Writing files ... 1/3
 
 
 <div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>Writing TEST  - ZIP|:   0%|          | 0/14 [00:00&lt;?, ?it/s]</pre>
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>Writing TRAIN - MAT|:   0%|          | 0/14 [00:00&lt;?, ?it/s]</pre>
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>Writing TEST  - MAT|:   0%|          | 0/14 [00:00&lt;?, ?it/s]</pre>
+<pre>  0%|          | 0/9 [00:00&lt;?, ?it/s]</pre>
 </div>
 
 </div>
@@ -15239,7 +17735,200 @@ Writing files ... 1/3
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>All Done.
+<pre>Shape train/test: (16432, 11) (7106, 11)
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[26]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date_time</th>
+      <th>time</th>
+      <th>rating</th>
+      <th>price</th>
+      <th>weather</th>
+      <th>day</th>
+      <th>type</th>
+      <th>lat</th>
+      <th>lon</th>
+      <th>tid</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2012-11-12 05:17:18</td>
+      <td>317</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Monday</td>
+      <td>Home (private)</td>
+      <td>40.833165</td>
+      <td>-73.941860</td>
+      <td>126</td>
+      <td>Residence</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2012-11-12 23:24:55</td>
+      <td>1404</td>
+      <td>8.2</td>
+      <td>1</td>
+      <td>Clouds</td>
+      <td>Monday</td>
+      <td>Deli / Bodega</td>
+      <td>40.834098</td>
+      <td>-73.945267</td>
+      <td>126</td>
+      <td>Food</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2012-11-13 00:00:07</td>
+      <td>0</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Tuesday</td>
+      <td>Home (private)</td>
+      <td>40.833165</td>
+      <td>-73.941860</td>
+      <td>126</td>
+      <td>Residence</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2012-11-15 17:49:01</td>
+      <td>1069</td>
+      <td>6.6</td>
+      <td>3</td>
+      <td>Clear</td>
+      <td>Thursday</td>
+      <td>Fried Chicken Joint</td>
+      <td>40.764696</td>
+      <td>-73.885197</td>
+      <td>126</td>
+      <td>Food</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2012-11-15 18:40:16</td>
+      <td>1120</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Thursday</td>
+      <td>Bus Station</td>
+      <td>40.766079</td>
+      <td>-73.883529</td>
+      <td>126</td>
+      <td>Travel &amp; Transport</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>k-Fold Stratifying the data (example to get 50% of the dataset in 3-folds):</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">klabels_stratify</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">kl</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape train/test:&#39;</span><span class="p">,</span> <span class="n">train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Labels before:&#39;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Labels after:&#39;</span><span class="p">,</span> <span class="n">train</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>  0%|          | 0/5 [00:00&lt;?, ?it/s]</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Shape train/test: (25824, 11) (11704, 11)
+Labels before: [&#39;Residence&#39; &#39;Food&#39; &#39;Travel &amp; Transport&#39; &#39;Professional &amp; Other Places&#39;
+ &#39;Shop &amp; Service&#39; &#39;Outdoors &amp; Recreation&#39; &#39;College &amp; University&#39;
+ &#39;Arts &amp; Entertainment&#39; &#39;Nightlife Spot&#39; &#39;Event&#39;]
+Labels after: [&#39;Residence&#39; &#39;Food&#39; &#39;Travel &amp; Transport&#39; &#39;Professional &amp; Other Places&#39;
+ &#39;Shop &amp; Service&#39;]
 </pre>
 </div>
 </div>
@@ -15255,7 +17944,446 @@ Writing files ... 1/3
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="2.-Synthetic-Data-Generation">2. Synthetic Data Generation<a class="anchor-link" href="#2.-Synthetic-Data-Generation">&#182;</a></h3><p>TODO</p>
+
+<pre><code>d) Joining train and test files:</code></pre>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">joinTrainTest</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">train_file</span><span class="o">=</span><span class="s2">&quot;train.csv&quot;</span><span class="p">,</span> <span class="n">test_file</span><span class="o">=</span><span class="s2">&quot;test.csv&quot;</span><span class="p">,</span> <span class="n">to_file</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># Saves &#39;joined.csv&#39; file</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Joining train and test data from... matdata/assets/sample
+Saving joined dataset as: matdata/assets/sample/joined.csv
+Done.
+ --------------------------------------------------------------------------------
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[28]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date_time</th>
+      <th>time</th>
+      <th>rating</th>
+      <th>price</th>
+      <th>weather</th>
+      <th>day</th>
+      <th>type</th>
+      <th>lat</th>
+      <th>lon</th>
+      <th>tid</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2012-11-12 05:17:18</td>
+      <td>317</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Monday</td>
+      <td>Home (private)</td>
+      <td>40.833165</td>
+      <td>-73.941860</td>
+      <td>126</td>
+      <td>Residence</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2012-11-12 23:24:55</td>
+      <td>1404</td>
+      <td>8.2</td>
+      <td>1</td>
+      <td>Clouds</td>
+      <td>Monday</td>
+      <td>Deli / Bodega</td>
+      <td>40.834098</td>
+      <td>-73.945267</td>
+      <td>126</td>
+      <td>Food</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2012-11-13 00:00:07</td>
+      <td>0</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Tuesday</td>
+      <td>Home (private)</td>
+      <td>40.833165</td>
+      <td>-73.941860</td>
+      <td>126</td>
+      <td>Residence</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2012-11-15 17:49:01</td>
+      <td>1069</td>
+      <td>6.6</td>
+      <td>3</td>
+      <td>Clear</td>
+      <td>Thursday</td>
+      <td>Fried Chicken Joint</td>
+      <td>40.764696</td>
+      <td>-73.885197</td>
+      <td>126</td>
+      <td>Food</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2012-11-15 18:40:16</td>
+      <td>1120</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Thursday</td>
+      <td>Bus Station</td>
+      <td>40.766079</td>
+      <td>-73.883529</td>
+      <td>126</td>
+      <td>Travel &amp; Transport</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><strong>Note:</strong> We standardized all repository datasets by creating a <code>data.parquet</code> file with <code>np.NaN</code> as missing values, as example:</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">matdata.preprocess</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">matdata.dataset</span> <span class="kn">import</span> <span class="n">prepare_ds</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;matdata/assets/sample&#39;</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">prepare_ds</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="n">df2parquet</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">data_path</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Saving dataset as: matdata/assets/sample/data.parquet
+Done.
+ --------------------------------------------------------------------------------
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[29]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date_time</th>
+      <th>time</th>
+      <th>rating</th>
+      <th>price</th>
+      <th>weather</th>
+      <th>day</th>
+      <th>type</th>
+      <th>lat</th>
+      <th>lon</th>
+      <th>label</th>
+      <th>tid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2012-11-12 05:17:18</td>
+      <td>317</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Monday</td>
+      <td>Home (private)</td>
+      <td>40.833165</td>
+      <td>-73.941860</td>
+      <td>Residence</td>
+      <td>126</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2012-11-12 23:24:55</td>
+      <td>1404</td>
+      <td>8.2</td>
+      <td>1</td>
+      <td>Clouds</td>
+      <td>Monday</td>
+      <td>Deli / Bodega</td>
+      <td>40.834098</td>
+      <td>-73.945267</td>
+      <td>Food</td>
+      <td>126</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2012-11-13 00:00:07</td>
+      <td>0</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Tuesday</td>
+      <td>Home (private)</td>
+      <td>40.833165</td>
+      <td>-73.941860</td>
+      <td>Residence</td>
+      <td>126</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2012-11-15 17:49:01</td>
+      <td>1069</td>
+      <td>6.6</td>
+      <td>3</td>
+      <td>Clear</td>
+      <td>Thursday</td>
+      <td>Fried Chicken Joint</td>
+      <td>40.764696</td>
+      <td>-73.885197</td>
+      <td>Food</td>
+      <td>126</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2012-11-15 18:40:16</td>
+      <td>1120</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Thursday</td>
+      <td>Bus Station</td>
+      <td>40.766079</td>
+      <td>-73.883529</td>
+      <td>Travel &amp; Transport</td>
+      <td>126</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>20080</th>
+      <td>2012-08-10 17:17:37</td>
+      <td>1037</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Friday</td>
+      <td>General College &amp; University</td>
+      <td>40.704733</td>
+      <td>-73.987738</td>
+      <td>College &amp; University</td>
+      <td>29563</td>
+    </tr>
+    <tr>
+      <th>20081</th>
+      <td>2012-08-10 20:10:59</td>
+      <td>1210</td>
+      <td>8.0</td>
+      <td>2</td>
+      <td>Clouds</td>
+      <td>Friday</td>
+      <td>Thai Restaurant</td>
+      <td>40.695163</td>
+      <td>-73.995448</td>
+      <td>Food</td>
+      <td>29563</td>
+    </tr>
+    <tr>
+      <th>20082</th>
+      <td>2012-08-11 08:01:20</td>
+      <td>481</td>
+      <td>6.9</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Saturday</td>
+      <td>Gym</td>
+      <td>40.697803</td>
+      <td>-73.994145</td>
+      <td>Outdoors &amp; Recreation</td>
+      <td>29563</td>
+    </tr>
+    <tr>
+      <th>20083</th>
+      <td>2012-08-11 13:39:39</td>
+      <td>819</td>
+      <td>7.0</td>
+      <td>1</td>
+      <td>Clouds</td>
+      <td>Saturday</td>
+      <td>Coffee Shop</td>
+      <td>40.694673</td>
+      <td>-73.994082</td>
+      <td>Food</td>
+      <td>29563</td>
+    </tr>
+    <tr>
+      <th>20084</th>
+      <td>2012-08-12 07:56:26</td>
+      <td>476</td>
+      <td>6.9</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Sunday</td>
+      <td>Gym</td>
+      <td>40.697803</td>
+      <td>-73.994145</td>
+      <td>Outdoors &amp; Recreation</td>
+      <td>29563</td>
+    </tr>
+  </tbody>
+</table>
+<p>66962 rows × 11 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="4.-Synthetic-Data-Generation">4. Synthetic Data Generation<a class="anchor-link" href="#4.-Synthetic-Data-Generation">&#182;</a></h3><p>TODO</p>
 
 </div>
 </div>
@@ -15265,7 +18393,7 @@ Writing files ... 1/3
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">matdata.generator</span> <span class="kn">import</span> <span class="o">*</span>
@@ -15293,15 +18421,28 @@ Writing files ... 1/3
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+
+<pre><code>a) To generate a sample dataset (default config):</code></pre>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">samplerGenerator</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -15309,6 +18450,1138 @@ Writing files ... 1/3
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[2]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>tid</th>
+      <th>space</th>
+      <th>time</th>
+      <th>day</th>
+      <th>rating</th>
+      <th>price</th>
+      <th>weather</th>
+      <th>root_type</th>
+      <th>type</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>40.7429692382286 -73.8827669620514</td>
+      <td>447</td>
+      <td>Monday</td>
+      <td>6.1</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Shop &amp; Service</td>
+      <td>Supermarket</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>40.8610785519472 -73.9301037076315</td>
+      <td>486</td>
+      <td>Monday</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Residence</td>
+      <td>Home (private)</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>40.5774555812085 -73.9812469482422</td>
+      <td>653</td>
+      <td>Monday</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Travel &amp; Transport</td>
+      <td>Metro Station</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>40.8114381522955 -74.0677964687347</td>
+      <td>701</td>
+      <td>Monday</td>
+      <td>6.8</td>
+      <td>-1</td>
+      <td>Rain</td>
+      <td>Arts &amp; Entertainment</td>
+      <td>Stadium</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>40.7811844364976 -73.9732030930065</td>
+      <td>758</td>
+      <td>Monday</td>
+      <td>9.4</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Arts &amp; Entertainment</td>
+      <td>Science Museum</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>495</th>
+      <td>10</td>
+      <td>40.7638885711179 -74.0233821808352</td>
+      <td>1385</td>
+      <td>Saturday</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Travel &amp; Transport</td>
+      <td>Border Crossing</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>496</th>
+      <td>10</td>
+      <td>40.6891441345215 -73.9303207397461</td>
+      <td>379</td>
+      <td>Sunday</td>
+      <td>-1.0</td>
+      <td>1</td>
+      <td>Clouds</td>
+      <td>Food</td>
+      <td>Deli / Bodega</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>497</th>
+      <td>10</td>
+      <td>40.7704703500000 -74.0281831400000</td>
+      <td>547</td>
+      <td>Sunday</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Professional &amp; Other Places</td>
+      <td>Post Office</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>498</th>
+      <td>10</td>
+      <td>40.7774773922087 -73.8146725755643</td>
+      <td>783</td>
+      <td>Sunday</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Shop &amp; Service</td>
+      <td>Candy Store</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>499</th>
+      <td>10</td>
+      <td>40.8331652006224 -73.9418603427692</td>
+      <td>1033</td>
+      <td>Sunday</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Residence</td>
+      <td>Home (private)</td>
+      <td>C1</td>
+    </tr>
+  </tbody>
+</table>
+<p>500 rows × 10 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>To specify the synthetic dataset parameters:</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="mi">10</span> <span class="c1"># Number of trajectories</span>
+<span class="n">M</span><span class="o">=</span><span class="mi">50</span> <span class="c1"># Number of points by trajectory</span>
+<span class="n">C</span><span class="o">=</span><span class="mi">3</span>  <span class="c1"># Number of classes (C1 to Cn)</span>
+<span class="n">samplerGenerator</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>tid</th>
+      <th>space</th>
+      <th>time</th>
+      <th>day</th>
+      <th>rating</th>
+      <th>price</th>
+      <th>weather</th>
+      <th>root_type</th>
+      <th>type</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>40.7429692382286 -73.8827669620514</td>
+      <td>447</td>
+      <td>Monday</td>
+      <td>6.1</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Shop &amp; Service</td>
+      <td>Supermarket</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>40.8610785519472 -73.9301037076315</td>
+      <td>486</td>
+      <td>Monday</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Residence</td>
+      <td>Home (private)</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>40.5774555812085 -73.9812469482422</td>
+      <td>653</td>
+      <td>Monday</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Travel &amp; Transport</td>
+      <td>Metro Station</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>40.8114381522955 -74.0677964687347</td>
+      <td>701</td>
+      <td>Monday</td>
+      <td>6.8</td>
+      <td>-1</td>
+      <td>Rain</td>
+      <td>Arts &amp; Entertainment</td>
+      <td>Stadium</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>40.7811844364976 -73.9732030930065</td>
+      <td>758</td>
+      <td>Monday</td>
+      <td>9.4</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Arts &amp; Entertainment</td>
+      <td>Science Museum</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>495</th>
+      <td>11</td>
+      <td>40.7638885711179 -74.0233821808352</td>
+      <td>1385</td>
+      <td>Saturday</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Travel &amp; Transport</td>
+      <td>Border Crossing</td>
+      <td>C3</td>
+    </tr>
+    <tr>
+      <th>496</th>
+      <td>11</td>
+      <td>40.6891441345215 -73.9303207397461</td>
+      <td>379</td>
+      <td>Sunday</td>
+      <td>-1.0</td>
+      <td>1</td>
+      <td>Clouds</td>
+      <td>Food</td>
+      <td>Deli / Bodega</td>
+      <td>C3</td>
+    </tr>
+    <tr>
+      <th>497</th>
+      <td>11</td>
+      <td>40.7704703500000 -74.0281831400000</td>
+      <td>547</td>
+      <td>Sunday</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Professional &amp; Other Places</td>
+      <td>Post Office</td>
+      <td>C3</td>
+    </tr>
+    <tr>
+      <th>498</th>
+      <td>11</td>
+      <td>40.7774773922087 -73.8146725755643</td>
+      <td>783</td>
+      <td>Sunday</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clear</td>
+      <td>Shop &amp; Service</td>
+      <td>Candy Store</td>
+      <td>C3</td>
+    </tr>
+    <tr>
+      <th>499</th>
+      <td>11</td>
+      <td>40.8331652006224 -73.9418603427692</td>
+      <td>1033</td>
+      <td>Sunday</td>
+      <td>-1.0</td>
+      <td>-1</td>
+      <td>Clouds</td>
+      <td>Residence</td>
+      <td>Home (private)</td>
+      <td>C3</td>
+    </tr>
+  </tbody>
+</table>
+<p>500 rows × 10 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+
+<pre><code>b) To generate a set of sample datasets:
+
+</code></pre>
+<p>Creates and save dataset files (including movelets json descriptor file). Generates sample datasets in a increasing log scale for each parameter. It uses the middle value for the other configurations</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;matdata/assets/sample/samples&#39;</span>
+
+<span class="n">Ns</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>   <span class="c1"># Min. number of trajectories: 100, 3 scales (by log increment)  </span>
+<span class="n">Ms</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span>  <span class="mi">3</span><span class="p">]</span>   <span class="c1"># Min. number of points: 10, 3 scales (by log increment)</span>
+<span class="n">Ls</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span>   <span class="mi">3</span><span class="p">]</span>   <span class="c1"># Min. number of attributes: 8, 3 scales (by log increment)</span>
+<span class="n">Cs</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span>   <span class="mi">3</span><span class="p">]</span>   <span class="c1"># Min. number of labels: 2, 3 scales (by log increment)</span>
+
+<span class="n">scalerSamplerGenerator</span><span class="p">(</span><span class="n">Ns</span><span class="p">,</span> <span class="n">Ms</span><span class="p">,</span> <span class="n">Ls</span><span class="p">,</span> <span class="n">Cs</span><span class="p">,</span> <span class="n">save_to</span><span class="o">=</span><span class="n">data_path</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>  0%|          | 0/12 [00:00&lt;?, ?it/s]</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>N :: fix. value: 	 200 	scale:	 [100, 200, 400]
+M :: fix. value: 	 20 	scale:	 [10, 20, 40]
+L :: fix. value: 	 8 	scale:	 [8, 16, 32]
+C :: fix. value: 	 4 	scale:	 [2, 4, 8]
+Writing - CSV |
+Writing - CSV |
+Writing - CSV |
+Writing - CSV |
+Writing - CSV |
+Writing - CSV |
+Writing - CSV |
+Writing - CSV |
+Writing - CSV |
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+
+<pre><code>c) To generate a random dataset (default config):</code></pre>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">randomGenerator</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>tid</th>
+      <th>a1_space</th>
+      <th>a2_time</th>
+      <th>a3_n1</th>
+      <th>a4_n2</th>
+      <th>a5_nominal</th>
+      <th>a6_day</th>
+      <th>a7_weather</th>
+      <th>a8_category</th>
+      <th>a9_space</th>
+      <th>a10_time</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>134.5 848.28</td>
+      <td>114</td>
+      <td>949</td>
+      <td>976.98</td>
+      <td>PX</td>
+      <td>Tuesday</td>
+      <td>Clouds</td>
+      <td>Outdoors &amp; Recreation</td>
+      <td>101.04 778.52</td>
+      <td>1114</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>764.54 255.32</td>
+      <td>985</td>
+      <td>-656</td>
+      <td>630.77</td>
+      <td>HK</td>
+      <td>Saturday</td>
+      <td>Clouds</td>
+      <td>Shop &amp; Service</td>
+      <td>328.42 509.78</td>
+      <td>83</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>495.93 449.94</td>
+      <td>746</td>
+      <td>344</td>
+      <td>695.05</td>
+      <td>JM</td>
+      <td>Saturday</td>
+      <td>Rain</td>
+      <td>Travel &amp; Transport</td>
+      <td>665.91 179.75</td>
+      <td>1073</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>652.24 789.51</td>
+      <td>1167</td>
+      <td>-442</td>
+      <td>450.85</td>
+      <td>ZO</td>
+      <td>Wednesday</td>
+      <td>Unknown</td>
+      <td>Nightlife Spot</td>
+      <td>149.71 141.68</td>
+      <td>185</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>93.95 28.38</td>
+      <td>1135</td>
+      <td>327</td>
+      <td>523.90</td>
+      <td>CU</td>
+      <td>Monday</td>
+      <td>Clouds</td>
+      <td>Professional &amp; Other Places</td>
+      <td>866.41 305.93</td>
+      <td>522</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>495</th>
+      <td>10</td>
+      <td>647.96 300.5</td>
+      <td>1205</td>
+      <td>561</td>
+      <td>819.12</td>
+      <td>ACR</td>
+      <td>Saturday</td>
+      <td>Rain</td>
+      <td>Arts &amp; Entertainment</td>
+      <td>515.96 955.66</td>
+      <td>634</td>
+      <td>C10</td>
+    </tr>
+    <tr>
+      <th>496</th>
+      <td>10</td>
+      <td>779.26 933.61</td>
+      <td>485</td>
+      <td>121</td>
+      <td>745.32</td>
+      <td>AIZ</td>
+      <td>Tuesday</td>
+      <td>Rain</td>
+      <td>Outdoors &amp; Recreation</td>
+      <td>377.83 263.13</td>
+      <td>435</td>
+      <td>C10</td>
+    </tr>
+    <tr>
+      <th>497</th>
+      <td>10</td>
+      <td>398.3 545.19</td>
+      <td>406</td>
+      <td>-248</td>
+      <td>180.89</td>
+      <td>YH</td>
+      <td>Monday</td>
+      <td>Fog</td>
+      <td>Event</td>
+      <td>458.27 665.46</td>
+      <td>874</td>
+      <td>C10</td>
+    </tr>
+    <tr>
+      <th>498</th>
+      <td>10</td>
+      <td>133.52 605.02</td>
+      <td>62</td>
+      <td>-485</td>
+      <td>890.42</td>
+      <td>DI</td>
+      <td>Thursday</td>
+      <td>Clouds</td>
+      <td>Residence</td>
+      <td>263.93 944.8</td>
+      <td>1141</td>
+      <td>C10</td>
+    </tr>
+    <tr>
+      <th>499</th>
+      <td>10</td>
+      <td>387.49 106.12</td>
+      <td>435</td>
+      <td>837</td>
+      <td>398.13</td>
+      <td>ACM</td>
+      <td>Tuesday</td>
+      <td>Rain</td>
+      <td>Residence</td>
+      <td>916.46 785.13</td>
+      <td>1198</td>
+      <td>C10</td>
+    </tr>
+  </tbody>
+</table>
+<p>500 rows × 12 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>To specify the synthetic random dataset parameters:</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="mi">10</span> <span class="c1"># Number of trajectories</span>
+<span class="n">M</span><span class="o">=</span><span class="mi">50</span> <span class="c1"># Number of points by trajectory</span>
+<span class="n">L</span><span class="o">=</span><span class="mi">10</span> <span class="c1"># Number of attributes</span>
+<span class="n">C</span><span class="o">=</span><span class="mi">3</span>  <span class="c1"># Number of classes (C1 to Cn)</span>
+<span class="n">randomGenerator</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>tid</th>
+      <th>a1_space</th>
+      <th>a2_time</th>
+      <th>a3_n1</th>
+      <th>a4_n2</th>
+      <th>a5_nominal</th>
+      <th>a6_day</th>
+      <th>a7_weather</th>
+      <th>a8_category</th>
+      <th>a9_space</th>
+      <th>a10_time</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>134.5 848.28</td>
+      <td>114</td>
+      <td>949</td>
+      <td>976.98</td>
+      <td>PX</td>
+      <td>Tuesday</td>
+      <td>Clouds</td>
+      <td>Outdoors &amp; Recreation</td>
+      <td>101.04 778.52</td>
+      <td>1114</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>764.54 255.32</td>
+      <td>985</td>
+      <td>-656</td>
+      <td>630.77</td>
+      <td>HK</td>
+      <td>Saturday</td>
+      <td>Clouds</td>
+      <td>Shop &amp; Service</td>
+      <td>328.42 509.78</td>
+      <td>83</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>495.93 449.94</td>
+      <td>746</td>
+      <td>344</td>
+      <td>695.05</td>
+      <td>JM</td>
+      <td>Saturday</td>
+      <td>Rain</td>
+      <td>Travel &amp; Transport</td>
+      <td>665.91 179.75</td>
+      <td>1073</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>652.24 789.51</td>
+      <td>1167</td>
+      <td>-442</td>
+      <td>450.85</td>
+      <td>ZO</td>
+      <td>Wednesday</td>
+      <td>Unknown</td>
+      <td>Nightlife Spot</td>
+      <td>149.71 141.68</td>
+      <td>185</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>93.95 28.38</td>
+      <td>1135</td>
+      <td>327</td>
+      <td>523.90</td>
+      <td>CU</td>
+      <td>Monday</td>
+      <td>Clouds</td>
+      <td>Professional &amp; Other Places</td>
+      <td>866.41 305.93</td>
+      <td>522</td>
+      <td>C1</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>495</th>
+      <td>11</td>
+      <td>647.96 300.5</td>
+      <td>1205</td>
+      <td>561</td>
+      <td>819.12</td>
+      <td>ACR</td>
+      <td>Saturday</td>
+      <td>Rain</td>
+      <td>Arts &amp; Entertainment</td>
+      <td>515.96 955.66</td>
+      <td>634</td>
+      <td>C3</td>
+    </tr>
+    <tr>
+      <th>496</th>
+      <td>11</td>
+      <td>779.26 933.61</td>
+      <td>485</td>
+      <td>121</td>
+      <td>745.32</td>
+      <td>AIZ</td>
+      <td>Tuesday</td>
+      <td>Rain</td>
+      <td>Outdoors &amp; Recreation</td>
+      <td>377.83 263.13</td>
+      <td>435</td>
+      <td>C3</td>
+    </tr>
+    <tr>
+      <th>497</th>
+      <td>11</td>
+      <td>398.3 545.19</td>
+      <td>406</td>
+      <td>-248</td>
+      <td>180.89</td>
+      <td>YH</td>
+      <td>Monday</td>
+      <td>Fog</td>
+      <td>Event</td>
+      <td>458.27 665.46</td>
+      <td>874</td>
+      <td>C3</td>
+    </tr>
+    <tr>
+      <th>498</th>
+      <td>11</td>
+      <td>133.52 605.02</td>
+      <td>62</td>
+      <td>-485</td>
+      <td>890.42</td>
+      <td>DI</td>
+      <td>Thursday</td>
+      <td>Clouds</td>
+      <td>Residence</td>
+      <td>263.93 944.8</td>
+      <td>1141</td>
+      <td>C3</td>
+    </tr>
+    <tr>
+      <th>499</th>
+      <td>11</td>
+      <td>387.49 106.12</td>
+      <td>435</td>
+      <td>837</td>
+      <td>398.13</td>
+      <td>ACM</td>
+      <td>Tuesday</td>
+      <td>Rain</td>
+      <td>Residence</td>
+      <td>916.46 785.13</td>
+      <td>1198</td>
+      <td>C3</td>
+    </tr>
+  </tbody>
+</table>
+<p>500 rows × 12 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+
+<pre><code>d) To generate a set of random datasets:
+
+</code></pre>
+<p>Creates and save dataset files (including movelets json descriptor file). Generates randomic datasets in a increasing log scale for each parameter. It uses the middle value for the other configurations</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;matdata/assets/sample/random&#39;</span>
+
+<span class="n">Ns</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>   <span class="c1"># Min. number of trajectories: 100, 3 scales (by log increment)  </span>
+<span class="n">Ms</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span>  <span class="mi">3</span><span class="p">]</span>   <span class="c1"># Min. number of points: 10, 3 scales (by log increment)</span>
+<span class="n">Ls</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span>   <span class="mi">3</span><span class="p">]</span>   <span class="c1"># Min. number of attributes: 8, 3 scales (by log increment)</span>
+<span class="n">Cs</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span>   <span class="mi">3</span><span class="p">]</span>   <span class="c1"># Min. number of labels: 2, 3 scales (by log increment)</span>
+
+<span class="n">scalerRandomGenerator</span><span class="p">(</span><span class="n">Ns</span><span class="p">,</span> <span class="n">Ms</span><span class="p">,</span> <span class="n">Ls</span><span class="p">,</span> <span class="n">Cs</span><span class="p">,</span> <span class="n">save_to</span><span class="o">=</span><span class="n">data_path</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>  0%|          | 0/12 [00:00&lt;?, ?it/s]</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>N :: fix. value: 	 200 	scale:	 [100, 200, 400]
+M :: fix. value: 	 20 	scale:	 [10, 20, 40]
+L :: fix. value: 	 8 	scale:	 [8, 16, 32]
+C :: fix. value: 	 4 	scale:	 [2, 4, 8]
+Writing - CSV |
+Writing - CSV |
+Writing - CSV |
+Writing - CSV |
+Writing - CSV |
+Writing - CSV |
+Writing - CSV |
+Writing - CSV |
+Writing - CSV |
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<hr>
+
+</div>
+</div>
+</div>
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">

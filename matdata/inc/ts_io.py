@@ -1,14 +1,23 @@
 # -*- coding: utf-8 -*-
 """
-Multiple Aspect Trajectory Tools Framework, MAT-data: Data Preprocessing for Multiple Aspect Trajectory Data Mining
+**Multiple Aspect Trajectory Tools Framework**
 
-The present application offers a tool, to support the user in the classification task of multiple aspect trajectories, specifically for extracting and visualizing the movelets, the parts of the trajectory that better discriminate a class. It integrates into a unique platform the fragmented approaches available for multiple aspects trajectories and in general for multidimensional sequence classification into a unique web-based and python library system. Offers both movelets visualization and a complete configuration of classification experimental settings.
+*MAT-data: Data Preprocessing for Multiple Aspect Trajectory Data Mining*
+
+The present application offers a tool, to support the user in the classification task of multiple aspect trajectories,
+specifically for extracting and visualizing the movelets, the parts of the trajectory that better discriminate a class.
+It integrates into a unique platform the fragmented approaches available for multiple aspects trajectories and in
+general for multidimensional sequence classification into a unique web-based and python library system. Offers both
+movelets visualization and classification methods.
 
 Created on Dec, 2021
 Copyright (C) 2022, License GPL Version 3 or superior (see LICENSE file)
 
 @author: Tarlis Portela
 @author sktime package (adapted)
+
+----
+
 """
 import os
 import itertools
@@ -427,15 +436,24 @@ def load_from_tsfile(file,return_separate_X_and_y=False,replace_missing_vals_wit
                                             value = float(value)
 
                                         except ValueError:
-                                            raise TsFileParseException(
-                                                "dimension "
+                                            # By Tarlis:
+                                            print("dimension "
                                                 + str(this_line_num_dim + 1)
                                                 + " on line "
                                                 + str(line_num + 1)
                                                 + " contains a tuple that does "
                                                 "not have a valid numeric "
-                                                "value"
-                                            )
+                                                "value, read '"+str(value)+"' as missing.")
+                                            value = replace_missing_vals_with
+                                            #raise TsFileParseException(
+                                            #    "dimension "
+                                            #    + str(this_line_num_dim + 1)
+                                            #    + " on line "
+                                            #    + str(line_num + 1)
+                                            #    + " contains a tuple that does "
+                                            #    "not have a valid numeric "
+                                            #    "value"
+                                            #)
 
                                         # Check the type of timestamp that
                                         # we have
@@ -703,7 +721,22 @@ def load_from_tsfile(file,return_separate_X_and_y=False,replace_missing_vals_wit
 
                             if dimension:
                                 data_series = dimension.split(",")
-                                data_series = [float(i) for i in data_series]
+                                #data_series = [float(i) for i in data_series]
+                                
+                                def process(dim, value):
+                                    try:
+                                        value = float(value)
+                                    except ValueError:
+                                        # By Tarlis:
+                                        print("dimension "
+                                            + str(dim)
+                                            + " contains a tuple that does "
+                                            "not have a valid numeric "
+                                            "value, read '"+str(value)+"' as missing.")
+                                        value = replace_missing_vals_with
+                                    return value
+                                data_series = list(map(lambda i: process(dim, i), data_series))
+                                
                                 instance_list[dim].append(pd.Series(data_series))
 
                             else:
@@ -744,7 +777,9 @@ def load_from_tsfile(file,return_separate_X_and_y=False,replace_missing_vals_wit
             x_data_aux = pd.DataFrame(dtype=np.float32)
             for dim in range(len(instance_list)):
 #                 print(dim, x)
-                x_data_aux["dim" + str(dim)] = pd.Series(instance_list[dim][x])
+#                x_data_aux["dim" + str(dim)] = pd.Series(instance_list[dim][x])
+                x_data_aux = pd.concat([x_data_aux, pd.Series(instance_list[dim][x], name="dim" + str(dim))], axis=1)
+                
 
             x_data_aux["tid"] = x
             if class_labels:

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Multiple Aspect Trajectory Tools Framework, MAT-data: Data Preprocessing for Multiple Aspect Trajectory Data Mining
+**Multiple Aspect Trajectory Tools Framework**
+
+*MAT-data: Data Preprocessing for Multiple Aspect Trajectory Data Mining*
 
 The present application offers a tool, to support the user in the classification task of multiple aspect trajectories,
 specifically for extracting and visualizing the movelets, the parts of the trajectory that better discriminate a class.
@@ -12,6 +14,9 @@ Created on Dec, 2023
 Copyright (C) 2023, License GPL Version 3 or superior (see LICENSE file)
 
 @author: Tarlis Portela
+
+----
+
 """
 import os
 import pandas as pd
@@ -23,8 +28,7 @@ import math
 import random
 import itertools
 
-
-from .preprocess import writeFile, featuresJSON
+from matdata.preprocess import writeFile, featuresJSON
 # --------------------------------------------------------------------------------
 def scalerSamplerGenerator(
     Ns=[100, 10],
@@ -38,44 +42,49 @@ def scalerSamplerGenerator(
     save_to=None,
     base_data=None,
     save_desc_files=True,
-    outformats=['csv', 'mat']):
-    '''
-    [Function to generate trajectory datasets based on real data.]
+    outformats=['csv']):
+    """
+    Generates trajectory datasets based on real data.
 
-    Args:
-        Ns [int, int]: 
-            Parameters to scale number of trajectories. 
-            List of 2 values: starting number, number of elements (default [100, 10])
-        Ms [int, int]: 
-            Parameters to scale size of Trajectories. 
-            List of 2 values: starting number, number of elements (default [10, 10])
-        Ls [int, int]: 
-            Parameters to scale number of attributes (* doubles the columns). 
-            List of 2 values: starting number, number of elements (default [8, 10])
-        Cs [int, int]: 
-            Parameters to scale number of classes. 
-            List of 2 values: starting number, number of elements (default [2, 10])
-        random_seed [int]: 
-            Random Seed (default 1)
-        cols_for_sampling [list] or [dict]: 
-            Columns to add in the generated dataset (default 'lat_lon,time,day,rating,price,weather,root_type,type')
-            OR if use dictionary in the format: {'aspectName': 'type', 'aspectName': 'type'} when broviding base_data and saving .MAT
-        save_to [str, bool]: 
-            Destination folder to save or False, if not to save csv file (default False)
-        fileprefix [str]: 
-            Output filename prefix (default 'sample')
-        fileposfix [str]: 
-            Output filename postfix (default 'train')
-        base_data [DataFrame]: 
-            DataFrame of trajectoris to use as base for sampling data (default 'assets/examples/Foursquare_Example.csv')
-        save_desc_files [bool]: 
-            True if to save the .json description files or False, if not to save (default True)
-        outformats [list]:
-            Output file formats for saving (default ['csv', 'mat'])
-    
+    Parameters:
+    -----------
+    Ns : list of int, optional
+        Parameters to scale the number of trajectories. 
+        List of 2 values: starting number, number of elements (default [100, 10])
+    Ms : list of int, optional
+        Parameters to scale the size of trajectories. 
+        List of 2 values: starting number, number of elements (default [10, 10])
+    Ls : list of int, optional
+        Parameters to scale the number of attributes (* doubles the columns). 
+        List of 2 values: starting number, number of elements (default [8, 10])
+    Cs : list of int, optional
+        Parameters to scale the number of classes. 
+        List of 2 values: starting number, number of elements (default [2, 10])
+    random_seed : int, optional
+        Random seed (default 1)
+    fileprefix : str, optional
+        Output filename prefix (default 'scalability')
+    fileposfix : str, optional
+        Output filename postfix (default 'train')
+    cols_for_sampling : list or dict, optional
+        Columns to add in the generated dataset. 
+        Default: ['space', 'time', 'day', 'rating', 'price', 'weather', 'root_type', 'type'].
+        If a dictionary is provided in the format: {'aspectName': 'type', 'aspectName': 'type'},
+        it is used when providing base_data and saving .MAT.
+    save_to : str or bool, optional
+        Destination folder to save, or False if not to save CSV files (default False)
+    base_data : DataFrame, optional
+        DataFrame of trajectories to use as a base for sampling data.
+        Default: None (uses example data)
+    save_desc_files : bool, optional
+        True if to save the .json description files, False otherwise (default True)
+    outformats : list, optional
+        Output file formats for saving (default ['csv'])
+
     Returns:
-        [pandas.DataFrame] the generated dataset
-    '''
+    --------
+    None
+    """
     
     assert Ns[0] > 0, 'N > 0'
     assert Ms[0] > 0, 'M > 0'
@@ -102,10 +111,10 @@ def scalerSamplerGenerator(
     miL = len(cols_for_sampling) #getMiddleE(La)
     miC = getMiddleE(Cs)
     
-    print('N ::', 'fix. value:', 't', miN, 'tscale:t', Ns)
-    print('M ::', 'fix. value:', 't', miM, 'tscale:t', Ms)
-    print('L ::', 'fix. value:', 't', miL, 'tscale:t', La)
-    print('C ::', 'fix. value:', 't', miC, 'tscale:t', Cs)
+    print('N ::', 'fix. value:', '\t', miN, '\tscale:\t', Ns)
+    print('M ::', 'fix. value:', '\t', miM, '\tscale:\t', Ms)
+    print('L ::', 'fix. value:', '\t', miL, '\tscale:\t', La)
+    print('C ::', 'fix. value:', '\t', miC, '\tscale:\t', Cs)
     
     # 1 - Scale attributes (reshape columns), fixed trajectories, points, and classes:
     cols = cols_for_sampling.copy()
@@ -164,34 +173,39 @@ def samplerGenerator(
     cols_for_sampling = ['space','time','day','rating','price','weather','root_type','type'],
     save_to=False,
     base_data=None,
-    outformats=['csv', 'mat']):
+    outformats=['csv']):
     '''
-    [Function to generate trajectories based on real data.]
+    Function to generate trajectories based on real data.
 
-    Args:
-        N [int]: 
-            Number of Trajectories (default 10)
-        M [int]: 
-            Size of Trajectories (default 50)
-        C [int]: 
-            Number of classes (default 1)
-        random_seed [int]: 
-            Random Seed (default 1)
-        cols_for_sampling [list]: 
-            Columns to add in the generated dataset (default 'lat_lon,time,day,rating,price,weather,root_type,type')
-        save_to [str, bool]: 
-            Destination folder to save or False, if not to save csv file (default False)
-        fileprefix [str]: 
-            Output filename prefix (default 'sample')
-        fileposfix [str]: 
-            Output filename postfix (default 'train')
-        base_data [DataFrame]: 
-            DataFrame of trajectoris to use as base for sampling data (default 'assets/examples/Foursquare_Example.csv')
-        outformats [list]:
-            Output file formats for saving (default ['csv', 'mat'])
-    
+    Parameters:
+    -----------
+    N : int, optional
+        Number of trajectories (default 10)
+    M : int, optional
+        Size of trajectories, number of points (default 50)
+    C : int, optional
+        Number of classes (default 1)
+    random_seed : int, optional
+        Random seed (default 1)
+    cols_for_sampling : list, optional
+        Columns to add in the generated dataset. 
+        Default: ['space', 'time', 'day', 'rating', 'price', 'weather', 'root_type', 'type'].
+    save_to : str or bool, optional
+        Destination folder to save, or False if not to save CSV files (default False)
+    fileprefix : str, optional
+        Output filename prefix (default 'sample')
+    fileposfix : str, optional
+        Output filename postfix (default 'train')
+    base_data : DataFrame, optional
+        DataFrame of trajectories to use as a base for sampling data.
+        Default: None (uses example data)
+    outformats : list, optional
+        Output file formats for saving (default ['csv'])
+
     Returns:
-        [pandas.DataFrame] the generated dataset
+    --------
+    pandas.DataFrame
+        The generated dataset.
     '''
     
     assert N > 0, 'N > 0'
@@ -275,40 +289,43 @@ def scalerRandomGenerator(
     attr_desc=None,
     save_to=None,
     save_desc_files=True,
-    outformats=['csv', 'mat']):
+    outformats=['csv']):
     '''
-    [Function to generate trajectory datasets based on random data.]
+    Function to generate trajectory datasets based on random data.
 
-    Args:
-        Ns [int, int]: 
-            Parameters to scale number of trajectories. 
-            List of 2 values: starting number, number of elements (default [100, 10])
-        Ms [int, int]: 
-            Parameters to scale size of Trajectories. 
-            List of 2 values: starting number, number of elements (default [10, 10])
-        Ls [int, int]: 
-            Parameters to scale number of attributes (* doubles the columns). 
-            List of 2 values: starting number, number of elements (default [8, 10])
-        Cs [int, int]: 
-            Parameters to scale number of classes. 
-            List of 2 values: starting number, number of elements (default [2, 10])
-        random_seed [int]: 
-            Random Seed (default 1)
-        attr_desc [list]: 
-            Data type intervals to generate attributes as list of desciptive dicts (default 'default_types()')
-        save_to [str, bool]: 
-            Destination folder to save or False, if not to save csv file (default False)
-        fileprefix [str]: 
-            Output filename prefix (default 'sample')
-        fileposfix [str]: 
-            Output filename postfix (default 'train')
-        save_desc_files [bool]: 
-            True if to save the .json description files or False, if not to save (default True)
-        outformats [list]:
-            Output file formats for saving (default ['csv', 'mat'])
-    
+    Parameters:
+    -----------
+    Ns : list of int, optional
+        Parameters to scale the number of trajectories. 
+        List of 2 values: starting number, number of elements (default [100, 10])
+    Ms : list of int, optional
+        Parameters to scale the size of trajectories. 
+        List of 2 values: starting number, number of elements (default [10, 10])
+    Ls : list of int, optional
+        Parameters to scale the number of attributes (* doubles the columns). 
+        List of 2 values: starting number, number of elements (default [8, 10])
+    Cs : list of int, optional
+        Parameters to scale the number of classes. 
+        List of 2 values: starting number, number of elements (default [2, 10])
+    random_seed : int, optional
+        Random seed (default 1)
+    attr_desc : list, optional
+        Data type intervals to generate attributes as a list of descriptive dicts.
+        Default: None (uses default types)
+    save_to : str or bool, optional
+        Destination folder to save, or False if not to save CSV files (default False)
+    fileprefix : str, optional
+        Output filename prefix (default 'sample')
+    fileposfix : str, optional
+        Output filename postfix (default 'train')
+    save_desc_files : bool, optional
+        True if to save the .json description files, False otherwise (default True)
+    outformats : list, optional
+        Output file formats for saving (default ['csv'])
+
     Returns:
-        [pandas.DataFrame] the generated dataset
+    --------
+    None
     '''
     
     assert Ns[0] > 0, 'N > 0'
@@ -334,10 +351,10 @@ def scalerRandomGenerator(
     miL = Ls[0] #getMiddleE(La)
     miC = getMiddleE(Cs)
     
-    print('N ::', 'fix. value:', 't', miN, 'tscale:t', Ns)
-    print('M ::', 'fix. value:', 't', miM, 'tscale:t', Ms)
-    print('L ::', 'fix. value:', 't', miL, 'tscale:t', La)
-    print('C ::', 'fix. value:', 't', miC, 'tscale:t', Cs)
+    print('N ::', 'fix. value:', '\t', miN, '\tscale:\t', Ns)
+    print('M ::', 'fix. value:', '\t', miM, '\tscale:\t', Ms)
+    print('L ::', 'fix. value:', '\t', miL, '\tscale:\t', La)
+    print('C ::', 'fix. value:', '\t', miC, '\tscale:\t', Cs)
     
     if not attr_desc:
         attr_desc = default_types()[:Ls[0]]
@@ -390,35 +407,39 @@ def randomGenerator(
     fileposfix='train',
     attr_desc=None,
     save_to=False,
-    outformats=['csv', 'mat']):
+    outformats=['csv']):
     '''
-    [Function to generate trajectories based on random data.]
+    Function to generate trajectories based on random data.
 
-    Args:
-        N [int]: 
-            Number of Trajectories (default 10)
-        M [int]: 
-            Size of Trajectories (default 50)
-        L [int]: 
-            Number of attributes (default 10)
-        C [int]: 
-            Number of classes (default 10)
-        random_seed [int]: 
-            Random Seed (default 1)
-        attr_desc [list of dict]: 
-            Data type intervals to generate attributes as list of desciptive dicts (default 'default_types()')
-            OR a list of instances of AttributeGenerator
-        save_to [str, bool]: 
-            Destination folder to save or False, if not to save csv file (default False)
-        fileprefix [str]: 
-            Output filename prefix (default 'sample')
-        fileposfix [str]: 
-            Output filename postfix (default 'train')
-        outformats [list]:
-            Output file formats for saving (default ['csv', 'mat'])
-    
+    Parameters:
+    -----------
+    N : int, optional
+        Number of trajectories (default 10)
+    M : int, optional
+        Size of trajectories (default 50)
+    L : int, optional
+        Number of attributes (default 10)
+    C : int, optional
+        Number of classes (default 10)
+    random_seed : int, optional
+        Random Seed (default 1)
+    attr_desc : list of dict, optional
+        Data type intervals to generate attributes as a list of descriptive dicts.
+        Default: None (uses default types)
+        OR a list of instances of AttributeGenerator
+    save_to : str or bool, optional
+        Destination folder to save, or False if not to save CSV files (default False)
+    fileprefix : str, optional
+        Output filename prefix (default 'sample')
+    fileposfix : str, optional
+        Output filename postfix (default 'train')
+    outformats : list, optional
+        Output file formats for saving (default ['csv'])
+
     Returns:
-        [pandas.DataFrame] the generated dataset
+    --------
+    pandas.DataFrame
+        The generated dataset.
     '''
     
     assert N > 0, 'N > 0'
@@ -475,7 +496,7 @@ def randomGenerator(
 
     return new_df
     
-    print('Not implemented.')
+#    print('Not implemented.')
 
 # --------------------------------------------------------------------------------
 def default_types():
