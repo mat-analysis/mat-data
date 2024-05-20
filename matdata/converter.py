@@ -221,7 +221,7 @@ def xes2df(url, class_col='label', tid_col='tid', opLabel='Converting XES', save
     return df
     
 #-------------------------------------------------------------------------->>
-def df2parquet(df, data_path, file="train", tid_col='tid', class_col='label', select_cols=None, opLabel='Writing MAT'):
+def df2parquet(df, data_path, file="train", tid_col='tid', class_col='label', select_cols=None, opLabel='Writing Parquet'):
     """
     Writes a pandas DataFrame to a Parquet file.
 
@@ -250,7 +250,7 @@ def df2parquet(df, data_path, file="train", tid_col='tid', class_col='label', se
     
     F = os.path.join(data_path, file+'.parquet')
     
-    print("Saving dataset as: " + F)
+    print(opLabel+": " + F)
     if not os.path.exists(data_path):
         os.makedirs(data_path)
     
@@ -258,6 +258,47 @@ def df2parquet(df, data_path, file="train", tid_col='tid', class_col='label', se
         select_cols = list(df.columns)
     
     df[select_cols].to_parquet(F)
+    print("Done.")
+    print(" --------------------------------------------------------------------------------")
+    return df
+
+def df2csv(df, data_path, file="train", tid_col='tid', class_col='label', select_cols=None, opLabel='Writing CSV'):
+    """
+    Writes a pandas DataFrame to a CSV file.
+
+    Parameters:
+    -----------
+    df : pandas.DataFrame
+        The DataFrame to be written to the CSV file.
+    data_path : str
+        The directory path where the Parquet file will be saved.
+    file : str, optional (default='train')
+        The base name of the CSV file (without extension).
+    tid_col : str, optional (default='tid')
+        The name of the column to be used as the trajectory identifier.
+    class_col : str, optional (default='label')
+        The name of the column to be treated as the class/label column.
+    select_cols : list of str, optional
+        A list of column names to be included in the CSV file. If None, all columns are included.
+    opLabel : str, optional (default='Writing PARQUET')
+        A label describing the operation, useful for logging or display purposes.
+
+    Returns:
+    --------
+    pandas.DataFrame
+        The input DataFrame
+    """
+    
+    F = os.path.join(data_path, file+'.csv')
+    
+    print(opLabel + ": " + F)
+    if not os.path.exists(data_path):
+        os.makedirs(data_path)
+    
+    if not select_cols:
+        select_cols = list(df.columns)
+    
+    df[select_cols].to_csv(F)
     print("Done.")
     print(" --------------------------------------------------------------------------------")
     return df

@@ -2,6 +2,6 @@
 
 <!--next-version-placeholder-->
 
-## v0.1rc0 (24/08/2021)
+## v0.1rc1 (17/05/2024)
 
 - First release

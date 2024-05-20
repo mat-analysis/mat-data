@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 [project]
 name = "mat-data"
-version = "0.1rc1"
+version = "0.1rc2"
 description = "MAT-data: Data Preprocessing for Multiple Aspect Trajectory Data Mining"
 authors = [
     {name = "Tarlis Tortelli Portela", email = "tarlis@tarlis.com.br"},

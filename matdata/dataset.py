@@ -21,6 +21,9 @@ Copyright (C) 2023, License GPL Version 3 or superior (see LICENSE file)
 import os
 import pandas as pd
 import numpy as np
+import requests
+import subprocess
+import tempfile, py7zr
 
 from tqdm.auto import tqdm
 
@@ -30,13 +33,17 @@ from matdata.preprocess import organizeFrame, splitTIDs, readDataset, trainTestS
 USER = "mat-analysis"
 REPOSITORY = "datasets"
 
+# The 2 URLs are a workaround of GH delay in accessing raw files
+REPO_URL_API = 'https://api.github.com/repos/{}/{}/contents/{}/{}/'
+REPO_URL_RAW = 'https://raw.githubusercontent.com/{}/{}/main/{}/{}/'
+
 DATASET_TYPES = {
-    'mat':                       'Multiple Aspect Trajectories', 
-    'raw':                       'Raw Trajectories', 
-    'sequential':                'Sequential Semantics', 
-    'process':                   'Event Logs',
-    'multivariate_ts':           'Multivariate Time Series', 
-    'univariate_ts':             'Univariate Time Series',
+    'mat':           'Multiple Aspect Trajectories', 
+    'raw':           'Raw Trajectories', 
+    'sequential':    'Sequential Semantics', 
+    'log':           'Event Logs',
+    'mts':           'Multivariate Time Series', 
+    'uts':           'Univariate Time Series',
 }
 
 SUBSET_TYPES = {
@@ -44,11 +51,11 @@ SUBSET_TYPES = {
    'mat.specific':                   'Multiple Aspect',
    'raw.specific':                   'Raw',
    'sequential.*':                   'Semantic',
-   'multivariate_ts.specific':       'Multivariate',
-   'univariate_ts.specific':         'Univariate',
-#    'process.specific':               'Event Log',
-   'process.process':                'Event Log',
-   'process.*':                      'Semantic',
+   'mts.specific':                   'Multivariate',
+   'uts.specific':                   'Univariate',
+   'log.specific':                   'Event Log',
+   'log.process':                    'Event Log', #Deprecated?
+   'log.*':                          'Semantic',
     
    '*.raw':      'Spatio-Temporal',
     
@@ -128,23 +135,34 @@ def load_ds(dataset='mat.FoursquareNYC', prefix='', missing='-999', sample_size=
     pandas.DataFrame
         The loaded dataset with optional sampling.
     """
-
-    import requests
-
+    
+    def is_file(dsc, dsn, file):
+        url = REPO_URL_API.format(USER, REPOSITORY, dsc, dsn) + file
+        try:
+            resp = requests.head(url)
+#            return resp.status_code == requests.codes.found
+            return resp.status_code == requests.codes.ok
+        except Exception as e:
+            return False
+        
     def url_is_file(url):
         try:
             resp = requests.head(url)
             return resp.status_code == requests.codes.found
+#            return resp.status_code == requests.codes.ok
         except Exception as e:
             return False
         
     def download(url, tmpdir):
-        if url_is_file(url):
-            response = requests.get(url, stream=True)
-            with open(os.path.join(tmpdir, os.path.basename(url)), 'wb') as out:
-                out.write(response.content)
-            return True
-        return False
+        file = os.path.join(tmpdir, os.path.basename(url))
+        subprocess.run('curl -o {} {}'.format(file, url), shell=True, check=True)
+#        response = requests.get(url, stream=True)
+#        with open(os.path.join(tmpdir, os.path.basename(url)), 'wb') as out:
+#            out.write(response.content)
+#            #content = response.json()['content']
+#            #out.write(base64.b64decode(content))
+#            return True
+        return True #False
     
     def read(url):
         df = pd.read_parquet(url)
@@ -160,19 +178,21 @@ def load_ds(dataset='mat.FoursquareNYC', prefix='', missing='-999', sample_size=
     dsc = dataset.split('.')[0]
     dsn = dataset.split('.')[1]
     
-    base = 'https://github.com/{}/{}/raw/main/'.format(USER, REPOSITORY) + dsc+'/'+dsn+'/'
+    base = REPO_URL_RAW.format(USER, REPOSITORY, dsc, dsn)
     
     # Try to load: 'data.parquet'
     url = base + file
-    if url_is_file(url):
+    if is_file(dsc, dsn, file): # url_is_file(url):
         print("Loading dataset file: " + base)
-        return read(url)
+#        return read(url)
+        with tempfile.TemporaryDirectory() as tmpdir:
+            download(url, tmpdir)
+            return read(os.path.join(tmpdir, file))
     
     # Try to load compressed: 'data.parquet.7z'
     url = base + file +'.7z'
-    if url_is_file(url):
+    if is_file(dsc, dsn, file+'.7z'): #url_is_file(url):
         print("Loading dataset compressed file: " + base)
-        import tempfile, py7zr
         with tempfile.TemporaryDirectory() as tmpdir:
             download(url, tmpdir)
             filename = os.path.join(tmpdir, file +'.7z')
@@ -185,13 +205,12 @@ def load_ds(dataset='mat.FoursquareNYC', prefix='', missing='-999', sample_size=
             return read(os.path.join(tmpdir, file))
         
     # Try to load compressed and splitted: 'data.parquet.7z.001-N'
-    if url_is_file(url+'.001'):
+    if is_file(dsc, dsn, file+'.001'): #url_is_file(url+'.001'):
         print("Loading dataset multi-volume files: " + base)
-        import tempfile, py7zr
         with tempfile.TemporaryDirectory() as tmpdir:
             with open(os.path.join(tmpdir, file +'.7z'), 'ab') as outfile:  # append in binary mode
                 i = 1
-                while download(url+'.{:03d}'.format(i), tmpdir):
+                while is_file(dsc, dsn, file+'.{:03d}'.format(i)) and download(url+'.{:03d}'.format(i), tmpdir):
                     with open(os.path.join(tmpdir, file+'.7z.{:03d}'.format(i)) , 'rb') as infile: # open in binary mode also
                         outfile.write(infile.read())
                     i += 1
