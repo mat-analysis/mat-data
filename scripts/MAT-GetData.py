@@ -35,7 +35,7 @@ def parse_args():
     parse = argparse.ArgumentParser(description='MAT-data: Downloader')
     parse.add_argument('data-path', type=str, help='path for the datasets')
     parse.add_argument('datasets', type=str, default='mat.FoursquareNYC', help='dataset names (comma separated)')
-    parse.add_argument('-k', '--k', type=int, default=0, help='Number of subsets for k-fold cross validation (k > 1), hold-out train test split (k = 1), or no split (k = 0).')
+    parse.add_argument('-k', '--k', type=int, default=0, help='Number of subsets for: a) k-fold cross-validation (k > 1); b) hold-out train test split (k = 1); or c) no split (k = 0).')
     parse.add_argument('-f', '--format', type=str, default='parquet', help='output file format (csv, parquet, zip)')
     
     parse.add_argument('-r', '--random', type=int, default=1, help='random seed for reproducibility')

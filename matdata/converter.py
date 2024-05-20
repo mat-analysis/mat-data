@@ -303,7 +303,7 @@ def df2csv(df, data_path, file="train", tid_col='tid', class_col='label', select
     print(" --------------------------------------------------------------------------------")
     return df
 
-def df2zip(df, data_path, file, tid_col='tid', class_col='label', select_cols=None, opLabel='Writing MAT'):
+def df2zip(df, data_path, file, tid_col='tid', class_col='label', select_cols=None, opLabel='Writing ZIP'):
     """
     Writes a pandas DataFrame to a CSV file and compresses it into a ZIP archive.
 
@@ -500,7 +500,7 @@ def zip2csv(folder, file, cols, class_col = 'label', tid_col='tid', missing='?')
     print(" --------------------------------------------------------------------------------")
     return data
 
-def zip2arf(folder, file, cols, tid_col='tid', class_col = 'label', missing='?', opLabel='Reading CSV'):
+def zip2arf(folder, file, cols, tid_col='tid', class_col = 'label', missing='?', opLabel='Reading ZIP'):
     """
     Extracts a CSV file from a ZIP archive and converts it into an ARFF (Attribute-Relation File Format) file.
 

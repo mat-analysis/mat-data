@@ -33,7 +33,8 @@ from matdata.preprocess import organizeFrame, splitTIDs, readDataset, trainTestS
 USER = "mat-analysis"
 REPOSITORY = "datasets"
 
-# The 2 URLs are a workaround of GH delay in accessing raw files
+# This URLs are a workaround of GH delay in accessing raw files
+REPO_URL     = 'https://github.com/{}/{}/tree/main/{}/{}/'
 REPO_URL_API = 'https://api.github.com/repos/{}/{}/contents/{}/{}/'
 REPO_URL_RAW = 'https://raw.githubusercontent.com/{}/{}/main/{}/{}/'
 
@@ -183,7 +184,7 @@ def load_ds(dataset='mat.FoursquareNYC', prefix='', missing='-999', sample_size=
     # Try to load: 'data.parquet'
     url = base + file
     if is_file(dsc, dsn, file): # url_is_file(url):
-        print("Loading dataset file: " + base)
+        print("Loading dataset file: " + REPO_URL.format(USER, REPOSITORY, dsc, dsn))
 #        return read(url)
         with tempfile.TemporaryDirectory() as tmpdir:
             download(url, tmpdir)
@@ -192,7 +193,7 @@ def load_ds(dataset='mat.FoursquareNYC', prefix='', missing='-999', sample_size=
     # Try to load compressed: 'data.parquet.7z'
     url = base + file +'.7z'
     if is_file(dsc, dsn, file+'.7z'): #url_is_file(url):
-        print("Loading dataset compressed file: " + base)
+        print("Loading dataset compressed file: " + REPO_URL.format(USER, REPOSITORY, dsc, dsn))
         with tempfile.TemporaryDirectory() as tmpdir:
             download(url, tmpdir)
             filename = os.path.join(tmpdir, file +'.7z')
@@ -206,7 +207,7 @@ def load_ds(dataset='mat.FoursquareNYC', prefix='', missing='-999', sample_size=
         
     # Try to load compressed and splitted: 'data.parquet.7z.001-N'
     if is_file(dsc, dsn, file+'.001'): #url_is_file(url+'.001'):
-        print("Loading dataset multi-volume files: " + base)
+        print("Loading dataset multi-volume files: " + REPO_URL.format(USER, REPOSITORY, dsc, dsn))
         with tempfile.TemporaryDirectory() as tmpdir:
             with open(os.path.join(tmpdir, file +'.7z'), 'ab') as outfile:  # append in binary mode
                 i = 1
