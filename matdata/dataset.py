@@ -115,7 +115,7 @@ def prepare_ds(df, tid_col='tid', class_col=None, sample_size=1, random_num=1):
 
 # ------------------------------------------------------------
 ## TODO: For now, all datasets on repository have tid and label columns. This can change in the future.
-def load_ds(dataset='mat.FoursquareNYC', prefix='', missing='-999', sample_size=1, random_num=1):
+def load_ds(dataset='mat.FoursquareNYC', prefix='', missing=None, sample_size=1, random_num=1):
     """
     Load a dataset for training or testing from a GitHub repository.
 
@@ -168,7 +168,8 @@ def load_ds(dataset='mat.FoursquareNYC', prefix='', missing='-999', sample_size=
     
     def read(url):
         df = pd.read_parquet(url)
-        df.fillna(missing, inplace=True)
+        if missing:
+            df.fillna(missing, inplace=True)
 
         return prepare_ds(df, tid_col='tid', class_col='label', sample_size=sample_size, random_num=random_num)
     
@@ -207,12 +208,12 @@ def load_ds(dataset='mat.FoursquareNYC', prefix='', missing='-999', sample_size=
             return read(os.path.join(tmpdir, file))
         
     # Try to load compressed and splitted: 'data.parquet.7z.001-N'
-    if is_file(dsc, dsn, file+'.001'): #url_is_file(url+'.001'):
+    if is_file(dsc, dsn, file+'.7z.001'): #url_is_file(url+'.001'):
         print("Loading dataset multi-volume files: " + REPO_URL.format(USER, REPOSITORY, dsc, dsn))
         with tempfile.TemporaryDirectory() as tmpdir:
             with open(os.path.join(tmpdir, file +'.7z'), 'ab') as outfile:  # append in binary mode
                 i = 1
-                while is_file(dsc, dsn, file+'.{:03d}'.format(i)) and download(url+'.{:03d}'.format(i), tmpdir):
+                while is_file(dsc, dsn, file+'.7z.{:03d}'.format(i)) and download(url+'.7z.{:03d}'.format(i), tmpdir):
                     with open(os.path.join(tmpdir, file+'.7z.{:03d}'.format(i)) , 'rb') as infile: # open in binary mode also
                         outfile.write(infile.read())
                     i += 1

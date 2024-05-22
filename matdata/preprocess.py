@@ -42,7 +42,7 @@ DS_FUNCTIONS = {
 }
 
 #-------------------------------------------------------------------------->>
-def readDataset(data_path, folder=None, file='train.csv', class_col='label', tid_col='tid', missing='?'):
+def readDataset(data_path, folder=None, file='train.csv', class_col='label', tid_col='tid', missing=None):
     """
     Reads a dataset file (CSV format by default, 'train.csv') and returns it as a pandas DataFrame.
 
@@ -147,9 +147,12 @@ def organizeFrame(df, columns_order=None, tid_col='tid', class_col='label', make
         columns_order = [x for x in columns_order if x not in [tid_col]]
         columns_order = columns_order + [tid_col]
             
-    columns_order_zip = [x for x in columns_order if x not in ['lat', 'lon']]
-    columns_order_csv = [x for x in columns_order if x not in ['space']]
-    
+    if make_spatials:
+        columns_order_zip = [x for x in columns_order if x not in ['lat', 'lon']]
+        columns_order_csv = [x for x in columns_order if x not in ['space']]
+    else:
+        columns_order_zip = columns_order_csv = columns_order
+        
     return df, columns_order_zip, columns_order_csv
 
 #-------------------------------------------------------------------------->>

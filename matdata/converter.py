@@ -28,7 +28,7 @@ from tqdm.auto import tqdm
 
 # IN METHOD, ts2df: #from matdata.inc.ts_io import load_from_tsfile_to_dataframe
 #-------------------------------------------------------------------------->>
-def csv2df(url, class_col='label', tid_col='tid', missing='?'): # TODO class_col, tid_col unnecessary
+def csv2df(url, class_col='label', tid_col='tid', missing=None): # TODO class_col, tid_col unnecessary
     """
     Converts a CSV file from a given URL into a pandas DataFrame.
 
@@ -50,9 +50,12 @@ def csv2df(url, class_col='label', tid_col='tid', missing='?'): # TODO class_col
         handled as specified and columns renamed if necessary.
     """
     
-    return pd.read_csv(url, na_values=missing)
+    df = pd.read_csv(url)
+    if missing:
+        df = df.fillna(missing)
+    return df
 
-def parquet2df(url, class_col='label', tid_col='tid', missing='?'): # TODO class_col, tid_col unnecessary
+def parquet2df(url, class_col='label', tid_col='tid', missing=None): # TODO class_col, tid_col unnecessary
     """
     Converts a Parquet file from a given URL into a pandas DataFrame.
 
@@ -105,9 +108,14 @@ def zip2df(url, class_col='label', tid_col='tid', missing='?', opLabel='Reading 
 
     if isinstance(url, str):
         url = ZipFile(url)
-    return read_zip(url, None, class_col, tid_col, missing, opLabel)
+    df = read_zip(url, None, class_col, tid_col, missing, opLabel)
+    
+    if missing:
+        df = df.fillna(missing)
+        
+    return df
 
-def mat2df(url, class_col='label', tid_col='tid', missing='?'):
+def mat2df(url, class_col='label', tid_col='tid', missing=None):
     """
     Converts a MATLAB .mat file from a given URL into a pandas DataFrame.
 
@@ -139,7 +147,7 @@ def mat2df(url, class_col='label', tid_col='tid', missing='?'):
 #def read_mat(url, class_col='label', tid_col='tid', missing='?'):
 #    raise Exception('Not Implemented')
     
-def ts2df(url, class_col='label', tid_col='tid', missing='?'):
+def ts2df(url, class_col='label', tid_col='tid', missing=None):
     """
     Converts a time series file from a given URL into a pandas DataFrame.
 
@@ -164,7 +172,7 @@ def ts2df(url, class_col='label', tid_col='tid', missing='?'):
     from matdata.inc.ts_io import load_from_tsfile_to_dataframe
     return load_from_tsfile_to_dataframe(url, replace_missing_vals_with=missing)
 
-def xes2df(url, class_col='label', tid_col='tid', opLabel='Converting XES', save=False, start_tid=1):
+def xes2df(url, class_col='label', tid_col='tid', missing=None, opLabel='Converting XES', save=False, start_tid=1):
     """
     Converts an XES (eXtensible Event Stream) file from a given URL into a pandas DataFrame.
 
@@ -217,6 +225,8 @@ def xes2df(url, class_col='label', tid_col='tid', opLabel='Converting XES', save
                 tqdm(range(len(log)), desc=opLabel)))
 
     df = pd.concat(data, ignore_index=True)
+    if missing:
+        df = df.fillna(missing)
     
     return df
     
@@ -447,7 +457,7 @@ def df2mat(df, folder, file, cols=None, mat_cols=None, desc_cols=None, label_col
     f.close()
 
 #-------------------------------------------------------------------------->>
-def read_zip(zipFile, cols=None, class_col='label', tid_col='tid', missing='?', opLabel='Reading ZIP'):
+def read_zip(zipFile, cols=None, class_col='label', tid_col='tid', opLabel='Reading ZIP'):
     ### [Private helper function]
     
     data = pd.DataFrame()
@@ -456,9 +466,9 @@ def read_zip(zipFile, cols=None, class_col='label', tid_col='tid', missing='?', 
         files.sort()
         def readCSV(filename):
             if cols is not None:
-                df = pd.read_csv(z.open(filename), names=cols, na_values=missing)
+                df = pd.read_csv(z.open(filename), names=cols)
             else:
-                df = pd.read_csv(z.open(filename), header=None, na_values=missing)
+                df = pd.read_csv(z.open(filename), header=None)
             df[tid_col]   = filename.split(" ")[1][1:]
             df[class_col] = filename.split(" ")[2][1:-3]
             return df
