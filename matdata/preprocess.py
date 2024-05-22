@@ -154,7 +154,7 @@ def organizeFrame(df, columns_order=None, tid_col='tid', class_col='label', make
 
 #-------------------------------------------------------------------------->>
 def trainTestSplit(df, train_size=0.7, random_num=1, tid_col='tid', class_col='label', fileprefix='', \
-                      data_path='.', outformats=[], verbose=False, organize_columns=True):
+                      data_path='.', outformats=[], verbose=False, organize_columns=True, sort=True):
     """
     Splits a DataFrame into training and testing sets, optionally organizes columns, and saves them to files.
 
@@ -180,6 +180,8 @@ def trainTestSplit(df, train_size=0.7, random_num=1, tid_col='tid', class_col='l
         A flag indicating whether to display progress messages.
     organize_columns : bool, optional (default=True)
         A flag indicating whether to organize columns before saving.
+    sort : bool, optional
+        If True, sort the data by `class_col` and `tid_col` (default True).
 
     Returns:
     --------
@@ -189,7 +191,8 @@ def trainTestSplit(df, train_size=0.7, random_num=1, tid_col='tid', class_col='l
         A DataFrame containing the testing set.
     """
     
-    #outformats=['zip', 'csv', 'mat']
+    random.seed(random_num)
+    
     if verbose:
         print(str(train_size)+"% train and test split ... ")
     
@@ -199,10 +202,14 @@ def trainTestSplit(df, train_size=0.7, random_num=1, tid_col='tid', class_col='l
         columns_order_zip = list(df.columns)
         columns_order_csv = list(df.columns)
     
-    train_index, test_index, _ = splitTIDs(df, train_size, random_num, tid_col, class_col, min_elements=1)
+    train_index, test_index = splitTIDs(df, train_size, random_num, tid_col, class_col, min_elements=1)
     
-    train = df.loc[df[tid_col].isin(train_index)]
-    test  = df.loc[df[tid_col].isin(test_index)]
+    train = df.set_index(tid_col).loc[train_index].reset_index() #df.loc[df[tid_col].isin(train_index)]
+    test  = df.set_index(tid_col).loc[test_index].reset_index() #df.loc[df[tid_col].isin(test_index)]
+    
+    if sort:
+        train = sortByLabel(train, tid_col, class_col)
+        test  = sortByLabel(test, tid_col, class_col)
     
     # WRITE Train / Test Files
     for outType in outformats:
@@ -214,7 +221,7 @@ def trainTestSplit(df, train_size=0.7, random_num=1, tid_col='tid', class_col='l
         print(" --------------------------------------------------------------------------------")
     return train, test
 
-def kfold_trainTestSplit(df, k, random_num=1, tid_col='tid', class_col='label', fileprefix='', columns_order=None, ktrain=None, ktest=None, mat_columns=None, data_path='.', outformats=[], verbose=False):
+def kfold_trainTestSplit(df, k, random_num=1, tid_col='tid', class_col='label', fileprefix='', columns_order=None, ktrain=None, ktest=None, mat_columns=None, data_path='.', outformats=[], verbose=False, sort=True):
     """
     Splits a DataFrame into k folds for k-fold cross-validation, optionally organizes columns, and saves them to files.
 
@@ -246,6 +253,8 @@ def kfold_trainTestSplit(df, k, random_num=1, tid_col='tid', class_col='label', 
         A list of output formats for saving the datasets (e.g., ['csv', 'zip', 'parquet']).
     verbose : bool, optional (default=False)
         A flag indicating whether to display progress messages.
+    sort : bool, optional
+        If True, sort the data by `class_col` and `tid_col` (default True).
 
     Returns:
     --------
@@ -265,6 +274,10 @@ def kfold_trainTestSplit(df, k, random_num=1, tid_col='tid', class_col='label', 
         ktrain, ktest = splitData(df, k, random_num, tid_col, class_col)
     elif verbose:
         print("Train and test data provided.")
+    
+    if sort:
+        ktrain = list(map(lambda x: sortByLabel(x, tid_col, class_col), ktrain))
+        ktest  = list(map(lambda x: sortByLabel(x, tid_col, class_col), ktest))
     
     if len(outformats) > 0:
         for x in range(k):            
@@ -288,7 +301,7 @@ def kfold_trainTestSplit(df, k, random_num=1, tid_col='tid', class_col='label', 
     return ktrain, ktest
 
 def stratify(df, sample_size=0.5, train_size=0.7, random_num=1, tid_col='tid', class_col='label', 
-             organize_columns=True, mat_columns=None, fileprefix='', outformats=[], data_path='.'):  
+             organize_columns=True, mat_columns=None, fileprefix='', outformats=[], data_path='.', sort=True):  
     """
     Stratifies a DataFrame by class label and splits it into training and testing sets, optionally organizes columns, and saves them to files.
 
@@ -316,6 +329,8 @@ def stratify(df, sample_size=0.5, train_size=0.7, random_num=1, tid_col='tid', c
         A list of output formats for saving the datasets (e.g., ['csv', 'zip', 'parquet']).
     data_path : str, optional (default='.')
         The directory path where the output files will be saved.
+    sort : bool, optional
+        If True, sort the data by `class_col` and `tid_col` (default True).
 
     Returns:
     --------
@@ -325,11 +340,11 @@ def stratify(df, sample_size=0.5, train_size=0.7, random_num=1, tid_col='tid', c
         A DataFrame containing the testing set.
     """
     
-    train_index, _, _ = splitTIDs(df, sample_size, random_num, tid_col, class_col, min_elements=2)
+    train_index, _ = splitTIDs(df, sample_size, random_num, tid_col, class_col, min_elements=2)
     
     df = df.loc[df[tid_col].isin(train_index)].copy()
     
-    train_index, test_index, _ = splitTIDs(df, train_size, random_num, tid_col, class_col, min_elements=1)
+    train_index, test_index = splitTIDs(df, train_size, random_num, tid_col, class_col, min_elements=1)
     
     if organize_columns:
         df, columns_order_zip, columns_order_csv = organizeFrame(df, None, tid_col, class_col)
@@ -339,6 +354,10 @@ def stratify(df, sample_size=0.5, train_size=0.7, random_num=1, tid_col='tid', c
     
     train = df.loc[df[tid_col].isin(train_index)]
     test  = df.loc[df[tid_col].isin(test_index)]
+    
+    if sort:
+        train = sortByLabel(train, tid_col, class_col)
+        test  = sortByLabel(test, tid_col, class_col)
     
     for outType in outformats:
         path = 'S'+str(int(sample_size*100))
@@ -352,7 +371,8 @@ def stratify(df, sample_size=0.5, train_size=0.7, random_num=1, tid_col='tid', c
     
 # TODO fix stratify:
 def kfold_stratify(df, k=10, inc=1, limit=10, random_num=1, tid_col='tid', class_col='label', fileprefix='', 
-             ktrain=None, ktest=None, organize_columns=True, mat_columns=None, data_path='.', outformats=[], ignore_ltk=True):
+                   ktrain=None, ktest=None, organize_columns=True, mat_columns=None, data_path='.', outformats=[], 
+                   ignore_ltk=True, sort=True):
    
     print(str(k)+"-fold stratification of train and test ... ")
     
@@ -374,6 +394,10 @@ def kfold_stratify(df, k=10, inc=1, limit=10, random_num=1, tid_col='tid', class
         for y in range(1, x+1):
             train_aux = pd.concat([train_aux,  ktrain[y]])
             test_aux  = pd.concat([test_aux,   ktest[y]])
+        
+        if sort:
+            train_aux = sortByLabel(train_aux, tid_col, class_col)
+            test_aux  = sortByLabel(test_aux, tid_col, class_col)
             
         for outType in outformats:
             path = 'S'+str((x+1)*int(100/k))
@@ -389,7 +413,7 @@ def kfold_stratify(df, k=10, inc=1, limit=10, random_num=1, tid_col='tid', class
     return ktrain, ktest
 
 def klabels_stratify(df, kl=10, train_size=0.7, random_num=1, tid_col='tid', class_col='label', 
-             organize_columns=True, mat_columns=None, fileprefix='', outformats=[], data_path='.'):
+             organize_columns=True, mat_columns=None, fileprefix='', outformats=[], data_path='.', sort=True):
     """
     Stratifies a DataFrame by a specified number of class labels and splits it into training and testing sets,
     optionally organizes columns, and saves them to files.
@@ -418,6 +442,8 @@ def klabels_stratify(df, kl=10, train_size=0.7, random_num=1, tid_col='tid', cla
         A list of output formats for saving the datasets (e.g., ['csv', 'zip', 'parquet']).
     data_path : str, optional (default='.')
         The directory path where the output files will be saved.
+    sort : bool, optional
+        If True, sort the data by `class_col` and `tid_col` (default True).
 
     Returns:
     --------
@@ -437,7 +463,7 @@ def klabels_stratify(df, kl=10, train_size=0.7, random_num=1, tid_col='tid', cla
     labels_index = random.sample(list(labels), n)
     df = df.loc[df[class_col].isin(labels_index)].copy()
     
-    train_index, test_index, _ = splitTIDs(df, train_size, random_num, tid_col, class_col, min_elements=min_elements)
+    train_index, test_index = splitTIDs(df, train_size, random_num, tid_col, class_col, min_elements=min_elements)
     
     if organize_columns:
         df, columns_order_zip, columns_order_csv = organizeFrame(df, None, tid_col, class_col)
@@ -447,6 +473,10 @@ def klabels_stratify(df, kl=10, train_size=0.7, random_num=1, tid_col='tid', cla
     
     train = df.loc[df[tid_col].isin(train_index)]
     test  = df.loc[df[tid_col].isin(test_index)]
+    
+    if sort:
+        train = sortByLabel(train, tid_col, class_col)
+        test  = sortByLabel(test, tid_col, class_col)
     
     for outType in outformats:
         path = 'L'+str(n)
@@ -490,8 +520,7 @@ def joinTrainTest(dir_path, train_file="train.csv", test_file="test.csv", tid_co
     dataset_train = readDataset(dir_path, None, train_file)
     dataset_test  = readDataset(dir_path, None, test_file)
     
-    dataset = pd.concat([dataset_train, dataset_test])
-    dataset.sort_values([class_col, tid_col])
+    joinTrainTest_df(train, test, tid_col, class_col, True)
     
     if to_file:
         print("Saving joined dataset as: " + os.path.join(dir_path, 'joined.csv'))
@@ -501,6 +530,87 @@ def joinTrainTest(dir_path, train_file="train.csv", test_file="test.csv", tid_co
     print(" --------------------------------------------------------------------------------")
     
     return dataset
+
+def joinTrainTest_df(train, test, tid_col='tid', class_col='label', sort=True): 
+    
+    df = pd.concat([train, test], ignore_index=True)
+
+    if sort and class_col:
+        df = sortByLabel(df, tid_col, class_col)
+    elif sort:
+        df = sortByTID(df, tid_col)
+    
+    return df
+
+#-------------------------------------------------------------------------->> SORTING DATA
+def sortByTID(df_, tid_col='tid'):
+    """
+    Sort a DataFrame by trajectory ID column.
+
+    Parameters:
+    -----------
+    df_ : pandas.DataFrame
+        The DataFrame to be sorted.
+    tid_col : str, optional
+        The name of the column representing trajectory IDs (default 'tid').
+
+    Returns:
+    --------
+    pandas.DataFrame
+        The sorted DataFrame.
+    """
+    
+    tids = df_[tid_col].unique()
+    return df_.set_index(tid_col).loc[sorted(tids)].reset_index()
+
+def sortByLabel(df, tid_col='tid', class_col='label'):
+    """
+    Sort a DataFrame by class label column and trajectory ID column.
+
+    Parameters:
+    -----------
+    df : pandas.DataFrame
+        The DataFrame to be sorted.
+    tid_col : str, optional
+        The name of the column representing trajectory IDs (default 'tid').
+    class_col : str, optional
+        The name of the column representing class labels (default 'label').
+
+    Returns:
+    --------
+    pandas.DataFrame
+        The sorted DataFrame.
+    """
+    
+    def sortLabel(label):
+        df_ = df.set_index(class_col).loc[label].copy().reset_index()
+        return sortByTID(df_, tid_col)
+
+    return pd.concat( map(lambda label: sortLabel(label), tqdm(df[class_col].unique(), desc="Sorting data")) )
+
+def suffle_df(df, tid_col='tid', random_num=1):
+    """
+    Shuffle a DataFrame by trajectory ID column.
+
+    Parameters:
+    -----------
+    df : pandas.DataFrame
+        The DataFrame to be shuffled.
+    tid_col : str, optional
+        The name of the column representing trajectory IDs (default 'tid').
+    random_num : int, optional
+        Random seed for reproducibility (default 1).
+
+    Returns:
+    --------
+    pandas.DataFrame
+        The shuffled DataFrame.
+    """
+    
+    random.seed(random_num)
+    tids = df.loc[:, tid_col].unique()
+    random.shuffle(tids)
+    return df.set_index(tid_col).loc[tids].reset_index()
 
 #-------------------------------------------------------------------------->> DESCRIPTORS
 def readDsDesc(data_path, folder=None, file='train.csv', tid_col='tid', class_col='label', missing='?'):
@@ -849,16 +959,15 @@ def datasetStatistics(data_path, folder, file_prefix='', tid_col = 'tid', class_
     return md
 
 #-------------------------------------------------------------------------->> HELPERS
-def splitTIDs(df, train_size=0.7, random_num=1, tid_col='tid', class_col='label', min_elements=1):
+def splitTIDs(df, train_size=0.7, random_num=1, tid_col='tid', class_col='label', min_elements=1, opLabel='Spliting Data (class-balanced)'):
     train = list()
     test = list()
     
-    df_ = df.groupby(tid_col).first().reset_index()[[tid_col, class_col]]
+    random.seed(random_num)
     
     def splitByLabel(label):
-        nonlocal df_, train, test
-        tids = df_.loc[df_[class_col] == label][tid_col].unique()
-        random.seed(random_num)
+        nonlocal df, train, test
+        tids = df.loc[df[class_col] == label][tid_col].unique()
         
         n = int(float(len(tids))*train_size)
         n = min_elements if n < min_elements else n
@@ -869,9 +978,22 @@ def splitTIDs(df, train_size=0.7, random_num=1, tid_col='tid', class_col='label'
         train = train + list(train_index)
         test  = test  + list(test_index)
         
-    list(map(lambda label: splitByLabel(label), tqdm(df_[class_col].unique())))
+    list(map(lambda label: splitByLabel(label), tqdm(df[class_col].unique(), desc=opLabel)))
     
-    return train, test, df_
+    return train, test
+
+def splitTIDsUnbalanced(df, train_size=0.7, random_num=1, tid_col='tid', min_elements=1, opLabel='Spliting Data'):
+    random.seed(random_num)
+    
+    tids = df[tid_col].unique()
+
+    n = int(float(len(tids))*train_size)
+    n = min_elements if n < min_elements else n
+
+    train_index = random.sample(list(tids), n)
+    test_index  = tids[np.isin(tids, train_index, invert=True)]
+    
+    return train_index, test_index
 
 def splitData(df, k, random_num, tid_col='tid', class_col='label', opLabel='Spliting Data', ignore_ltk=True):
     

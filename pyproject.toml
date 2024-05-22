@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 [project]
 name = "mat-data"
-version = "0.1rc2"
+version = "0.1rc3"
 description = "MAT-data: Data Preprocessing for Multiple Aspect Trajectory Data Mining"
 authors = [
     {name = "Tarlis Tortelli Portela", email = "tarlis@tarlis.com.br"},
@@ -42,13 +42,14 @@ dependencies = [
     "numpy",
     "pandas",
     "mat-model",
+    "py7zr",
+    "geohash",
+    "pyarrow",
+    "fastparquet",
  ]
 
 [project.optional-dependencies]
 all_extras = [
-    "geohash",
-    "pyarrow",
-    "fastparquet",
  ]
 
 dev = [

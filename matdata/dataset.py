@@ -95,18 +95,19 @@ def prepare_ds(df, tid_col='tid', class_col=None, sample_size=1, random_num=1):
         The prepared dataset with optional sampling.
     """
     
-    if class_col:
+    if class_col and (tid_col != 'tid' or class_col != 'label'):
         df.rename(columns={tid_col: 'tid', class_col: 'label'}, inplace=True)
         class_col = 'label'
-        df.sort_values(['label', 'tid'])
-    else:
+        #df.sort_values(['label', 'tid'])
+    elif tid_col != 'tid':
         df.rename(columns={tid_col: 'tid'}, inplace=True)
-        df.sort_values(['tid'])
+        tid_col == 'tid'
+        #df.sort_values(['tid'])
     
     if sample_size < 1: # Stratify the data
-        df_index, _, _ = splitTIDs(df, sample_size, random_num, 'tid', class_col, min_elements=2)
+        df_index, _ = splitTIDs(df, sample_size, random_num, 'tid', class_col, min_elements=2)
 
-        df = df.loc[df['tid'].isin(df_index)]
+        df = df.set_index('tid').loc[df_index].reset_index() #df.loc[df['tid'].isin(df_index)]
         
     df, _, columns_order_csv = organizeFrame(df, None, 'tid', class_col)
         
@@ -438,7 +439,7 @@ def read_ds_kfold(data_path, k=5, prefix='specific', suffix='.csv', tid_col='tid
         
     return k_train, k_test
 
-def read_ds_holdout(data_path, prefix='specific', suffix='.csv', tid_col='tid', class_col=None, missing='-999', fold=None):
+def read_ds_holdout(data_path, prefix=None, suffix='.csv', tid_col='tid', class_col=None, missing='-999', fold=None):
     """
     Read datasets for holdout validation from files in a directory.
 
@@ -471,7 +472,7 @@ def read_ds_holdout(data_path, prefix='specific', suffix='.csv', tid_col='tid', 
     dsn = data_path.split(os.path.sep)[-1]
 
     if prefix and prefix != '':
-        files = [prefix+'_train.csv', prefix+'_test'+suffix]
+        files = [prefix+'_train'+suffix, prefix+'_test'+suffix]
     else:
         files = ['train'+suffix, 'test'+suffix]
         

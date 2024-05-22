@@ -13,7 +13,7 @@ sys.setrecursionlimit(1500)
 project = 'mat-data'
 copyright = '2024, Tarlis Tortelli Portela'
 author = 'Tarlis Tortelli Portela'
-release = '0.1rc1'
+release = '0.1rc3'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
