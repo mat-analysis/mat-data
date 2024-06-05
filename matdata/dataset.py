@@ -27,7 +27,7 @@ import tempfile, py7zr
 
 from tqdm.auto import tqdm
 
-from matdata.preprocess import organizeFrame, splitTIDs, readDataset, trainTestSplit, kfold_trainTestSplit
+from matdata.preprocess import organizeFrame, splitTIDs, readDataset, stratify, trainTestSplit, kfold_trainTestSplit
 
 # Repository data on GitHub
 USER = "mat-analysis"
@@ -72,7 +72,7 @@ SUBSET_TYPES = {
 ###############################################################################
 #   LOAD DATASETs - From https://github.com/mat-analysis/datasets/
 ###############################################################################
-def prepare_ds(df, tid_col='tid', class_col=None, sample_size=1, random_num=1):
+def prepare_ds(df, tid_col='tid', class_col=None, sample_size=1, random_num=1, sort=True):
     """
     Prepare dataset for training or testing (helper function).
 
@@ -105,9 +105,10 @@ def prepare_ds(df, tid_col='tid', class_col=None, sample_size=1, random_num=1):
         #df.sort_values(['tid'])
     
     if sample_size < 1: # Stratify the data
-        df_index, _ = splitTIDs(df, sample_size, random_num, 'tid', class_col, min_elements=2)
-
-        df = df.set_index('tid').loc[df_index].reset_index() #df.loc[df['tid'].isin(df_index)]
+        df = stratify(df, sample_size, random_num, tid_col, class_col, organize_columns=False, sort=sort)
+        
+        #df_index, _ = splitTIDs(df, sample_size, random_num, 'tid', class_col, min_elements=2)
+        #df = df.set_index('tid').loc[df_index].reset_index() #df.loc[df['tid'].isin(df_index)]
         
     df, _, columns_order_csv = organizeFrame(df, None, 'tid', class_col)
         
@@ -115,7 +116,7 @@ def prepare_ds(df, tid_col='tid', class_col=None, sample_size=1, random_num=1):
 
 # ------------------------------------------------------------
 ## TODO: For now, all datasets on repository have tid and label columns. This can change in the future.
-def load_ds(dataset='mat.FoursquareNYC', prefix='', missing=None, sample_size=1, random_num=1):
+def load_ds(dataset='mat.FoursquareNYC', prefix='', missing=None, sample_size=1, random_num=1, sort=True):
     """
     Load a dataset for training or testing from a GitHub repository.
 
@@ -171,7 +172,7 @@ def load_ds(dataset='mat.FoursquareNYC', prefix='', missing=None, sample_size=1,
         if missing:
             df.fillna(missing, inplace=True)
 
-        return prepare_ds(df, tid_col='tid', class_col='label', sample_size=sample_size, random_num=random_num)
+        return prepare_ds(df, tid_col='tid', class_col='label', sample_size=sample_size, random_num=random_num, sort=sort)
     
     # ------
     file = 'data.parquet'
@@ -228,7 +229,7 @@ def load_ds(dataset='mat.FoursquareNYC', prefix='', missing=None, sample_size=1,
         
     raise Exception('Unable to load file, check the repository: ' + base)  
     
-def load_ds_holdout(dataset='mat.FoursquareNYC', train_size=0.7, prefix='', missing='-999', sample_size=1, random_num=1):
+def load_ds_holdout(dataset='mat.FoursquareNYC', train_size=0.7, prefix='', missing='-999', sample_size=1, random_num=1, sort=True):
     """
     Load a dataset for training and testing with a holdout method from a GitHub repository.
 
@@ -255,10 +256,10 @@ def load_ds_holdout(dataset='mat.FoursquareNYC', train_size=0.7, prefix='', miss
         The testing dataset.
     """
     
-    df = load_ds(dataset, prefix, missing, sample_size, random_num)
+    df = load_ds(dataset, prefix, missing, sample_size, random_num, sort=False)
     
     # Class balanced train/ test split:
-    train, test = trainTestSplit(df, train_size, random_num)
+    train, test = trainTestSplit(df, train_size, random_num, sort=sort)
     
     return train, test
     
@@ -289,10 +290,10 @@ def load_ds_kfold(dataset='mat.FoursquareNYC', k=5, prefix='', missing='-999', s
         The testing datasets for each fold.
     """
     
-    df = load_ds(dataset, prefix, missing, sample_size, random_num)
+    df = load_ds(dataset, prefix, missing, sample_size, random_num, sort=False)
     
     # Class balanced f-fold train/ test split:
-    ktrain, ktest = kfold_trainTestSplit(df, k, random_num)
+    ktrain, ktest = kfold_trainTestSplit(df, k, random_num, sort=sort)
     
     return ktrain, ktest
 

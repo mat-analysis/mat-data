@@ -303,7 +303,49 @@ def kfold_trainTestSplit(df, k, random_num=1, tid_col='tid', class_col='label', 
     
     return ktrain, ktest
 
-def stratify(df, sample_size=0.5, train_size=0.7, random_num=1, tid_col='tid', class_col='label', 
+def stratify(df, sample_size=0.5, random_num=1, tid_col='tid', class_col='label', organize_columns=True, sort=True, opLabel='Data Stratification (class-balanced)'):  
+    """
+    Stratifies a DataFrame by class label, optionally organizes columns, and saves them to files.
+
+    Parameters:
+    -----------
+    df : pandas.DataFrame
+        The DataFrame to be stratified and split into training and testing sets.
+    sample_size : float, optional (default=0.5)
+        The proportion of the dataset to sample for stratification.
+    random_num : int, optional (default=1)
+        The random seed for reproducible results.
+    tid_col : str, optional (default='tid')
+        The name of the column to be used as the trajectory identifier.
+    class_col : str, optional (default='label')
+        The name of the column to be treated as the class/label column.
+    organize_columns : bool, optional (default=True)
+        A flag indicating whether to organize columns before saving.
+    sort : bool, optional
+        If True, sort the data by `class_col` and `tid_col` (default True).
+
+    Returns:
+    --------
+    pandas.DataFrame
+        A DataFrame containing the stratified set.
+    """
+    
+    tids_index, _ = splitTIDs(df, sample_size, random_num, tid_col, class_col, min_elements=1, opLabel='Stratification (class-balanced)')
+    
+    df = df.loc[df[tid_col].isin(tids_index)].copy()
+    
+    if organize_columns:
+        df, columns_order_zip, columns_order_csv = organizeFrame(df, None, tid_col, class_col)
+    else:
+        columns_order_zip = list(df.columns)
+        columns_order_csv = list(df.columns)
+    
+    if sort:
+        df = sortByLabel(df, tid_col, class_col)
+    
+    return df
+
+def stratifyTrainTest(df, sample_size=0.5, train_size=0.7, random_num=1, tid_col='tid', class_col='label', 
              organize_columns=True, mat_columns=None, fileprefix='', outformats=[], data_path='.', sort=True):  
     """
     Stratifies a DataFrame by class label and splits it into training and testing sets, optionally organizes columns, and saves them to files.
@@ -343,7 +385,7 @@ def stratify(df, sample_size=0.5, train_size=0.7, random_num=1, tid_col='tid', c
         A DataFrame containing the testing set.
     """
     
-    train_index, _ = splitTIDs(df, sample_size, random_num, tid_col, class_col, min_elements=2)
+    train_index, _ = splitTIDs(df, sample_size, random_num, tid_col, class_col, min_elements=2, opLabel='Stratification (class-balanced)')
     
     df = df.loc[df[tid_col].isin(train_index)].copy()
     

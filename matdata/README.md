@@ -27,7 +27,7 @@ Install directly from PyPi repository, or, download from github. (python >= 3.7 
 
 ### Getting Started
 
-On how to use this package, see [MAT-data-Tutorial.ipynb](https://github.com/ttportela/mat-data/blob/main/MAT-data-Tutorial.ipynb) (or the HTML [MAT-data-Tutorial.html](https://github.com/ttportela/mat-data/blob/main/MAT-data-Tutorial.html))
+On how to use this package, see [MAT-data-Tutorial.ipynb](https://github.com/ttportela/mat-data/blob/main/MAT-data-Tutorial.ipynb)
 
 ### Citing
 
@@ -58,13 +58,9 @@ Feel free to contribute in any form, such as scientific publications referencing
 
 ### Related packages
 
-This package is part of _MAT-Tools Framework_ for Multiple Aspect Trajectory Data Mining:
+This package is part of _MAT-Tools Framework_ for Multiple Aspect Trajectory Data Mining, check the guide project:
 
-- [automatize](https://github.com/ttportela/automatize): automatize for experimental evaluation of MAT classification
-- [movelets](https://github.com/ttportela/movelets): movelets for MAT classification methods (based on movelets)
-- [mat-data](https://github.com/ttportela/mat-data): mat-data is a preprocessing library for MAT data
-- [mat-analysis](https://github.com/ttportela/mat-analysis): mat-analysis for MAT classification methods
-- [mat-view](https://github.com/ttportela/mat-view): mat-view for MAT and movelets visualization, and interpratation tools
+- **[mat-tools](https://github.com/mat-analysis/mat-tools)**: Reference guide for MAT-Tools Framework repositories
 
 ### Change Log
 
