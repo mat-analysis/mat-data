@@ -266,6 +266,7 @@ def df2parquet(df, data_path, file="train", tid_col='tid', class_col='label', se
     
     if not select_cols:
         select_cols = list(df.columns)
+    select_cols = [x for x in select_cols if x not in [tid_col, class_col]] + [tid_col, class_col]
     
     df[select_cols].to_parquet(F)
     print("Done.")
@@ -307,8 +308,9 @@ def df2csv(df, data_path, file="train", tid_col='tid', class_col='label', select
     
     if not select_cols:
         select_cols = list(df.columns)
+    select_cols = [x for x in select_cols if x not in [tid_col, class_col]] + [tid_col, class_col]
     
-    df[select_cols].to_csv(F)
+    df[select_cols].to_csv(F, index=False)
     print("Done.")
     print(" --------------------------------------------------------------------------------")
     return df
