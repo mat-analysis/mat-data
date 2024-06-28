@@ -318,6 +318,8 @@ def df2csv(df, data_path, file="train", tid_col='tid', class_col='label', select
 def df2zip(df, data_path, file, tid_col='tid', class_col='label', select_cols=None, opLabel='Writing ZIP'):
     """
     Writes a pandas DataFrame to a CSV file and compresses it into a ZIP archive.
+    
+    * This format is used for older movelet methods, such as Movelets, MasterMovelets, SuperMovelets, and the Dodge, Xiao, Zheng feature extractors. In this format all ',' (commas) are replaced for '_' to avoid problems reading csv trajectory files.
 
     Parameters:
     -----------
@@ -341,6 +343,8 @@ def df2zip(df, data_path, file, tid_col='tid', class_col='label', select_cols=No
     pandas.DataFrame
         The input DataFrame
     """
+    
+    df = df.replace(',', '_', regex=True)
     
     EXT = '.r2'
     if not os.path.exists(data_path):
