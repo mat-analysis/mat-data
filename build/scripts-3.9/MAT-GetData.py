@@ -39,7 +39,7 @@ def parse_args():
     parse.add_argument('-f', '--format', type=str, default='parquet', help='output file format (csv, parquet, zip)')
     
     parse.add_argument('-r', '--random', type=int, default=1, help='random seed for reproducibility')
-    parse.add_argument('-ts', '--train-size', type=float, default=0.7, help='proportion of the training set (default 0.7).')
+    parse.add_argument('-ts', '--train-size', type=float, default=1.0, help='proportion of the training set (default 1.0).')
     parse.add_argument('-sample', '--sample-size', type=float, default=1, help='proportion of the dataset to include in the sample (default 1, i.e., use the entire dataset)')
 
     args = parse.parse_args()
@@ -61,11 +61,11 @@ outformat   = config["format"]
 
 def getData(dataset, k, train_size, sample_size, random):
     name = dataset.split('.')[1]
-    if k == 0:
-        return {(name, 'data'): load_ds(dataset, sample_size=sample_size, random_num=random)}
-    elif k == 1:
-        train, test = load_ds_holdout(dataset, sample_size=sample_size, random_num=random)
+    if k == 1 or train_size < 1.0:
+        train, test = load_ds_holdout(dataset, sample_size=sample_size, train_size=train_size, random_num=random)
         return {(name, 'train'): train, (name, 'test'): test}
+    elif k == 0:
+        return {(name, 'data'): load_ds(dataset, sample_size=sample_size, train_size=train_size, random_num=random)}
     else:
         ktrain, ktest = load_ds_kfold(dataset, k, sample_size=sample_size, random_num=random)
         data      = dict(map(lambda i: ((name, f'run{i+1}','train'), ktrain[i]), range(len(ktrain))))
