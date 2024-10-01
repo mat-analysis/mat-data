@@ -1,10 +1,10 @@
 # MAT-data: Data Preprocessing for Multiple Aspect Trajectory Data Mining \[MAT-Tools Framework\]
 ---
 
-\[[Publication](#)\] \[[citation.bib](citation.bib)\] \[[GitHub](https://github.com/ttportela/mat-data)\] \[[PyPi](https://pypi.org/project/mat-data/)\]
+\[[Publication](#)\] \[[Bibtex](https://github.com/mat-analysis/mat-tools/blob/main/references/mat-tools.bib)\] \[[GitHub](https://github.com/mat-analysis/mat-data)\] \[[PyPi](https://pypi.org/project/mat-data/)\]
 
 
-The present package offers a tool, to support the user in the task of data preprocessing of multiple aspect trajectories, or to generating synthetic datasets. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
+The present package offers a tool, to support the user in the task of **data preprocessing** of multiple aspect trajectories, or to **generating synthetic datasets**. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
 
 Created on Dec, 2023
 Copyright (C) 2023, License GPL Version 3 or superior (see LICENSE file)
@@ -33,12 +33,7 @@ On how to use this package, see [MAT-data-Tutorial.ipynb](https://github.com/ttp
 
 If you use `mat-data` please cite the following paper:
 
-**TODO**
-
-Bibtex:
-```bash
-@inproceedings{...}
-```
+ - Portela, T. T.; Machado, V. L.; Renso, C. Unified Approach to Trajectory Data Mining and Multi-Aspect Trajectory Analysis with MAT-Tools Framework. In: SIMPÓSIO BRASILEIRO DE BANCO DE DADOS (SBBD), 39. , 2024, Florianópolis/SC. \[[Bibtex](https://github.com/mat-analysis/mat-tools/blob/main/references/mat-tools.bib)\]
 
 ### Collaborate with us
 
@@ -54,4 +49,4 @@ This package is part of _MAT-Tools Framework_ for Multiple Aspect Trajectory Dat
 
 ### Change Log
 
-This is a package under construction, see [CHANGELOG.md](./CHANGELOG.md)
+This is a package under construction, see [CHANGELOG.md](https://github.com/mat-analysis/mat-data/blob/main/CHANGELOG.md)
