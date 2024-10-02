@@ -72,7 +72,7 @@ docs = [
 [project.urls]
 "Homepage" = "https://github.com/mat-analysis/mat-data"
 "Repository" = "https://github.com/mat-analysis/mat-data"
-"Documentation" = "https://github.com/mat-analysis/mat-data/blob/main/README.md"
+"Documentation" = "https://mat-analysis.github.io/mat-tools/mat-data/index.html"
 "Download" = "https://pypi.org/project/mat-data/#files"
 "Bug Tracker" = "https://github.com/mat-analysis/mat-data/issues"
 

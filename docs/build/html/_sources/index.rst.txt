@@ -16,20 +16,27 @@ MAT-data's Documentation!
 Module contents
 ---------------
 
-.. automodule:: matmodel
+.. automodule:: matdata
    :members:
    :undoc-members:
    :show-inheritance:
 
 
-.. toctree:: matdata
+.. toctree:: 
    :maxdepth: 5
    :caption: Modules in MAT-data:
 
-   dataset
-   preprocess
-   converter
-   generator
+   Dataset <dataset>
+   Pre-process <preprocess>
+   Converter <converter>
+   Data Generator <generator>
+   
+.. toctree::
+   :maxdepth: 1
+   :titlesonly:
+   :caption: Framework Documentation:
+
+   MAT-Tools <https://mat-analysis.github.io/mat-tools/>
    
 ----
 

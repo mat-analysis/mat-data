@@ -1,7 +1,8 @@
 # MAT-data: Data Preprocessing for Multiple Aspect Trajectory Data Mining \[MAT-Tools Framework\]
 ---
 
-\[[Publication](#)\] \[[Bibtex](https://github.com/mat-analysis/mat-tools/blob/main/references/mat-tools.bib)\] \[[GitHub](https://github.com/mat-analysis/mat-data)\] \[[PyPi](https://pypi.org/project/mat-data/)\]
+\[[Publication](#)\] \[[Bibtex](https://github.com/mat-analysis/mat-tools/blob/main/references/mat-tools.bib)\] \[[GitHub](https://github.com/mat-analysis/mat-data)\] \[[PyPi](https://pypi.org/project/mat-data/)\] \[[Docs](https://mat-analysis.github.io/mat-tools/)\]
+
 
 
 The present package offers a tool, to support the user in the task of **data preprocessing** of multiple aspect trajectories, or to **generating synthetic datasets**. It integrates into a unique framework for multiple aspects trajectories and in general for multidimensional sequence data mining methods.
