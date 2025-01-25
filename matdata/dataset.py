@@ -65,7 +65,7 @@ SUBSET_TYPES = {
 ###############################################################################
 #   LOAD DATASETs - From https://github.com/mat-analysis/datasets/
 ###############################################################################
-def prepare_ds(df, tid_col='tid', class_col=None, sample_size=1, random_num=1, sort=True):
+def prepare_ds(df, tid_col='tid', class_col=None, sample_size=1, random_num=1, sort=True, make_spatials=False):
     """
     Prepare dataset for training or testing (helper function).
 
@@ -81,6 +81,8 @@ def prepare_ds(df, tid_col='tid', class_col=None, sample_size=1, random_num=1, s
         The proportion of the dataset to include in the sample (default 1, i.e., use the entire dataset).
     random_num : int, optional
         Random seed for reproducibility (default 1).
+    make_spatials : bool, optional (default=False)
+        A flag indicating whether to convert spatial columns to both lat/lon separated or space format, which is the lat/lon concatenated in one column.
 
     Returns:
     --------
@@ -103,13 +105,16 @@ def prepare_ds(df, tid_col='tid', class_col=None, sample_size=1, random_num=1, s
         #df_index, _ = splitTIDs(df, sample_size, random_num, 'tid', class_col, min_elements=2)
         #df = df.set_index('tid').loc[df_index].reset_index() #df.loc[df['tid'].isin(df_index)]
         
-    df, _, columns_order_csv = organizeFrame(df, None, 'tid', class_col)
+    df, _, columns_order_space = organizeFrame(df, None, 'tid', class_col, make_spatials)
         
-    return df[columns_order_csv]
+    if make_spatials:
+        return df
+    else:
+        return df[columns_order_space]
 
 # ------------------------------------------------------------
 ## TODO: For now, all datasets on repository have tid and label columns. This can change in the future.
-def load_ds(dataset='mat.FoursquareNYC', prefix='', missing=None, sample_size=1, random_num=1, sort=True):
+def load_ds(dataset='mat.FoursquareNYC', prefix='', missing=None, sample_size=1, random_num=1, sort=True, make_spatials=False):
     """
     Load a dataset for training or testing from a GitHub repository.
 
@@ -125,6 +130,8 @@ def load_ds(dataset='mat.FoursquareNYC', prefix='', missing=None, sample_size=1,
         The proportion of the dataset to include in the sample (default 1, i.e., use the entire dataset).
     random_num : int, optional
         Random seed for reproducibility (default 1).
+    make_spatials : bool, optional (default=False)
+        A flag indicating whether to convert spatial columns to both lat/lon separated or space format, which is the lat/lon concatenated in one column.
 
     Returns:
     --------
@@ -165,7 +172,7 @@ def load_ds(dataset='mat.FoursquareNYC', prefix='', missing=None, sample_size=1,
         if missing:
             df.fillna(missing, inplace=True)
 
-        return prepare_ds(df, tid_col='tid', class_col='label', sample_size=sample_size, random_num=random_num, sort=sort)
+        return prepare_ds(df, tid_col='tid', class_col='label', sample_size=sample_size, random_num=random_num, sort=sort, make_spatials=make_spatials)
     
     # ------
     file = 'data.parquet'
@@ -222,7 +229,7 @@ def load_ds(dataset='mat.FoursquareNYC', prefix='', missing=None, sample_size=1,
         
     raise Exception('Unable to load file, check the repository: ' + base)  
     
-def load_ds_holdout(dataset='mat.FoursquareNYC', train_size=0.7, prefix='', missing='-999', sample_size=1, random_num=1, sort=True):
+def load_ds_holdout(dataset='mat.FoursquareNYC', train_size=0.7, prefix='', missing='-999', sample_size=1, random_num=1, sort=True, make_spatials=False):
     """
     Load a dataset for training and testing with a holdout method from a GitHub repository.
 
@@ -240,6 +247,8 @@ def load_ds_holdout(dataset='mat.FoursquareNYC', train_size=0.7, prefix='', miss
         The proportion of the dataset to include in the sample (default 1, i.e., use the entire dataset).
     random_num : int, optional
         Random seed for reproducibility (default 1).
+    make_spatials : bool, optional (default=False)
+        A flag indicating whether to convert spatial columns to both lat/lon separated or space format, which is the lat/lon concatenated in one column.
 
     Returns:
     --------
@@ -249,14 +258,14 @@ def load_ds_holdout(dataset='mat.FoursquareNYC', train_size=0.7, prefix='', miss
         The testing dataset.
     """
     
-    df = load_ds(dataset, prefix, missing, sample_size, random_num, sort=False)
+    df = load_ds(dataset, prefix, missing, sample_size, random_num, sort=False, make_spatials=make_spatials)
     
     # Class balanced train/ test split:
     train, test = trainTestSplit(df, train_size, random_num, sort=sort)
     
     return train, test
     
-def load_ds_kfold(dataset='mat.FoursquareNYC', k=5, prefix='', missing='-999', sample_size=1, random_num=1):
+def load_ds_kfold(dataset='mat.FoursquareNYC', k=5, prefix='', missing='-999', sample_size=1, random_num=1, make_spatials=False):
     """
     Load a dataset for k-fold cross-validation from a GitHub repository.
 
@@ -274,6 +283,8 @@ def load_ds_kfold(dataset='mat.FoursquareNYC', k=5, prefix='', missing='-999', s
         The proportion of the dataset to include in the sample (default 1, i.e., use the entire dataset).
     random_num : int, optional
         Random seed for reproducibility (default 1).
+    make_spatials : bool, optional (default=False)
+        A flag indicating whether to convert spatial columns to both lat/lon separated or space format, which is the lat/lon concatenated in one column.
 
     Returns:
     --------
@@ -283,7 +294,7 @@ def load_ds_kfold(dataset='mat.FoursquareNYC', k=5, prefix='', missing='-999', s
         The testing datasets for each fold.
     """
     
-    df = load_ds(dataset, prefix, missing, sample_size, random_num, sort=False)
+    df = load_ds(dataset, prefix, missing, sample_size, random_num, sort=False, make_spatials=make_spatials)
     
     # Class balanced f-fold train/ test split:
     ktrain, ktest = kfold_trainTestSplit(df, k, random_num, sort=sort)
@@ -329,7 +340,7 @@ def repository_datasets():
 ###############################################################################
 #   READ DATASETs - From local files
 ###############################################################################
-def read_ds(data_file, tid_col='tid', class_col=None, missing='-999', sample_size=1, random_num=1):
+def read_ds(data_file, tid_col='tid', class_col=None, missing='-999', sample_size=1, random_num=1, make_spatials=False):
     """
     Read a dataset from a file.
 
@@ -347,6 +358,8 @@ def read_ds(data_file, tid_col='tid', class_col=None, missing='-999', sample_siz
         The proportion of the dataset to include in the sample (default 1, i.e., use the entire dataset).
     random_num : int, optional
         Random seed for reproducibility (default 1).
+    make_spatials : bool, optional (default=False)
+        A flag indicating whether to convert spatial columns to both lat/lon separated or space format, which is the lat/lon concatenated in one column.
 
     Returns:
     --------
@@ -356,9 +369,9 @@ def read_ds(data_file, tid_col='tid', class_col=None, missing='-999', sample_siz
     
     df = readDataset(data_file, class_col=class_col, tid_col=tid_col, missing=missing)
     
-    return prepare_ds(df, tid_col, class_col, sample_size, random_num) 
+    return prepare_ds(df, tid_col, class_col, sample_size, random_num, make_spatials=make_spatials) 
 
-def read_ds_5fold(data_path, prefix='specific', suffix='.csv', tid_col='tid', class_col=None, missing='-999'):
+def read_ds_5fold(data_path, prefix='specific', suffix='.csv', tid_col='tid', class_col=None, missing='-999', make_spatials=False):
     """
     Read datasets for k-fold cross-validation from files in a directory.
     
@@ -380,6 +393,8 @@ def read_ds_5fold(data_path, prefix='specific', suffix='.csv', tid_col='tid', cl
         The name of the column representing class labels. If None, no class column is used (default None).
     missing : str, optional
         The placeholder value used to denote missing data (default '-999').
+    make_spatials : bool, optional (default=False)
+        A flag indicating whether to convert spatial columns to both lat/lon separated or space format, which is the lat/lon concatenated in one column.
 
     Returns:
     --------
@@ -389,9 +404,9 @@ def read_ds_5fold(data_path, prefix='specific', suffix='.csv', tid_col='tid', cl
         The testing datasets for each fold.
     """
 
-    return read_ds_kfold(data_path, 5, prefix, suffix, tid_col, class_col, missing)
+    return read_ds_kfold(data_path, 5, prefix, suffix, tid_col, class_col, missing, make_spatials)
     
-def read_ds_kfold(data_path, k=5, prefix='specific', suffix='.csv', tid_col='tid', class_col=None, missing='-999'):
+def read_ds_kfold(data_path, k=5, prefix='specific', suffix='.csv', tid_col='tid', class_col=None, missing='-999', make_spatials=False):
     """
     Read datasets for k-fold cross-validation from files in a directory.
 
@@ -411,6 +426,8 @@ def read_ds_kfold(data_path, k=5, prefix='specific', suffix='.csv', tid_col='tid
         The name of the column representing class labels. If None, no class column is used (default None).
     missing : str, optional
         The placeholder value used to denote missing data (default '-999').
+    make_spatials : bool, optional (default=False)
+        A flag indicating whether to convert spatial columns to both lat/lon separated or space format, which is the lat/lon concatenated in one column.
 
     Returns:
     --------
@@ -427,14 +444,14 @@ def read_ds_kfold(data_path, k=5, prefix='specific', suffix='.csv', tid_col='tid
     k_test  = []
     
     for fold in tqdm(range(1, k+1), desc='Reading '+str(k)+'-fold dataset '+ dsn + ' of ' + translateCategory(dsn, dsc)):
-        df_train, df_test = read_ds_holdout(data_path, prefix, suffix, tid_col, class_col, missing, fold)
+        df_train, df_test = read_ds_holdout(data_path, prefix, suffix, tid_col, class_col, missing, fold, make_spatials)
         
         k_train.append(df_train)
         k_test.append(df_test)
         
     return k_train, k_test
 
-def read_ds_holdout(data_path, prefix=None, suffix='.csv', tid_col='tid', class_col=None, missing='-999', fold=None):
+def read_ds_holdout(data_path, prefix=None, suffix='.csv', tid_col='tid', class_col=None, missing='-999', fold=None, make_spatials=False):
     """
     Read datasets for holdout validation from files in a directory.
 
@@ -454,6 +471,8 @@ def read_ds_holdout(data_path, prefix=None, suffix='.csv', tid_col='tid', class_
         The placeholder value used to denote missing data (default '-999').
     fold : int or None, optional
         The fold number to load for holdout validation, including subdirectory (ex. run1). If None, read files in `data_path`.
+    make_spatials : bool, optional (default=False)
+        A flag indicating whether to convert spatial columns to both lat/lon separated or space format, which is the lat/lon concatenated in one column.
 
     Returns:
     --------
@@ -481,7 +500,7 @@ def read_ds_holdout(data_path, prefix=None, suffix='.csv', tid_col='tid', class_
                      ('), fold: '+str(fold) if fold else ')')):
 #        url = BASE_URL + dsc+'/'+dsn+'/' + file
         url = os.path.join(data_path, file)
-        df = read_ds(url, tid_col, class_col, missing)
+        df = read_ds(url, tid_col, class_col, missing, make_spatials=make_spatials)
         dataset.append(df)
     
     return dataset

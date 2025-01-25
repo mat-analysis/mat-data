@@ -249,28 +249,6 @@ def samplerGenerator(
 
     return new_df
 
-def getSamplingData(base_data, cols_for_sampling):
-    if base_data is None:
-        base_data = os.path.join(os.path.dirname(__file__), 'assets', 'sample', 'Foursquare_Sample.csv')
-        df = pd.read_csv(base_data).dropna()
-        df = df.rename(columns={"lat_lon": "space"})
-    
-        cats = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-        df['day'] = pd.Categorical(df['day'], categories=cats, ordered=True)
-        
-        desc_cols = {'space':'space2d', 'time':'time', 'day':'nominal', 'rating':'numeric', 'price':'numeric', 
-                     'weather':'nominal', 'root_type':'nominal', 'type':'nominal'}
-    else:
-        df = base_data
-        
-        if type(cols_for_sampling) is dict:
-            desc_cols = cols_for_sampling.copy()
-            cols_for_sampling = list(cols_for_sampling.keys())
-        else:
-            desc_cols = None
-
-    return df, cols_for_sampling, desc_cols
-
 def scalerRandomGenerator(
     Ns=[100, 10],
     Ms=[10,  10],
@@ -707,4 +685,27 @@ class SpatialGrid2D:
     
     def text(self, point):
         return str(point[0]) + ' ' + str(point[1])
+    
+# --------------------------------------------------------------------------------
+def getSamplingData(base_data, cols_for_sampling):
+    if base_data is None:
+        base_data = os.path.join(os.path.dirname(__file__), 'assets', 'sample', 'Foursquare_Sample.csv')
+        df = pd.read_csv(base_data).dropna()
+        df = df.rename(columns={"lat_lon": "space"})
+    
+        cats = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        df['day'] = pd.Categorical(df['day'], categories=cats, ordered=True)
+        
+        desc_cols = {'space':'space2d', 'time':'time', 'day':'nominal', 'rating':'numeric', 'price':'numeric', 
+                     'weather':'nominal', 'root_type':'nominal', 'type':'nominal'}
+    else:
+        df = base_data
+        
+        if type(cols_for_sampling) is dict:
+            desc_cols = cols_for_sampling.copy()
+            cols_for_sampling = list(cols_for_sampling.keys())
+        else:
+            desc_cols = None
+
+    return df, cols_for_sampling, desc_cols
 # --------------------------------------------------------------------------------
